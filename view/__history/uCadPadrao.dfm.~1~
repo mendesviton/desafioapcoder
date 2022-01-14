@@ -1,0 +1,86 @@
+object frCadpadraoSyndico: TfrCadpadraoSyndico
+  Left = 0
+  Top = 0
+  Caption = 'Cadastro'
+  ClientHeight = 481
+  ClientWidth = 399
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnFundo: TPanel
+    Left = 0
+    Top = 0
+    Width = 399
+    Height = 481
+    Align = alClient
+    TabOrder = 0
+    ExplicitLeft = -8
+    ExplicitTop = -32
+    object Bevel3: TBevel
+      Left = 7
+      Top = 94
+      Width = 385
+      Height = 4
+      Shape = bsTopLine
+    end
+    object pnToolBar: TPanel
+      Left = 1
+      Top = 1
+      Width = 397
+      Height = 41
+      Align = alTop
+      TabOrder = 0
+      ExplicitLeft = 88
+      ExplicitTop = 160
+      ExplicitWidth = 185
+      object SpeedButton1: TSpeedButton
+        Left = 5
+        Top = 3
+        Width = 35
+        Height = 35
+      end
+      object SpeedButton2: TSpeedButton
+        Left = 45
+        Top = 3
+        Width = 35
+        Height = 35
+      end
+      object SpeedButton3: TSpeedButton
+        Left = 85
+        Top = 3
+        Width = 35
+        Height = 35
+      end
+      object SpeedButton4: TSpeedButton
+        Left = 126
+        Top = 3
+        Width = 35
+        Height = 35
+      end
+      object SpeedButton5: TSpeedButton
+        Left = 166
+        Top = 3
+        Width = 35
+        Height = 35
+      end
+      object SpeedButton6: TSpeedButton
+        Left = 206
+        Top = 3
+        Width = 35
+        Height = 35
+      end
+      object SpeedButton7: TSpeedButton
+        Left = 247
+        Top = 3
+        Width = 144
+        Height = 35
+      end
+    end
+  end
+end

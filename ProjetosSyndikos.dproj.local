@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/01/12 03:40:52.000.473,=C:\Users\vitor\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/01/12 03:41:14.000.626,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\ProjetosSyndikos.dproj=C:\Users\vitor\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2022/01/12 03:41:30.000.001,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\ProjetoSyndico.pas</Transaction>
+    <Transaction>2022/01/12 03:41:35.000.594,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uCadPadrao.pas</Transaction>
+    <Transaction>2022/01/12 23:43:39.000.673,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
+    <Transaction>2022/01/12 23:44:31.000.089,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uCadCondominios.pas</Transaction>
+    <Transaction>2022/01/12 23:44:31.000.089,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.dfm=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uCadCondominios.dfm</Transaction>
+    <Transaction>2022/01/13 02:41:42.000.727,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
+    <Transaction>2022/01/13 02:44:34.000.658,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\uUtil.pas</Transaction>
+  </Transactions>
+</BorlandProject>

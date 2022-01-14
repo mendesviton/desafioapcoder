@@ -1,0 +1,35 @@
+unit uCadPadrao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls,
+  Vcl.ToolWin, System.ImageList, Vcl.ImgList;
+
+type
+  TfrCadpadraoSyndico = class(TForm)
+    pnFundo: TPanel;
+    Bevel3: TBevel;
+    ToolBar1: TToolBar;
+    btAnterior: TToolButton;
+    btProximo: TToolButton;
+    btConsulta: TToolButton;
+    btExcluir: TToolButton;
+    btApagar: TToolButton;
+    ToolBar2: TToolBar;
+    ImageList1: TImageList;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frCadpadraoSyndico: TfrCadpadraoSyndico;
+
+implementation
+
+{$R *.dfm}
+
+end.

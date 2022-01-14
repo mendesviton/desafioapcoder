@@ -1,0 +1,33 @@
+unit uCadPadrao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.ExtCtrls;
+
+type
+  TfrCadpadraoSyndico = class(TForm)
+    pnFundo: TPanel;
+    pnToolBar: TPanel;
+    Bevel3: TBevel;
+    sbAnterior: TSpeedButton;
+    sbProximo: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    SpeedButton4: TSpeedButton;
+    SpeedButton5: TSpeedButton;
+    SpeedButton7: TSpeedButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frCadpadraoSyndico: TfrCadpadraoSyndico;
+
+implementation
+
+{$R *.dfm}
+
+end.

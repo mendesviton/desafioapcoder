@@ -1,0 +1,141 @@
+object frCadpadraoSyndico: TfrCadpadraoSyndico
+  Left = 0
+  Top = 0
+  Caption = 'Cadastro'
+  ClientHeight = 481
+  ClientWidth = 410
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnFundo: TPanel
+    Left = 0
+    Top = 41
+    Width = 410
+    Height = 440
+    Align = alClient
+    BevelKind = bkTile
+    TabOrder = 0
+    ExplicitLeft = 8
+    ExplicitTop = 47
+    ExplicitWidth = 399
+    object Bevel3: TBevel
+      Left = 8
+      Top = 94
+      Width = 385
+      Height = 4
+      Shape = bsTopLine
+    end
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Top = 0
+    Width = 410
+    Height = 41
+    ButtonHeight = 43
+    ButtonWidth = 45
+    DrawingStyle = dsGradient
+    Images = ImageList1
+    TabOrder = 1
+    ExplicitWidth = 233
+    object btAnterior: TToolButton
+      Left = 0
+      Top = 0
+      Hint = 'Registro Anterior'
+      Caption = 'btAnterior'
+      ImageIndex = 2
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object btProximo: TToolButton
+      Left = 45
+      Top = 0
+      Hint = 'Pr'#243'ximo Registro'
+      Caption = 'btProximo'
+      ImageIndex = 2
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object btConsulta: TToolButton
+      Left = 90
+      Top = 0
+      Hint = 'Consulta'
+      Caption = 'btConsulta'
+      ImageIndex = 2
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object btExcluir: TToolButton
+      Left = 135
+      Top = 0
+      Hint = 'Excluir Registro'
+      Caption = 'btExcluir'
+      ImageIndex = 3
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object btApagar: TToolButton
+      Left = 180
+      Top = 0
+      Hint = 'Apagar Campos'
+      Caption = 'btApagar'
+      ImageIndex = 4
+      ParentShowHint = False
+      ShowHint = True
+    end
+  end
+  object ToolBar2: TToolBar
+    Left = 232
+    Top = 0
+    Width = 178
+    Height = 41
+    Hint = 'btStatusCadastro'
+    Align = alNone
+    Caption = 'ToolBar2'
+    DrawingStyle = dsGradient
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 2
+  end
+  object ImageList1: TImageList
+    ColorDepth = cdDefault
+    DrawingStyle = dsFocus
+    Left = 296
+    Top = 73
+    Bitmap = {
+      494C010101000500040010001000FFFFFFFF0510FFFFFFFFFFFFFFFF424D7600
+      0000000000007600000028000000400000001000000001000400000000000002
+      0000000000000000000000000000000000000000000000008000008000000080
+      8000800000008000800080800000C0C0C000808080000000FF0000FF000000FF
+      FF00FF000000FF00FF00FFFF0000FFFFFF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000424D3E000000000000003E000000
+      2800000040000000100000000100010000000000800000000000000000000000
+      000000000000000000000000FFFFFF0000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000}
+  end
+end

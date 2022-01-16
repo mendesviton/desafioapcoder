@@ -19,6 +19,7 @@ type
     btStatus: TSpeedButton;
     btNovoRegistro: TSpeedButton;
     btLimpar: TSpeedButton;
+    SpeedButton1: TSpeedButton;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }

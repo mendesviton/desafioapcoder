@@ -1,0 +1,26 @@
+program ProjetosSyndikos;
+
+uses
+  Vcl.Forms,
+  ProjetoSyndico in 'ProjetoSyndico.pas' {frSyndicoPrincipal},
+  uCadPadrao in 'view\uCadPadrao.pas' {frCadpadraoSyndico},
+  Vcl.Themes,
+  Vcl.Styles,
+  uCadCondominios in 'view\uCadCondominios.pas' {frCadCondominio},
+  uUtil in 'uUtil.pas',
+  uCadPredio in 'view\uCadPredio.pas' {frCadPredioSyndico},
+  uCadMoradores in 'view\uCadMoradores.pas' {frMoradoresSyndicos},
+  uConexaoBanco in 'model\uConexaoBanco.pas',
+  uControleSQL in 'model\uControleSQL.pas',
+  uControleFluxo in 'controler\uControleFluxo.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrSyndicoPrincipal, frSyndicoPrincipal);
+  Application.CreateForm(TfrCadPredioSyndico, frCadPredioSyndico);
+  Application.CreateForm(TfrMoradoresSyndicos, frMoradoresSyndicos);
+  Application.Run;
+end.

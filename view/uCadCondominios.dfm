@@ -1,18 +1,22 @@
 inherited frCadCondominio: TfrCadCondominio
   BorderStyle = bsSingle
   Caption = 'Condom'#237'nios'
-  ClientHeight = 491
-  ClientWidth = 758
+  ClientHeight = 478
+  ClientWidth = 754
   Color = 16744448
   Position = poScreenCenter
-  ExplicitWidth = 764
+  ExplicitWidth = 760
+  ExplicitHeight = 507
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnFundo: TPanel
-    Width = 758
-    Height = 491
+    Width = 754
+    Height = 478
     Color = clGradientInactiveCaption
-    ExplicitWidth = 748
+    ExplicitLeft = -8
+    ExplicitTop = 0
+    ExplicitWidth = 754
+    ExplicitHeight = 478
     inherited Bevel3: TBevel
       Width = 756
       Height = 10
@@ -20,8 +24,8 @@ inherited frCadCondominio: TfrCadCondominio
       ExplicitHeight = 10
     end
     inherited btAnterior: TSpeedButton
-      Left = 3
-      ExplicitLeft = 3
+      Left = 49
+      ExplicitLeft = 49
     end
     inherited btRegistroAntigo: TSpeedButton
       Left = 676
@@ -35,7 +39,7 @@ inherited frCadCondominio: TfrCadCondominio
       Left = 676
       ExplicitLeft = 676
     end
-    object lbNome: TLabel
+    object lbNome: TLabel [9]
       Left = 47
       Top = 112
       Width = 35
@@ -48,9 +52,9 @@ inherited frCadCondominio: TfrCadCondominio
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object lbEmail: TLabel
+    object lbEmail: TLabel [10]
       Left = 33
-      Top = 168
+      Top = 160
       Width = 49
       Height = 14
       Caption = 'E-mail:'
@@ -61,9 +65,9 @@ inherited frCadCondominio: TfrCadCondominio
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object lbCnpj: TLabel
+    object lbCnpj: TLabel [11]
       Left = 47
-      Top = 140
+      Top = 136
       Width = 35
       Height = 14
       Caption = 'CNPJ:'
@@ -74,9 +78,9 @@ inherited frCadCondominio: TfrCadCondominio
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object lbCodigo: TLabel
-      Left = 33
-      Top = 62
+    object lbCodigo: TLabel [12]
+      Left = 161
+      Top = 63
       Width = 49
       Height = 14
       Caption = 'C'#243'digo:'
@@ -87,14 +91,14 @@ inherited frCadCondominio: TfrCadCondominio
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Bevel1: TBevel
+    object Bevel1: TBevel [13]
       Left = 5
       Top = 92
       Width = 756
       Height = 11
       Shape = bsTopLine
     end
-    object Label11: TLabel
+    object Label11: TLabel [14]
       Left = 561
       Top = 211
       Width = 63
@@ -107,36 +111,34 @@ inherited frCadCondominio: TfrCadCondominio
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Bevel2: TBevel
+    object Bevel2: TBevel [15]
       Left = 464
       Top = 219
       Width = 89
       Height = 3
       Shape = bsTopLine
     end
-    object Bevel4: TBevel
+    object Bevel4: TBevel [16]
       Left = 631
       Top = 219
       Width = 89
       Height = 3
       Shape = bsTopLine
     end
-    object lbTipo: TLabel
-      Left = 47
-      Top = 199
-      Width = 35
-      Height = 14
-      Caption = 'Tipo:'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Courier New'
-      Font.Style = [fsBold]
-      ParentFont = False
+    inherited SpeedButton1: TSpeedButton
+      Left = 5
+      Top = 2
+      Width = 45
+      Height = 39
+      OnClick = SpeedButton1Click
+      ExplicitLeft = 5
+      ExplicitTop = 2
+      ExplicitWidth = 45
+      ExplicitHeight = 39
     end
     object gpEndereco: TGroupBox
-      Left = 24
-      Top = 228
+      Left = 33
+      Top = 251
       Width = 696
       Height = 113
       Caption = 'Endere'#231'o'
@@ -146,10 +148,10 @@ inherited frCadCondominio: TfrCadCondominio
       Font.Name = 'Courier New'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 5
+      TabOrder = 4
       object lbEndereco: TLabel
         Left = 222
-        Top = 51
+        Top = 49
         Width = 84
         Height = 14
         Caption = 'Complemento:'
@@ -161,7 +163,7 @@ inherited frCadCondominio: TfrCadCondominio
         ParentFont = False
       end
       object lbNumero: TLabel
-        Left = 57
+        Left = 59
         Top = 49
         Width = 49
         Height = 14
@@ -175,7 +177,7 @@ inherited frCadCondominio: TfrCadCondominio
       end
       object Label1: TLabel
         Left = 257
-        Top = 80
+        Top = 74
         Width = 49
         Height = 14
         Caption = 'Cidade:'
@@ -188,7 +190,7 @@ inherited frCadCondominio: TfrCadCondominio
       end
       object Label2: TLabel
         Left = 457
-        Top = 79
+        Top = 74
         Width = 49
         Height = 14
         Caption = 'Bairro:'
@@ -200,11 +202,11 @@ inherited frCadCondominio: TfrCadCondominio
         ParentFont = False
       end
       object Label3: TLabel
-        Left = 57
-        Top = 80
-        Width = 49
+        Left = 59
+        Top = 72
+        Width = 42
         Height = 14
-        Caption = 'Cidade:'
+        Caption = 'Estado'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -214,7 +216,7 @@ inherited frCadCondominio: TfrCadCondominio
       end
       object Label4: TLabel
         Left = 271
-        Top = 27
+        Top = 25
         Width = 35
         Height = 14
         Caption = 'Nome:'
@@ -225,41 +227,41 @@ inherited frCadCondominio: TfrCadCondominio
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Edit1: TEdit
+      object edNumero: TEdit
         Left = 108
-        Top = 48
+        Top = 46
         Width = 97
-        Height = 21
+        Height = 19
         BorderStyle = bsNone
         TabOrder = 2
       end
-      object Edit2: TEdit
-        Left = 308
-        Top = 48
-        Width = 360
-        Height = 21
+      object edComplemento: TEdit
+        Left = 307
+        Top = 46
+        Width = 361
+        Height = 19
         BorderStyle = bsNone
         TabOrder = 3
       end
-      object Edit3: TEdit
+      object edCidade: TEdit
         Left = 308
-        Top = 75
+        Top = 71
         Width = 97
-        Height = 21
+        Height = 19
         BorderStyle = bsNone
         TabOrder = 5
       end
-      object Edit4: TEdit
+      object edBairro: TEdit
         Left = 508
-        Top = 74
+        Top = 71
         Width = 160
-        Height = 21
+        Height = 19
         BorderStyle = bsNone
         TabOrder = 6
       end
-      object ComboBox1: TComboBox
+      object cbUf: TComboBox
         Left = 108
-        Top = 74
+        Top = 68
         Width = 97
         Height = 22
         TabOrder = 4
@@ -293,7 +295,7 @@ inherited frCadCondominio: TfrCadCondominio
           'SE'
           'TO')
       end
-      object ComboBox2: TComboBox
+      object cbTipoLocal: TComboBox
         Left = 108
         Top = 21
         Width = 97
@@ -311,11 +313,11 @@ inherited frCadCondominio: TfrCadCondominio
           'Residencial'
           'Agrupamento')
       end
-      object Edit5: TEdit
+      object edNomeLocal: TEdit
         Left = 308
-        Top = 24
+        Top = 22
         Width = 360
-        Height = 21
+        Height = 19
         BorderStyle = bsNone
         TabOrder = 1
       end
@@ -332,13 +334,13 @@ inherited frCadCondominio: TfrCadCondominio
       Font.Name = 'Courier New'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 6
+      TabOrder = 5
       object Label5: TLabel
         Left = 29
         Top = 39
-        Width = 112
+        Width = 119
         Height = 14
-        Caption = 'Total Condom'#237'nio'
+        Caption = 'Total Condom'#237'nio:'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -347,11 +349,11 @@ inherited frCadCondominio: TfrCadCondominio
         ParentFont = False
       end
       object Label6: TLabel
-        Left = 29
-        Top = 67
-        Width = 98
+        Left = 43
+        Top = 62
+        Width = 105
         Height = 14
-        Caption = 'Dia Vencimento'
+        Caption = 'Dia Vencimento:'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -359,25 +361,25 @@ inherited frCadCondominio: TfrCadCondominio
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Edit6: TEdit
+      object edTotal: TEdit
         Left = 147
         Top = 36
         Width = 97
-        Height = 21
+        Height = 19
         BorderStyle = bsNone
         TabOrder = 0
       end
-      object Edit8: TEdit
+      object edData: TEdit
         Left = 147
-        Top = 63
+        Top = 59
         Width = 30
-        Height = 21
+        Height = 19
         BorderStyle = bsNone
         TabOrder = 1
       end
       object CheckBox1: TCheckBox
         Left = 284
-        Top = 67
+        Top = 62
         Width = 209
         Height = 17
         Caption = 'Contar apenas dias '#250'teis'
@@ -385,7 +387,7 @@ inherited frCadCondominio: TfrCadCondominio
       end
       object cbFeriado: TCheckBox
         Left = 487
-        Top = 67
+        Top = 62
         Width = 181
         Height = 17
         Caption = 'Antecipar F'#233'rias'
@@ -394,9 +396,9 @@ inherited frCadCondominio: TfrCadCondominio
     end
     object edNome: TEdit
       Left = 83
-      Top = 109
+      Top = 108
       Width = 362
-      Height = 21
+      Height = 19
       BorderStyle = bsNone
       Font.Charset = EASTEUROPE_CHARSET
       Font.Color = clWindowText
@@ -408,9 +410,9 @@ inherited frCadCondominio: TfrCadCondominio
     end
     object edCnpj: TEdit
       Left = 83
-      Top = 137
+      Top = 132
       Width = 362
-      Height = 21
+      Height = 19
       BorderStyle = bsNone
       Font.Charset = EASTEUROPE_CHARSET
       Font.Color = clWindowText
@@ -422,9 +424,9 @@ inherited frCadCondominio: TfrCadCondominio
     end
     object edEmail: TEdit
       Left = 83
-      Top = 165
+      Top = 156
       Width = 362
-      Height = 21
+      Height = 19
       BorderStyle = bsNone
       Font.Charset = EASTEUROPE_CHARSET
       Font.Color = clWindowText
@@ -436,7 +438,7 @@ inherited frCadCondominio: TfrCadCondominio
     end
     object Panel1: TPanel
       Left = 464
-      Top = 109
+      Top = 108
       Width = 256
       Height = 97
       BevelInner = bvLowered
@@ -448,10 +450,10 @@ inherited frCadCondominio: TfrCadCondominio
       Font.Style = [fsBold]
       ParentFont = False
       PopupMenu = PopupMenu1
-      TabOrder = 7
+      TabOrder = 6
       object Image1: TImage
         Left = 2
-        Top = 0
+        Top = 1
         Width = 255
         Height = 96
         Hint = 'Clique com o bot'#227'o direito'
@@ -459,11 +461,11 @@ inherited frCadCondominio: TfrCadCondominio
         ShowHint = True
       end
     end
-    object Edit11: TEdit
-      Left = 81
-      Top = 59
+    object edCod: TEdit
+      Left = 209
+      Top = 60
       Width = 40
-      Height = 21
+      Height = 17
       BorderStyle = bsNone
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
@@ -473,36 +475,15 @@ inherited frCadCondominio: TfrCadCondominio
       ParentFont = False
       TabOrder = 0
     end
-    object cbTipo: TComboBox
-      Left = 84
-      Top = 196
-      Width = 105
-      Height = 22
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Courier New'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 4
-      Text = 'Apartamento'
-      Items.Strings = (
-        'Sala'
-        'Loja '
-        'Garagem'
-        'Terreno'
-        'Lote'
-        'Unidade')
-    end
     object Panel2: TPanel
-      Left = 127
-      Top = 59
+      Left = 255
+      Top = 60
       Width = 318
-      Height = 21
+      Height = 17
       BevelOuter = bvLowered
       Color = clHighlightText
       ParentBackground = False
-      TabOrder = 8
+      TabOrder = 7
     end
   end
   object PopupMenu1: TPopupMenu

@@ -1,0 +1,94 @@
+unit uCadCondominios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.Menus, Vcl.ExtDlgs, Vcl.StdCtrls,pngimage,uUtil;
+
+type
+  TfrCadCondominio = class(TfrCadpadraoSyndico)
+    lbNome: TLabel;
+    lbNumero: TLabel;
+    lbEmail: TLabel;
+    lbCnpj: TLabel;
+    lbCodigo: TLabel;
+    gpEndereco: TGroupBox;
+    gbParametros: TGroupBox;
+    Bevel1: TBevel;
+    lbEndereco: TLabel;
+    edNome: TEdit;
+    edCnpj: TEdit;
+    edEmail: TEdit;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Label1: TLabel;
+    Edit3: TEdit;
+    Label2: TLabel;
+    Edit4: TEdit;
+    Label3: TLabel;
+    ComboBox1: TComboBox;
+    ComboBox2: TComboBox;
+    Label4: TLabel;
+    Edit5: TEdit;
+    PopupMenu1: TPopupMenu;
+    Panel1: TPanel;
+    Inseririmagem1: TMenuItem;
+    Limparimagem1: TMenuItem;
+    OpenPictureDialog1: TOpenPictureDialog;
+    Image1: TImage;
+    Label5: TLabel;
+    Label6: TLabel;
+    Edit6: TEdit;
+    Edit8: TEdit;
+    Label11: TLabel;
+    Edit11: TEdit;
+    Bevel2: TBevel;
+    Bevel4: TBevel;
+    lbTipo: TLabel;
+    cbTipo: TComboBox;
+    Panel2: TPanel;
+    CheckBox1: TCheckBox;
+    cbFeriado: TCheckBox;
+    procedure Inseririmagem1Click(Sender: TObject);
+    procedure Limparimagem1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frCadCondominio: TfrCadCondominio;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrCadCondominio.Inseririmagem1Click(Sender: TObject);
+var
+wPng    :TPngImage;
+wBmp    :TBitmap;
+begin
+  inherited;
+  if OpenPictureDialog1.Execute = true then
+     begin
+        wPng := TPngImage.Create;
+        wPng.LoadFromFile(OpenPictureDialog1.FileName);
+        wBmp := TUtil.PngToBmp(wPng);
+        wBmp.Width  := image1.Width;
+        wBmp.Height := image1.Height;
+        Image1.Picture.Bitmap:= wBmp;
+     end;
+
+
+end;
+
+procedure TfrCadCondominio.Limparimagem1Click(Sender: TObject);
+begin
+  inherited;
+  image1.Picture:= nil;
+end;
+
+end.

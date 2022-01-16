@@ -1,0 +1,12 @@
+unit uControleFluxo;
+
+interface
+  type
+    TCondominioControler = class
+      private
+      public
+       property
+    end;
+implementation
+
+end.

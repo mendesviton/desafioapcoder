@@ -1,0 +1,9 @@
+inherited frConsultaCondominio: TfrConsultaCondominio
+  Caption = 'Consulta de condom'#237'nios'
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DataSource1: TDataSource
+    Left = 624
+    Top = 360
+  end
+end

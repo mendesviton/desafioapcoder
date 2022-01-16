@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.Menus, Vcl.ExtDlgs, Vcl.StdCtrls,pngimage,uUtil;
+  Vcl.Menus, Vcl.ExtDlgs, Vcl.StdCtrls,pngimage,uUtil,uControleFluxo;
 
 type
   TfrCadCondominio = class(TfrCadpadraoSyndico)
@@ -21,17 +21,17 @@ type
     edNome: TEdit;
     edCnpj: TEdit;
     edEmail: TEdit;
-    Edit1: TEdit;
-    Edit2: TEdit;
+    edNumero: TEdit;
+    edComplemento: TEdit;
     Label1: TLabel;
-    Edit3: TEdit;
+    edCidade: TEdit;
     Label2: TLabel;
-    Edit4: TEdit;
+    edBairro: TEdit;
     Label3: TLabel;
-    ComboBox1: TComboBox;
-    ComboBox2: TComboBox;
+    cbUf: TComboBox;
+    cbTipoLocal: TComboBox;
     Label4: TLabel;
-    Edit5: TEdit;
+    edNomeLocal: TEdit;
     PopupMenu1: TPopupMenu;
     Panel1: TPanel;
     Inseririmagem1: TMenuItem;
@@ -40,21 +40,23 @@ type
     Image1: TImage;
     Label5: TLabel;
     Label6: TLabel;
-    Edit6: TEdit;
-    Edit8: TEdit;
+    edTotal: TEdit;
+    edData: TEdit;
     Label11: TLabel;
-    Edit11: TEdit;
+    edCod: TEdit;
     Bevel2: TBevel;
     Bevel4: TBevel;
-    lbTipo: TLabel;
-    cbTipo: TComboBox;
     Panel2: TPanel;
     CheckBox1: TCheckBox;
     cbFeriado: TCheckBox;
     procedure Inseririmagem1Click(Sender: TObject);
     procedure Limparimagem1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
   private
-    { Private declarations }
+    FControle : TCondominioControler;
+    procedure pSetaComponentes;
+
   public
     { Public declarations }
   end;
@@ -65,6 +67,14 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrCadCondominio.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FControle:=TCondominioControler.Create;
+  pSetaComponentes;                         //Vitor - Seta os componentes dessa tela para dentro da classe controler
+
+end;
 
 procedure TfrCadCondominio.Inseririmagem1Click(Sender: TObject);
 var
@@ -89,6 +99,31 @@ procedure TfrCadCondominio.Limparimagem1Click(Sender: TObject);
 begin
   inherited;
   image1.Picture:= nil;
+end;
+
+procedure TfrCadCondominio.pSetaComponentes;
+begin
+  FControle.edCodigo            :=  edCod;
+  FControle.edNome              :=  edNome;
+  FControle.edEmail             :=  edEmail;
+  FControle.edCNPJ              :=  edCnpj;
+  FControle.edComplemento       :=  edComplemento;
+  FControle.cbTipolocal         :=  cbTipoLocal;
+  FControle.edNomeLocal         :=  edNomeLocal;
+  FControle.cbUF                :=  cbUf;
+  FControle.edCidade            :=  edCidade;
+  FControle.edbairro            :=  edBairro;
+  FControle.edTotalCondonimio   :=  edTotal;
+  FControle.edNumero            :=  edNumero;
+  FControle.edDiaVencimento     :=  edData;
+
+
+end;
+
+procedure TfrCadCondominio.SpeedButton1Click(Sender: TObject);
+begin
+  inherited;
+  FControle.pInsereRegistro;
 end;
 
 end.

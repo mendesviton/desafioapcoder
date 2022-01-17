@@ -1,0 +1,57 @@
+unit uCadUnidade;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.StdCtrls;
+
+type
+  TfrCadUnidades = class(TfrCadpadraoSyndico)
+    lbCodigo: TLabel;
+    Bevel1: TBevel;
+    edCod: TEdit;
+    Panel2: TPanel;
+    Label1: TLabel;
+    Edit1: TEdit;
+    Panel1: TPanel;
+    Label2: TLabel;
+    Edit2: TEdit;
+    Panel3: TPanel;
+    lbEmail: TLabel;
+    lbCnpj: TLabel;
+    edNome: TEdit;
+    edCnpj: TEdit;
+    edEmail: TEdit;
+    lbNumero: TLabel;
+    dfgd: TMemo;
+    Label3: TLabel;
+    procedure FormCreate(Sender: TObject);
+    procedure dfgdKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frCadUnidades: TfrCadUnidades;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrCadUnidades.dfgdKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  showmessage ('cocozao')
+end;
+
+procedure TfrCadUnidades.FormCreate(Sender: TObject);
+begin
+  inherited;
+   dfgd.Text:= EmptyStr;
+end;
+
+end.

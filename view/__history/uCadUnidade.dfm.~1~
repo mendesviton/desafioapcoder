@@ -1,0 +1,32 @@
+inherited frCadpadraoSyndico1: TfrCadpadraoSyndico1
+  Caption = 'frCadpadraoSyndico1'
+  ClientHeight = 537
+  ClientWidth = 939
+  ExplicitWidth = 955
+  ExplicitHeight = 576
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pnFundo: TPanel
+    Width = 939
+    Height = 537
+    Color = 15918295
+    ExplicitLeft = 0
+    ExplicitTop = 0
+    inherited Bevel3: TBevel
+      Width = 932
+      ExplicitWidth = 932
+    end
+    inherited btRegistroAntigo: TSpeedButton
+      Left = 885
+      ExplicitLeft = 885
+    end
+    inherited btStatus: TSpeedButton
+      Left = 749
+      ExplicitLeft = 749
+    end
+    inherited btNovoRegistro: TSpeedButton
+      Left = 885
+      ExplicitLeft = 885
+    end
+  end
+end

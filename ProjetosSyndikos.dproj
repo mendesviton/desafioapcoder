@@ -102,32 +102,42 @@
             <Form>frSyndicoPrincipal</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="view\uCadPadrao.pas">
-            <Form>frCadpadraoSyndico</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="view\uCadCondominios.pas">
-            <Form>frCadCondominio</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="uUtil.pas"/>
-        <DCCReference Include="view\uCadPredio.pas">
-            <Form>frCadPredioSyndico</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="view\uCadMoradores.pas">
-            <Form>frMoradoresSyndicos</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="model\uConexaoBanco.pas"/>
         <DCCReference Include="model\uControleSQL.pas"/>
         <DCCReference Include="controler\uControleFluxo.pas"/>
-        <DCCReference Include="view\uConsultaPadrao.pas">
+        <DCCReference Include="view\cadastro\uCadCondominios.pas"/>
+        <DCCReference Include="view\cadastro\uCadMoradores.pas"/>
+        <DCCReference Include="view\cadastro\uCadPadrao.pas">
+            <Form>frCadpadraoSyndico</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="view\cadastro\uCadPredio.pas">
+            <Form>frCadPredioSyndico</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="view\cadastro\uCadUnidade.pas">
+            <Form>frCadUnidades</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="view\consulta\uConBlocos.pas">
+            <Form>frConBloco</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="view\consulta\uConCondominios.pas">
+            <Form>frConsultaCondominio</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="view\consulta\uConsultaPadrao.pas">
             <Form>frConPadraoSyndico</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="view\uConCondominios.pas">
-            <Form>frConsultaCondominio</Form>
+        <DCCReference Include="view\consulta\uConMoradores.pas">
+            <Form>frConMoradores</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="view\consulta\uConUnidades.pas">
+            <Form>frConUnidades</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -164,27 +174,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployClass Name="DependencyModule">
-                    <Platform Name="Win32">
-                        <Operation>0</Operation>
-                        <Extensions>.dll;.bpl</Extensions>
-                    </Platform>
+                <DeployClass Name="ProjectiOSDeviceResourceRules">
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                    <Platform Name="OSX32">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="iOSDevice32">
                         <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                    <Platform Name="iOSSimulator">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
                     </Platform>
                 </DeployClass>
                 <DeployClass Name="ProjectOSXResource">
@@ -538,12 +533,27 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <DeployClass Name="ProjectiOSDeviceResourceRules">
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="iOSDevice32">
                         <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
                     </Platform>
                 </DeployClass>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>

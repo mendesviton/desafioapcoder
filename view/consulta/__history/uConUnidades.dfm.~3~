@@ -1,0 +1,46 @@
+inherited frConUnidades: TfrConUnidades
+  BorderStyle = bsSingle
+  Caption = 'Consulta de unidades'
+  ClientHeight = 671
+  ClientWidth = 1294
+  OnCreate = FormCreate
+  ExplicitWidth = 1300
+  ExplicitHeight = 700
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    Width = 1294
+    Height = 671
+    ExplicitTop = 8
+    ExplicitWidth = 1284
+    ExplicitHeight = 661
+    inherited Bevel3: TBevel
+      Width = 1334
+      ExplicitWidth = 1334
+    end
+    inherited DBGrid1: TDBGrid
+      Left = 0
+      Top = 47
+      Width = 1284
+      Height = 607
+      DataSource = DataSource1
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = ClientDataSet1
+    Left = 656
+    Top = 592
+  end
+  object ClientDataSet1: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProvider1'
+    Left = 872
+    Top = 592
+  end
+  object DataSetProvider1: TDataSetProvider
+    DataSet = ClientDataSet1
+    Left = 768
+    Top = 592
+  end
+end

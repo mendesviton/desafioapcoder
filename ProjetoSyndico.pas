@@ -6,7 +6,9 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus,uCadPadrao,uCadCondominios,
   Vcl.ExtCtrls, Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.ToolWin, Vcl.ComCtrls,
-  System.ImageList, Vcl.ImgList,uCadPredio,uCadMoradores,System.IniFiles,uConCondominios;
+  System.ImageList,Vcl.ImgList,uCadPredio,uCadMoradores,System.IniFiles,
+  uConCondominios,uControleSQL,uConBlocos,uCadUnidade,uConMoradores,uConUnidades,uUtil,
+  Vcl.StdCtrls;
 
 type
   TfrSyndicoPrincipal = class(TForm)
@@ -29,6 +31,7 @@ type
     SpeedButton7: TSpeedButton;
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
+    FSQL:TExecSQL;
     procedure pnFundoResize(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -40,8 +43,13 @@ type
     procedure SpeedButton15Click(Sender: TObject);
     procedure Panel1Click(Sender: TObject);
     procedure SpeedButton5Click(Sender: TObject);
+    procedure SpeedButton7Click(Sender: TObject);
+    procedure SpeedButton14Click(Sender: TObject);
+    procedure SpeedButton8Click(Sender: TObject);
+    procedure SpeedButton9Click(Sender: TObject);
   private
     procedure pFecharPanel(prBarra:integer);
+
   public
     { Public declarations }
   end;
@@ -55,18 +63,27 @@ implementation
 
 procedure TfrSyndicoPrincipal.FormCreate(Sender: TObject);
 var
+wCont:integer;
 ArquivoINI    : String;
 Configuration : TIniFile;
 begin
  ArquivoINI := ExtractFilePath(Application.ExeName) + 'config.ini';
  Configuration := TIniFile.Create(ArquivoINI);
  Configuration.WriteString('Dados','Servidor',ExtractFilePath(Application.ExeName) + 'base\SYNBD.FDB');
+ FSQL:=TExecSQL.Create;
+ FSQL.CommandText.SQL.Clear;
+ FSQL.CommandText.SQL.Add('select bdcaminhoimagem from TB_SYN_CONDOMINIO where bdcodigo = 1');
+ FSQL.CommandText.Open;
+ if FSQL.CommandText.FieldByName('BDCAMINHOIMAGEM').AsString <> ExtractFilePath(Application.ExeName)+'persiste\imagecod1.png' then
+    begin
+     FSQL.SQL('update or insert into TB_SYN_CONDOMINIO (BDCODIGO,BDCAMINHOIMAGEM) values (1,'+quotedstr(ExtractFilePath(Application.ExeName)+'persiste\imagecod1.png')+')  matching(bdcodigo)');
+     FSQL.SQL('update or insert into TB_SYN_CONDOMINIO (BDCODIGO,BDCAMINHOIMAGEM) values (2,'+quotedstr(ExtractFilePath(Application.ExeName)+'persiste\imagecod2.png')+')  matching(bdcodigo)');
+    end;
+
+
 
  Bevel2.Width  := Screen.Width;
- Panel2.Hide;
- Panel3.Hide;
- Panel4.Hide;
-
+ pFecharPanel(4);
 end;
 
 procedure TfrSyndicoPrincipal.Image1Click(Sender: TObject);
@@ -100,6 +117,11 @@ end;
 procedure TfrSyndicoPrincipal.pnFundoResize(Sender: TObject);
 begin
  Bevel2.Width := Screen.Width;
+end;
+
+procedure TfrSyndicoPrincipal.SpeedButton14Click(Sender: TObject);
+begin
+  TfrCadUnidades.Create(self).show;
 end;
 
 procedure TfrSyndicoPrincipal.SpeedButton15Click(Sender: TObject);
@@ -142,6 +164,21 @@ end;
 procedure TfrSyndicoPrincipal.SpeedButton6Click(Sender: TObject);
 begin
  TfrConsultaCondominio.Create(self).Show;
+end;
+
+procedure TfrSyndicoPrincipal.SpeedButton7Click(Sender: TObject);
+begin
+   TfrConBloco.Create(self).ShowModal;
+end;
+
+procedure TfrSyndicoPrincipal.SpeedButton8Click(Sender: TObject);
+begin
+  tfrConMoradores.Create(self).ShowModal;
+end;
+
+procedure TfrSyndicoPrincipal.SpeedButton9Click(Sender: TObject);
+begin
+ TfrConsultaCondominio.create(self).ShowModal
 end;
 
 end.

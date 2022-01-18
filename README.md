@@ -1,6 +1,9 @@
 # desafioapcoder
 
-testando versionamento
+Linguagem utilizada : DELPHI 10 SEATTLE 
+Banco de dados      : Firebird 3.0 
+Ferramentas         : Power Designer (Modelagem do Banco de dados)
+<hr>
 
 
 

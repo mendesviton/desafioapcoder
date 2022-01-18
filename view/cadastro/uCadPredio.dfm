@@ -12,7 +12,6 @@ inherited frCadPredioSyndico: TfrCadPredioSyndico
     Width = 546
     Height = 179
     Color = 15983831
-    ExplicitTop = 8
     ExplicitWidth = 546
     ExplicitHeight = 179
     inherited Bevel3: TBevel
@@ -20,6 +19,12 @@ inherited frCadPredioSyndico: TfrCadPredioSyndico
       Width = 516
       ExplicitLeft = 39
       ExplicitWidth = 516
+    end
+    inherited btAnterior: TSpeedButton
+      OnClick = btAnteriorClick
+    end
+    inherited btProximo: TSpeedButton
+      OnClick = btProximoClick
     end
     inherited btConsulta: TSpeedButton
       OnClick = btConsultaClick
@@ -158,8 +163,9 @@ inherited frCadPredioSyndico: TfrCadPredioSyndico
       Font.Name = 'Courier New'
       Font.Style = []
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 4
       Text = 'Sala'
+      OnExit = cbTipoExit
       Items.Strings = (
         'Sala'
         'Loja '
@@ -195,7 +201,7 @@ inherited frCadPredioSyndico: TfrCadPredioSyndico
       Font.Name = 'Courier New'
       Font.Style = []
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 3
     end
     object Panel1: TPanel
       Left = 204

@@ -1,3 +1,8 @@
+{
+   Vitor Daniel - 12/01/2022 - Criação  do form  de cadastro de condomínio
+   tabela dos registro gravados TB_SYN_CONDOMINIO.
+}
+
 unit uCadCondominios;
 
 interface
@@ -40,14 +45,14 @@ type
     OpenPictureDialog1: TOpenPictureDialog;
     tilocalimagem: TImage;
     Label5: TLabel;
-    Label6: TLabel;
     edTotal: TEdit;
-    edData: TEdit;
     Label11: TLabel;
     edCod: TEdit;
     Bevel2: TBevel;
     Bevel4: TBevel;
     pnConsulta: TPanel;
+    edData: TEdit;
+    Label6: TLabel;
     procedure Inseririmagem1Click(Sender: TObject);
     procedure Limparimagem1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -126,7 +131,10 @@ end;
 procedure TfrCadCondominio.edDataExit(Sender: TObject);
 begin
   inherited;
-  FControle.pInsereRegistro;
+  if MessageDlg('Dia de vencimento  '+Trim(edData.Text) +' esse será o dia padrão de vencimento das despesas, confirma o dia digitado ?',mtInformation,[mbYes,mbNo],1) = mrYes then
+     FControle.pInsereRegistro
+     else
+     edData.SetFocus;
 end;
 
 procedure TfrCadCondominio.FormCreate(Sender: TObject);
@@ -146,6 +154,7 @@ wPng    :TPngImage;
 wBmp    :TBitmap;
 begin
   inherited;
+  //vitor - 13/01/2022 - seta a imagem e converte para bmp
   if OpenPictureDialog1.Execute = true then
      begin
         tilocalimagem.Picture:=nil;
@@ -177,6 +186,7 @@ procedure TfrCadCondominio.pLimpaCampos;
 var
 wContador:integer;
 begin
+  //vitor daniel - 17/01/2022 - rotina limpa os componentes da tela e  seta para o o editcodigo
   edNome.Text              :=  EmptyStr;
   edCod.text               :=  EmptyStr;
   edNome.Text              :=  EmptyStr;
@@ -185,12 +195,12 @@ begin
   edComplemento.Text       :=  EmptyStr;
   cbTipolocal.ItemIndex    := 0;
   edNomeLocal.Text         :=  EmptyStr;
+  edData.Text              :=  EmptyStr;
   cbUF.ItemIndex           := 0;
   edCidade.Text            :=  EmptyStr;
   edbairro.Text            :=  EmptyStr;
   edTotal.text             :=  EmptyStr;
   edNumero.Text            :=  EmptyStr;
-  edData.text              :=  EmptyStr;
   pnConsulta.Caption       :=  EmptyStr;
   edCod.SetFocus;
   FControle.fStatusRegistro(1000);
@@ -200,7 +210,7 @@ end;
 
 procedure TfrCadCondominio.pSetaComponentes;
 begin
-
+    //vitor - daniel - 17/01/2022 - rotina seta os componentes para a classe controler, deixando o acesso aos eventos e propriedades dos mesmo.
     FControle.edCodigo            :=  edCod;
     FControle.edNome              :=  edNome;
     FControle.edEmail             :=  edEmail;

@@ -387,11 +387,11 @@ inherited frCadCondominio: TfrCadCondominio
         ParentFont = False
       end
       object Label6: TLabel
-        Left = 327
-        Top = 30
-        Width = 105
+        Left = 495
+        Top = 33
+        Width = 133
         Height = 14
-        Caption = 'Dia Vencimento:'
+        Caption = 'Dia de vencimento: '
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -414,17 +414,10 @@ inherited frCadCondominio: TfrCadCondominio
         TabOrder = 0
       end
       object edData: TEdit
-        Left = 438
+        Left = 624
         Top = 29
-        Width = 30
-        Height = 19
-        BorderStyle = bsNone
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Courier New'
-        Font.Style = []
-        ParentFont = False
+        Width = 44
+        Height = 22
         TabOrder = 1
         OnExit = edDataExit
       end

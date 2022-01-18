@@ -28,8 +28,8 @@
       ExplicitLeft = 549
     end
     inherited btStatus: TSpeedButton
-      Left = 431
-      ExplicitLeft = 431
+      Left = 407
+      ExplicitLeft = 407
     end
     inherited btNovoRegistro: TSpeedButton
       Left = 549
@@ -166,6 +166,7 @@
       Font.Style = []
       ParentFont = False
       TabOrder = 0
+      OnExit = edCodigoExit
     end
     object Panel2: TPanel
       Left = 139
@@ -174,7 +175,13 @@
       Height = 17
       BevelOuter = bvLowered
       Color = clHighlightText
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = []
       ParentBackground = False
+      ParentFont = False
       TabOrder = 1
     end
     object edUnidade: TEdit
@@ -204,20 +211,6 @@
       Font.Style = []
       ParentFont = False
       TabOrder = 3
-    end
-    object edNascimento: TEdit
-      Left = 94
-      Top = 175
-      Width = 307
-      Height = 19
-      BorderStyle = bsNone
-      Font.Charset = EASTEUROPE_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Courier New'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 4
     end
     object edTelefone: TEdit
       Left = 94
@@ -278,7 +271,13 @@
       Height = 17
       BevelOuter = bvLowered
       Color = clHighlightText
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = []
       ParentBackground = False
+      ParentFont = False
       TabOrder = 8
     end
     object ckResponsável: TCheckBox
@@ -294,6 +293,22 @@
       Font.Style = []
       ParentFont = False
       TabOrder = 9
+    end
+    object MaskEdit1: TMaskEdit
+      Left = 94
+      Top = 175
+      Width = 105
+      Height = 22
+      EditMask = '!99/99/0000;1; '
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = []
+      MaxLength = 10
+      ParentFont = False
+      TabOrder = 4
+      Text = '  /  /    '
     end
   end
 end

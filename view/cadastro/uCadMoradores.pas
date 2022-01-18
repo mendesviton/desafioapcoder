@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao, Vcl.StdCtrls, Vcl.Buttons,uControleFluxo,uConMoradores,
-  Vcl.ExtCtrls;
+  Vcl.ExtCtrls, Vcl.Mask;
 
 type
   TfrMoradoresSyndicos = class(TfrCadpadraoSyndico)
@@ -18,7 +18,6 @@ type
     lbCnpj    : TLabel;
     edUnidade: TEdit;
     edNome: TEdit;
-    edNascimento: TEdit;
     Label1    : TLabel;
     Label2    : TLabel;
     edTelefone: TEdit;
@@ -30,10 +29,12 @@ type
     Image1    : TImage;
     Panel3    : TPanel;
     ckResponsável: TCheckBox;
+    MaskEdit1: TMaskEdit;
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure btLimparClick(Sender: TObject);
     procedure btConsultaClick(Sender: TObject);
+    procedure edCodigoExit(Sender: TObject);
   private
     FControle :TMoradorControler;
     procedure pSetComponenteTela;
@@ -62,6 +63,12 @@ begin
   pLimpaCampos;
 end;
 
+procedure TfrMoradoresSyndicos.edCodigoExit(Sender: TObject);
+begin
+  inherited;
+  FControle.fStatusRegistro(strtoint(trim(edCodigo.Text)))
+end;
+
 procedure TfrMoradoresSyndicos.FormCreate(Sender: TObject);
 begin
   inherited;
@@ -75,23 +82,30 @@ begin
   edCodigo.Text           :=  EmptyStr;
   edUnidade.Text          :=  EmptyStr;
   edNome.Text             :=  EmptyStr;
-  edNascimento.Text       :=  EmptyStr;
+  MaskEdit1.Text       :=  EmptyStr;
   edTelefone.text         :=  EmptyStr;
   edEmail.Text            :=  EmptyStr;
   ckResponsável.Checked   :=  False;
+  Panel2.Caption          := EmptyStr;
+  Panel3.Caption          := EmptyStr;
   edCodigo.SetFocus;
 end;
 
 procedure TfrMoradoresSyndicos.pSetComponenteTela;
 begin
 
-   FControle.edCodigo        := edcodigo;
-   FControle.edcodunidade    := edUnidade;
-   FControle.ednome          := edNome;
-   FControle.ednascimento    := edNascimento;
-   FControle.edtelefone      := edTelefone;
-   FControle.edemail         := edEmail;
-   FControle.checkpropietario:= ckResponsável;
+   FControle.edCodigo          := edcodigo;
+   FControle.edcodunidade      := edUnidade;
+   FControle.ednome            := edNome;
+   FControle.ednascimento      := TEdit(MaskEdit1);
+   FControle.edtelefone        := edTelefone;
+   FControle.edemail           := edEmail;
+   FControle.checkpropietario  := ckResponsável;
+   FControle.sbStatus          := btStatus;
+   FControle.SbNovoregistro    :=btNovoRegistro;
+   FControle.SbRegistroAntigo  :=btRegistroAntigo;
+   FControle.pnConsulta        :=panel2;
+   FControle.pnConsultaUnidade :=Panel3;
 
 
 end;
@@ -99,7 +113,6 @@ end;
 procedure TfrMoradoresSyndicos.SpeedButton1Click(Sender: TObject);
 begin
   inherited;
-
   FControle.pInsereRegistro;        //vitor - 15/01/2022 - executa o sql da classe controler.
 end;
 

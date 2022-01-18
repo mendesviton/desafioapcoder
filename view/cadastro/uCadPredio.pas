@@ -28,6 +28,9 @@ type
     procedure btExcluirClick(Sender: TObject);
     procedure edCodigoExit(Sender: TObject);
     procedure edCodCondExit(Sender: TObject);
+    procedure cbTipoExit(Sender: TObject);
+    procedure btProximoClick(Sender: TObject);
+    procedure btAnteriorClick(Sender: TObject);
   private
     FControle : TBlocoControler;
     procedure pSetaComponentes;
@@ -41,6 +44,20 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrCadPredioSyndico.btAnteriorClick(Sender: TObject);
+begin
+  inherited;
+    if (strtoint(edCodigo.Text)=1) then
+      begin
+        MessageDlg('Não possui mais registros anteriores ',mtError,mbOKCancel,1)
+      end
+      else
+      begin
+        edCodigo.Text:=inttostr(FControle.pRegistroAnterior(trim(edCodigo.Text)));
+        FControle.fStatusRegistro(strtoint(edCodigo.Text));
+      end;
+end;
 
 procedure TfrCadPredioSyndico.btConsultaClick(Sender: TObject);
 begin
@@ -58,6 +75,19 @@ procedure TfrCadPredioSyndico.btLimparClick(Sender: TObject);
 begin
   inherited;
   pLimpaCampos;
+end;
+
+procedure TfrCadPredioSyndico.btProximoClick(Sender: TObject);
+begin
+  inherited;
+  edCodigo.Text:=inttostr(FControle.pProximoRegistro(trim(edCodigo.Text)));
+  FControle.fStatusRegistro(strtoint(edCodigo.Text));
+end;
+
+procedure TfrCadPredioSyndico.cbTipoExit(Sender: TObject);
+begin
+  inherited;
+  FControle.pInsereRegistro;
 end;
 
 procedure TfrCadPredioSyndico.edCodCondExit(Sender: TObject);

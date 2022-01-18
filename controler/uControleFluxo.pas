@@ -110,8 +110,8 @@ type
               FSbNovoregistro: TSpeedButton;
               FsbStatus: TSpeedButton;
               FSbRegistroAntigo: TSpeedButton;
-    FpnConsulta: TPanel;
-    FpnConsultaBloco: TPanel;
+              FpnConsulta: TPanel;
+              FpnConsultaBloco: TPanel;
               procedure SetedCodigoCondominio(const Value: Tedit);
               procedure Setcbtipo(const Value: TComboBox);
               procedure SetedCodigo(const Value: TEdit);
@@ -119,8 +119,8 @@ type
               procedure SetSbNovoregistro(const Value: TSpeedButton);
               procedure SetSbRegistroAntigo(const Value: TSpeedButton);
               procedure SetsbStatus(const Value: TSpeedButton);
-    procedure SetpnConsulta(const Value: TPanel);
-    procedure SetpnConsultaBloco(const Value: TPanel);
+              procedure SetpnConsulta(const Value: TPanel);
+              procedure SetpnConsultaBloco(const Value: TPanel);
 
           public
               property edCodigoCondominio         :Tedit read FedCodigoCondomínio write SetedCodigoCondominio;
@@ -137,6 +137,8 @@ type
               property pnConsulta  :TPanel read FpnConsulta write SetpnConsulta;
               property pnConsultaBloco :TPanel read FpnConsultaBloco write SetpnConsultaBloco;
               procedure pExisteCondominio(prCodigo:String);
+              function pProximoRegistro(prCodigo:String):integer;
+              function pRegistroAnterior(prCodigo:String):integer;
 
       end;
 type
@@ -150,9 +152,11 @@ type
           Fednome: tedit;
           Fedtelefone: tedit;
           FSQLCONTROL : TExecSQL;
-    FSbNovoregistro: TSpeedButton;
-    FsbStatus: TSpeedButton;
-    FSbRegistroAntigo: TSpeedButton;
+          FSbNovoregistro: TSpeedButton;
+          FsbStatus: TSpeedButton;
+          FSbRegistroAntigo: TSpeedButton;
+    FpnConsultaBloco: TPanel;
+    FpnConsulta: TPanel;
           procedure SetedCodigo(const Value: tedit);
           procedure Setedcodunidade(const Value: tedit);
           procedure Setcheckpropietario(const Value: TCheckBox);
@@ -160,9 +164,11 @@ type
           procedure Setednascimento(const Value: tedit);
           procedure Setednome(const Value: tedit);
           procedure Setedtelefone(const Value: tedit);
-    procedure SetSbNovoregistro(const Value: TSpeedButton);
-    procedure SetSbRegistroAntigo(const Value: TSpeedButton);
-    procedure SetsbStatus(const Value: TSpeedButton);
+          procedure SetSbNovoregistro(const Value: TSpeedButton);
+          procedure SetSbRegistroAntigo(const Value: TSpeedButton);
+          procedure SetsbStatus(const Value: TSpeedButton);
+    procedure SetpnConsulta(const Value: TPanel);
+    procedure SetpnConsultaBloco(const Value: TPanel);
 
         public
           property  edCodigo:tedit read FedCodigo write SetedCodigo;
@@ -173,9 +179,12 @@ type
           property  edemail:tedit read Fedemail write Setedemail;
           property  checkpropietario:TCheckBox read Fcheckpropietario write Setcheckpropietario;
           procedure pInsereRegistro;
-             property sbStatus:TSpeedButton read FsbStatus write SetsbStatus;
-      property SbNovoregistro:TSpeedButton read FSbNovoregistro write SetSbNovoregistro;
-      property SbRegistroAntigo:TSpeedButton read FSbRegistroAntigo write SetSbRegistroAntigo;
+           function  fStatusRegistro(prCodigo:integer):boolean;
+          property sbStatus:TSpeedButton read FsbStatus write SetsbStatus;
+          property SbNovoregistro:TSpeedButton read FSbNovoregistro write SetSbNovoregistro;
+          property SbRegistroAntigo:TSpeedButton read FSbRegistroAntigo write SetSbRegistroAntigo;
+          property pnConsulta  :TPanel read FpnConsulta write SetpnConsulta;
+          property pnConsultaUnidade :TPanel read FpnConsultaBloco write SetpnConsultaBloco;
       end;
 type
     TUnidadeControler = class
@@ -638,10 +647,69 @@ begin
  wSQL := wSQL + ' values ('+Trim(edCodigo.Text)+','+trim(edCodigoCondominio.Text) ;
  wSQL := wSQL + ' ,'''+trim(cbtipo.Text)+''','''+trim(edNomeBloco.Text)+''')';
  wSQL := wSQL + ' matching (bdcodigo);  ';
-
  FSQLControl.SQL(wSQL);
+ if  (pnConsultaBloco.Caption = EmptyStr) then
+    MessageDlg('Registro gravado com  sucesso',mtInformation,mbOKCancel,1)
+    else
+    MessageDlg('Registro editado com  sucesso',mtInformation,mbOKCancel,1);
+
 
 end;
+
+function TBlocoControler.pProximoRegistro(prCodigo: String): integer;
+var
+wSQL:String;
+begin
+   if not Assigned(FSQLControl) then
+    FSQLControl:= TExecSQL.Create;
+
+  wSQL:='select min(bdcodigo) as bdcodigo from TB_SYN_BLOCO where bdcodigo >'+prCodigo;
+  FSQLControl.CommandText.SQL.Clear;
+  FSQLControl.CommandText.SQL.Add(wSQL);
+  FSQLControl.CommandText.Open;
+  if FSQLControl.CommandText.FieldByName('bdcodigo').IsNull then
+     begin
+       result := strtoint(prCodigo)+1
+     end
+     else
+     begin
+
+         FSQLControl.CommandText.SQL.Clear;
+         FSQLControl.CommandText.SQL.Add(wSQL);
+         FSQLControl.CommandText.Open;
+         result:=strtoint(FSQLControl.CommandText.FieldByName('bdcodigo').AsString)
+     end;
+
+
+end;
+
+
+function TBlocoControler.pRegistroAnterior(prCodigo: String): integer;
+var
+wSQL:String;
+
+begin
+     if not Assigned(FSQLControl) then
+    FSQLControl:= TExecSQL.Create;
+
+  wSQL:='select max(bdcodigo) as bdcodigo from tb_syn_condominio where bdcodigo <'+prCodigo;
+  FSQLControl.CommandText.SQL.Clear;
+  FSQLControl.CommandText.SQL.Add(wSQL);
+  FSQLControl.CommandText.Open;
+  if FSQLControl.CommandText.FieldByName('bdcodigo').IsNull then
+     begin
+       result := strtoint(prCodigo)+1
+     end
+     else
+     begin
+
+         FSQLControl.CommandText.SQL.Clear;
+         FSQLControl.CommandText.SQL.Add(wSQL);
+         FSQLControl.CommandText.Open;
+         result:=strtoint(FSQLControl.CommandText.FieldByName('bdcodigo').AsString)
+     end;
+end;
+
 
 procedure TBlocoControler.Setcbtipo(const Value: TComboBox);
 begin
@@ -705,6 +773,71 @@ TMoradorControler
 
 }
 
+function TMoradorControler.fStatusRegistro(prCodigo: integer): boolean;
+var
+wSQL :String;
+wPng    :TPngImage;
+wBmp    :TBitmap;
+begin
+ if not Assigned(FSQLControl) then
+    FSQLControl:= TExecSQL.Create;
+
+wSQL := EmptyStr;
+
+wSQL := 'select *  from TB_SYN_MORADORES mor';
+wSQL := wSQL + ' join tb_syn_unidades und on (und.bdcodigo = mor.bdcodigounid)';
+wSQL := wSQL + ' join TB_SYN_BLOCO blo on (und.bdcodbloco = blo.bdcodigo) where mor.bdcodigo = '+ (inttostr(prcodigo));
+
+
+ FSQLControl.CommandText.SQL.Clear;
+ FSQLControl.CommandText.SQL.Add(wSQL);
+ FSQLControl.CommandText.Open;
+ if (FSQLControl.CommandText.IsEmpty)then
+    begin
+     SbNovoregistro.Show;
+     SbRegistroAntigo.hide;
+     sbStatus.Caption := 'Inserindo Registro' ;
+     sbStatus.Font.Color := clGreen;
+     pnConsulta.Caption            := EmptyStr;
+     pnConsultaunidade.Caption     := EmptyStr;
+
+     edCodigo.Text                 :=  EmptyStr;
+     edcodunidade.Text             :=  EmptyStr;
+     ednome.text                   :=  emptyStr;
+     ednascimento.Text             :=  EmptyStr;
+     edtelefone.Text               :=  EmptyStr;
+     edemail.Text                  :=  EmptyStr;
+     checkpropietario.Checked      :=  False;
+
+
+    end
+    else
+    begin
+      SbRegistroAntigo.Show;
+      SbNovoregistro.hide;
+      sbStatus.Caption := 'Editando Registro' ;
+      sbStatus.Font.Color := clRed;
+
+      edCodigo.Text               :=FSQLControl.CommandText.FieldByName('BDCODIGO').AsString;
+      edcodunidade.Text           :=FSQLControl.CommandText.FieldByName('BDCODIGOUNID').AsString;
+      ednome.Text                 :=FSQLControl.CommandText.FieldByName('BDNOME').AsString;
+      ednascimento.text           :=FSQLControl.CommandText.FieldByName('BDNASCIMENTO').AsString;
+      edtelefone.text             :=FSQLControl.CommandText.FieldByName('BDTELEFONE').AsString;
+      edemail.text                :=FSQLControl.CommandText.FieldByName('BDEMAIL').AsString;
+      pnConsultaUnidade.Caption   :='Apartamento  número : '+(FSQLControl.CommandText.FieldByName('BDNUMERO').AsString +'    '+ FSQLControl.CommandText.FieldByName('BDNOMEBLOCO').AsString);
+      pnConsulta.caption          :=FSQLControl.CommandText.FieldByName('BDNOME').AsString;
+      if FSQLControl.CommandText.FieldByName('BDRESPONSAVELFIN').AsInteger = 1  then
+         checkpropietario.Checked := true
+         else
+         checkpropietario.Checked := false;
+
+
+
+
+    end;
+
+end;
+
 procedure TMoradorControler.pInsereRegistro;
 var
 wSQL:String;
@@ -715,9 +848,9 @@ begin
  wSQL := ' update or insert into TB_SYN_MORADORES(';
  wSQL := wSQL + ' BDCODIGO,BDCODIGOUNID,BDNOME,BDNASCIMENTO,BDTELEFONE,' ;
  wSQL := wSQL + 'BDEMAIL,BDRESPONSAVELFIN )' ;
- wSQL := wSQL + ' values ('+trim(edCodigo.Text)+','+trim(edcodunidade.Text) ;
- wSQL := wSQL + ' ,'''+trim(ednome.Text)+''','''+trim(ednascimento.Text)+'''';
- wSQL := wSQL + ' ,'+trim(edtelefone.Text)+','+trim(edemail.Text)+',1)';
+ wSQL := wSQL + ' values ('+QuotedStr(trim(edCodigo.Text))+','+QuotedStr(trim(edcodunidade.Text)) ;
+ wSQL := wSQL + ' ,'+QuotedStr(trim(ednome.Text))+','+QuotedStr(trim(ednascimento.Text));
+ wSQL := wSQL + ' ,'+QuotedStr(trim(edtelefone.Text))+','+QuotedStr(trim(edemail.Text))+',1)';
  wSQL := wSQL + ' matching (bdcodigo);  ';
 
  FSQLControl.SQL(wSQL);
@@ -757,6 +890,16 @@ end;
 procedure TMoradorControler.Setedtelefone(const Value: tedit);
 begin
   Fedtelefone := Value;
+end;
+
+procedure TMoradorControler.SetpnConsulta(const Value: TPanel);
+begin
+  FpnConsulta := Value;
+end;
+
+procedure TMoradorControler.SetpnConsultaBloco(const Value: TPanel);
+begin
+  FpnConsultaBloco := Value;
 end;
 
 procedure TMoradorControler.SetSbNovoregistro(const Value: TSpeedButton);
@@ -893,13 +1036,13 @@ begin
    if not Assigned(FSQLControl) then
     FSQLControl:= TExecSQL.Create;
 
-  wSQL:='select bdnome from TB_SYN_CONDOMINIO where bdcodigo >'+prCodigo;
+  wSQL:='select bdnome from TB_SYN_CONDOMINIO where bdcodigo ='+prCodigo;
   FSQLControl.CommandText.SQL.Clear;
   FSQLControl.CommandText.SQL.Add(wSQL);
   FSQLControl.CommandText.Open;
   if FSQLControl.CommandText.IsEmpty then
      begin
-       MessageDlg('Não existe Condomínio com esse código , clique F4 para cadastrar ',mtError,mbOKCancel,1)
+       MessageDlg('Código do condomínio nao consta no sistema  ',mtError,mbOKCancel,1)
      end
      else
      begin

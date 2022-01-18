@@ -21,10 +21,17 @@
 
 <h2>Modelagem do banco de dados</h2>
 
-
-
-
-
-
 ![DiagramaKondominios](https://user-images.githubusercontent.com/94265037/149867970-968a9fac-d18f-453c-8b63-c36421d9dd4c.png)
+
+<h2>Rodando a aplicação</h2>
+Após baixar o diretório<br>
+Instalar o banco de dados por meio do instalador INSTALADORFIREBIRD.exe <br>
+
+![image](https://user-images.githubusercontent.com/94265037/149885128-e3eb3424-66a5-4000-a184-5e12578c4931.png)
+após isso, entrar na pasta \Projeto\Win32\Debug e executar o arquivo Syndico.exe<br>
+
+![image](https://user-images.githubusercontent.com/94265037/149885485-de2302c7-e11a-4f0a-ba84-070b86d938be.png)
+<h2>Gif da instalação e execução da aplicação<h2>
+
+![Desktop 2022 01 18 - 03 25 22 04_Trim](https://user-images.githubusercontent.com/94265037/149884736-eb9806f8-8e51-45f9-9986-ae77139a8afe.gif)
 

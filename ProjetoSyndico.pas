@@ -32,6 +32,10 @@ type
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
     FSQL:TExecSQL;
+    SpeedButton11: TSpeedButton;
+    Panel5: TPanel;
+    SpeedButton10: TSpeedButton;
+    SpeedButton12: TSpeedButton;
     procedure pnFundoResize(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -47,6 +51,7 @@ type
     procedure SpeedButton14Click(Sender: TObject);
     procedure SpeedButton8Click(Sender: TObject);
     procedure SpeedButton9Click(Sender: TObject);
+    procedure SpeedButton10Click(Sender: TObject);
   private
     procedure pFecharPanel(prBarra:integer);
 
@@ -111,7 +116,10 @@ begin
       panel2.hide;
       panel3.hide;
       panel4.hide;
+      Panel5.hide;
     end;
+ if prBarra = 5 then
+    Panel5.hide;
 
 
 end;
@@ -119,6 +127,13 @@ end;
 procedure TfrSyndicoPrincipal.pnFundoResize(Sender: TObject);
 begin
  Bevel2.Width := Screen.Width;
+end;
+
+procedure TfrSyndicoPrincipal.SpeedButton10Click(Sender: TObject);
+begin
+  Panel3.Show;
+  pFecharPanel(1);
+  pFecharPanel(3);
 end;
 
 procedure TfrSyndicoPrincipal.SpeedButton14Click(Sender: TObject);
@@ -133,14 +148,15 @@ end;
 
 procedure TfrSyndicoPrincipal.SpeedButton1Click(Sender: TObject);
 begin
-  panel2.Show;
+   panel2.Show;
    pFecharPanel(2);
    pFecharPanel(3);
+   pFecharPanel(5);
 end;
 
 procedure TfrSyndicoPrincipal.SpeedButton2Click(Sender: TObject);
 begin
-  Panel3.Show;
+  Panel5.Show;
   pFecharPanel(1);
   pFecharPanel(3);
 end;
@@ -150,6 +166,7 @@ begin
   panel4.Show;
   pFecharPanel(1);
   pFecharPanel(2);
+  pFecharPanel(5);
 
 end;
 

@@ -21,8 +21,7 @@
 
 <h2>Modelagem do banco de dados</h2>
 
-
-![DiagramaKondominios](https://user-images.githubusercontent.com/94265037/150036555-efe6299d-9161-4c67-9257-7a86e591e599.png)
+![DiagramaKondominios](https://user-images.githubusercontent.com/94265037/150081132-9679ce1a-5e52-4243-8f52-d5f49e7a09ee.png)
 
 <h2>Rodando a aplicação</h2>
 Após baixar o diretório<br>

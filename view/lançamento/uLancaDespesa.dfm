@@ -1,0 +1,214 @@
+inherited frCadpadraoSyndico1: TfrCadpadraoSyndico1
+  Caption = 'frCadpadraoSyndico1'
+  ClientHeight = 201
+  ClientWidth = 497
+  ExplicitWidth = 513
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label2: TLabel [0]
+    Left = 80
+    Top = 102
+    Width = 56
+    Height = 14
+    Caption = 'Unidade:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Courier New'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  inherited pnFundo: TPanel
+    Width = 497
+    Height = 201
+    Color = 15983831
+    ExplicitLeft = 8
+    ExplicitTop = 8
+    ExplicitWidth = 497
+    ExplicitHeight = 228
+    inherited Bevel3: TBevel
+      Left = -35
+      Width = 892
+      Height = 15
+      ExplicitLeft = -35
+      ExplicitWidth = 892
+      ExplicitHeight = 15
+    end
+    inherited btRegistroAntigo: TSpeedButton
+      Left = 438
+      ExplicitLeft = 438
+    end
+    inherited btStatus: TSpeedButton
+      Left = 311
+      ExplicitLeft = 311
+    end
+    inherited btNovoRegistro: TSpeedButton
+      Left = 438
+      ExplicitLeft = 438
+    end
+    object Bevel1: TBevel
+      Left = -47
+      Top = 100
+      Width = 748
+      Height = 26
+      Shape = bsTopLine
+    end
+    object lbCodigo: TLabel
+      Left = 48
+      Top = 129
+      Width = 49
+      Height = 14
+      Caption = 'C'#243'digo:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lbNome: TLabel
+      Left = 32
+      Top = 67
+      Width = 56
+      Height = 14
+      Caption = 'Unidade:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label1: TLabel
+      Left = 275
+      Top = 127
+      Width = 70
+      Height = 14
+      Caption = ' Valor(R$)'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Tipo: TLabel
+      Left = 62
+      Top = 154
+      Width = 35
+      Height = 14
+      Caption = 'Tipo:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 275
+      Top = 153
+      Width = 70
+      Height = 14
+      Caption = 'Vencimento'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object edCodigo: TEdit
+      Left = 103
+      Top = 128
+      Width = 40
+      Height = 17
+      BorderStyle = bsNone
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Courier New'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+    end
+    object edUnidade: TEdit
+      Left = 94
+      Top = 67
+      Width = 40
+      Height = 19
+      BorderStyle = bsNone
+      Font.Charset = EASTEUROPE_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Courier New'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+    end
+    object Panel3: TPanel
+      Left = 139
+      Top = 68
+      Width = 309
+      Height = 17
+      BevelOuter = bvLowered
+      Color = clHighlightText
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 2
+    end
+    object cbTipoLocal: TComboBox
+      Left = 103
+      Top = 151
+      Width = 97
+      Height = 21
+      TabOrder = 3
+      Text = 'Condom'#237'nio'
+      Items.Strings = (
+        'Rua '
+        'Avenida'
+        'Alameda'
+        'Estrada'
+        'Pra'#231'a'
+        'Rodovia'
+        'Loteamento'
+        'Residencial'
+        'Agrupamento')
+    end
+    object edNumero: TEdit
+      Left = 351
+      Top = 125
+      Width = 97
+      Height = 19
+      BorderStyle = bsNone
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Courier New'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 4
+    end
+    object MaskEdit1: TMaskEdit
+      Left = 351
+      Top = 150
+      Width = 97
+      Height = 22
+      EditMask = '!99/99/0000;1; '
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = []
+      MaxLength = 10
+      ParentFont = False
+      TabOrder = 5
+      Text = '  /  /    '
+    end
+  end
+end

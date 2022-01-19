@@ -1042,7 +1042,10 @@ begin
   FSQLControl.CommandText.Open;
   if FSQLControl.CommandText.IsEmpty then
      begin
-       MessageDlg('Código do condomínio nao consta no sistema  ',mtError,mbOKCancel,1)
+       MessageDlg('Código do condomínio nao consta no sistema pressione F4 para cadastrar',mtError,mbOKCancel,1) ;
+       edCodigoCondominio.SetFocus;
+       edCodigoCondominio.Text := EmptyStr;
+       pnConsulta.Caption := EmptyStr;
      end
      else
      begin

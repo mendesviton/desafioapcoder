@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao, Vcl.StdCtrls, Vcl.Buttons,uControleFluxo,uConMoradores,
-  Vcl.ExtCtrls, Vcl.Mask;
+  Vcl.ExtCtrls, Vcl.Mask,uControleValida;
 
 type
   TfrMoradoresSyndicos = class(TfrCadpadraoSyndico)
@@ -35,7 +35,9 @@ type
     procedure btLimparClick(Sender: TObject);
     procedure btConsultaClick(Sender: TObject);
     procedure edCodigoExit(Sender: TObject);
+    procedure edNomeExit(Sender: TObject);
   private
+    FValida   :TValidaCampo;
     FControle :TMoradorControler;
     procedure pSetComponenteTela;
     procedure pLimpaCampos;
@@ -69,9 +71,16 @@ begin
   FControle.fStatusRegistro(strtoint(trim(edCodigo.Text)))
 end;
 
+procedure TfrMoradoresSyndicos.edNomeExit(Sender: TObject);
+begin
+  inherited;
+   FValida.pValidaNome(edNome)
+end;
+
 procedure TfrMoradoresSyndicos.FormCreate(Sender: TObject);
 begin
   inherited;
+  FValida:= TValidaCampo.Create;
   FControle:=TMoradorControler.Create;
   pSetComponenteTela;          //vitor - 16/01/2022 - método que seta os componentes para a classe controler
 

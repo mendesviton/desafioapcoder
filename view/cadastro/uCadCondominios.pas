@@ -11,7 +11,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao, Vcl.Buttons, Vcl.ExtCtrls,
   Vcl.Menus, Vcl.ExtDlgs, Vcl.StdCtrls,pngimage,uUtil,uControleFluxo,uConCondominios,
-  Vcl.Mask;
+  Vcl.Mask,uControleValida;
 
 type
   TfrCadCondominio = class(TfrCadpadraoSyndico)
@@ -64,8 +64,10 @@ type
     procedure edDataExit(Sender: TObject);
     procedure btProximoClick(Sender: TObject);
     procedure btAnteriorClick(Sender: TObject);
+    procedure edNomeExit(Sender: TObject);
 
   private
+    FValida   : TValidaCampo;
     FControle : TCondominioControler;
     procedure pSetaComponentes;
     procedure pLimpaCampos;
@@ -137,10 +139,17 @@ begin
      edData.SetFocus;
 end;
 
+procedure TfrCadCondominio.edNomeExit(Sender: TObject);
+begin
+  inherited;
+   FValida.pValidaNome(edNome)
+
+end;
+
 procedure TfrCadCondominio.FormCreate(Sender: TObject);
 begin
   inherited;
-
+  FValida:=TValidaCampo.Create;
   btRegistroAntigo.Hide;
   FControle:=TCondominioControler.Create;
   pSetaComponentes;                       //Vitor -12/01/2022- Seta os componentes dessa tela para dentro da classe controler

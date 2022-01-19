@@ -18,7 +18,9 @@ uses
   uConCondominios in 'view\consulta\uConCondominios.pas' {frConsultaCondominio},
   uConsultaPadrao in 'view\consulta\uConsultaPadrao.pas' {frConPadraoSyndico},
   uConMoradores in 'view\consulta\uConMoradores.pas' {frConMoradores},
-  uConUnidades in 'view\consulta\uConUnidades.pas' {frConUnidades};
+  uConUnidades in 'view\consulta\uConUnidades.pas' {frConUnidades},
+  uControleValida in 'controler\uControleValida.pas',
+  uLancaDespesa in 'view\lançamento\uLancaDespesa.pas' {frCadpadraoSyndico1};
 
 {$R *.res}
 
@@ -36,5 +38,6 @@ begin
   Application.CreateForm(TfrConPadraoSyndico, frConPadraoSyndico);
   Application.CreateForm(TfrConMoradores, frConMoradores);
   Application.CreateForm(TfrConUnidades, frConUnidades);
+  Application.CreateForm(TfrCadpadraoSyndico1, frCadpadraoSyndico1);
   Application.Run;
 end.

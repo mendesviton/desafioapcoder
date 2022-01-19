@@ -1,0 +1,33 @@
+unit uControleValida;
+
+interface
+
+uses
+   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+    Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage,uUtil, uCadPadrao, Vcl.Buttons,Vcl.Menus, Vcl.ExtCtrls, Vcl.ExtDlgs, Vcl.StdCtrls,uControleSQL;
+
+  type
+    TValidaCampo = class
+      private
+      public
+        function pValidaNome(edNome:TEdit):boolean;
+    end;
+implementation
+
+{ TValidaCampo }
+
+function TValidaCampo.pValidaNome(edNome: TEdit): boolean;
+var
+contador:integer;
+begin
+   for contador:= 1 to length(trim(edNome.Text)) do
+    if trim(edNome.Text) in ['0'..'9'] then
+    begin
+      result:= false;
+      exit;
+    end;
+
+
+end;
+
+end.

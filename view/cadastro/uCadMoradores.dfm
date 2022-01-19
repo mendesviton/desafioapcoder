@@ -9,14 +9,15 @@
   inherited pnFundo: TPanel
     Width = 611
     Height = 297
-    Color = 15918295
+    Color = 15983831
+    ExplicitLeft = -64
     ExplicitWidth = 611
     ExplicitHeight = 297
     inherited Bevel3: TBevel
-      Left = -82
+      Left = -28
       Width = 748
       Height = 26
-      ExplicitLeft = -82
+      ExplicitLeft = -28
       ExplicitWidth = 748
       ExplicitHeight = 26
     end
@@ -211,6 +212,7 @@
       Font.Style = []
       ParentFont = False
       TabOrder = 3
+      OnExit = edNomeExit
     end
     object edTelefone: TEdit
       Left = 94

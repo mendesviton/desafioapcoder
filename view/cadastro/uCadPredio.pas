@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao, Vcl.StdCtrls, Vcl.Buttons,uControleFluxo,uConBlocos,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao,uCadCondominios, Vcl.StdCtrls, Vcl.Buttons,uControleFluxo,uConBlocos,
   Vcl.ExtCtrls;
 
 type
@@ -31,6 +31,8 @@ type
     procedure cbTipoExit(Sender: TObject);
     procedure btProximoClick(Sender: TObject);
     procedure btAnteriorClick(Sender: TObject);
+    procedure edCodCondKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     FControle : TBlocoControler;
     procedure pSetaComponentes;
@@ -94,6 +96,15 @@ procedure TfrCadPredioSyndico.edCodCondExit(Sender: TObject);
 begin
   inherited;
   FControle.pExisteCondominio(trim(edCodCond.Text));
+end;
+
+procedure TfrCadPredioSyndico.edCodCondKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = vk_f4 then
+     TfrCadCondominio.Create(self).Show;
+
 end;
 
 procedure TfrCadPredioSyndico.edCodigoExit(Sender: TObject);

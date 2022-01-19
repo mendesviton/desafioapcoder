@@ -3,6 +3,7 @@ inherited frCadPredioSyndico: TfrCadPredioSyndico
   ClientHeight = 179
   ClientWidth = 546
   Color = 10315805
+  KeyPreview = True
   Position = poScreenCenter
   ExplicitWidth = 562
   ExplicitHeight = 218
@@ -135,6 +136,7 @@ inherited frCadPredioSyndico: TfrCadPredioSyndico
       ParentFont = False
       TabOrder = 1
       OnExit = edCodCondExit
+      OnKeyDown = edCodCondKeyDown
     end
     object Panel2: TPanel
       Left = 204

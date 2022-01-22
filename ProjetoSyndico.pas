@@ -8,7 +8,7 @@ uses
   Vcl.ExtCtrls, Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.ToolWin, Vcl.ComCtrls,
   System.ImageList,Vcl.ImgList,uCadPredio,uCadMoradores,System.IniFiles,
   uConCondominios,uControleSQL,uConBlocos,uCadUnidade,uConMoradores,uConUnidades,uUtil,
-  Vcl.StdCtrls;
+  Vcl.StdCtrls,uLancaDespesa,uCentralPagamentos,uAjudaSyndico;
 
 type
   TfrSyndicoPrincipal = class(TForm)
@@ -52,8 +52,13 @@ type
     procedure SpeedButton8Click(Sender: TObject);
     procedure SpeedButton9Click(Sender: TObject);
     procedure SpeedButton10Click(Sender: TObject);
+    procedure SpeedButton12Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
+    Fajuda:TfrAjuda;
     procedure pFecharPanel(prBarra:integer);
+
 
   public
     { Public declarations }
@@ -85,12 +90,27 @@ begin
      FSQL.SQL('update or insert into TB_SYN_CONDOMINIO (BDCODIGO,BDCAMINHOIMAGEM) values (2,'+quotedstr(ExtractFilePath(Application.ExeName)+'persiste\imagecod2.png')+')  matching(bdcodigo)');
      FSQL.SQL('update or insert into TB_SYN_CONDOMINIO (BDCODIGO,BDCAMINHOIMAGEM) values (3,'+quotedstr(ExtractFilePath(Application.ExeName)+'persiste\imagecod3.png')+')  matching(bdcodigo)');
      FSQL.SQL('update or insert into TB_SYN_CONDOMINIO (BDCODIGO,BDCAMINHOIMAGEM) values (4,'+quotedstr(ExtractFilePath(Application.ExeName)+'persiste\imagecod4.png')+')  matching(bdcodigo)');
+     FSQL.SQL('update or insert into TB_SYN_MORADORES  (BDCODIGO,BDCAMINHOIMAGEM) values (1,'+quotedstr(ExtractFilePath(Application.ExeName)+'persiste\vitao.png')+')  matching(bdcodigo)');
 end;
-
 
 
  Bevel2.Width  := Screen.Width;
  pFecharPanel(4);
+
+end;
+
+procedure TfrSyndicoPrincipal.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+ if key = VK_ESCAPE then
+    frAjuda.Close;
+
+
+end;
+
+procedure TfrSyndicoPrincipal.FormShow(Sender: TObject);
+begin
+    frAjuda.Show;
 end;
 
 procedure TfrSyndicoPrincipal.Image1Click(Sender: TObject);
@@ -134,6 +154,11 @@ begin
   Panel3.Show;
   pFecharPanel(1);
   pFecharPanel(3);
+end;
+
+procedure TfrSyndicoPrincipal.SpeedButton12Click(Sender: TObject);
+begin
+  TfrCentralDespesas.Create(self).Show;
 end;
 
 procedure TfrSyndicoPrincipal.SpeedButton14Click(Sender: TObject);
@@ -182,7 +207,7 @@ end;
 
 procedure TfrSyndicoPrincipal.SpeedButton6Click(Sender: TObject);
 begin
- TfrConsultaCondominio.Create(self).Show;
+  TfrLancaDespesa.Create(self).ShowModal;
 end;
 
 procedure TfrSyndicoPrincipal.SpeedButton7Click(Sender: TObject);

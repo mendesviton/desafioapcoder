@@ -20,7 +20,9 @@ uses
   uConMoradores in 'view\consulta\uConMoradores.pas' {frConMoradores},
   uConUnidades in 'view\consulta\uConUnidades.pas' {frConUnidades},
   uControleValida in 'controler\uControleValida.pas',
-  uLancaDespesa in 'view\lançamento\uLancaDespesa.pas' {frCadpadraoSyndico1};
+  uLancaDespesa in 'view\lançamento\uLancaDespesa.pas' {frLancaDespesa},
+  uCentralPagamentos in 'view\consulta\uCentralPagamentos.pas' {frCentralDespesas},
+  uAjudaSyndico in 'uAjudaSyndico.pas' {frAjuda};
 
 {$R *.res}
 
@@ -38,6 +40,8 @@ begin
   Application.CreateForm(TfrConPadraoSyndico, frConPadraoSyndico);
   Application.CreateForm(TfrConMoradores, frConMoradores);
   Application.CreateForm(TfrConUnidades, frConUnidades);
-  Application.CreateForm(TfrCadpadraoSyndico1, frCadpadraoSyndico1);
+  Application.CreateForm(TfrLancaDespesa, frLancaDespesa);
+  Application.CreateForm(TfrCentralDespesas, frCentralDespesas);
+  Application.CreateForm(TfrAjuda, frAjuda);
   Application.Run;
 end.

@@ -33,6 +33,8 @@ type
     procedure btAnteriorClick(Sender: TObject);
     procedure edCodCondKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure edCodigoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     FControle : TBlocoControler;
     procedure pSetaComponentes;
@@ -111,6 +113,14 @@ procedure TfrCadPredioSyndico.edCodigoExit(Sender: TObject);
 begin
   inherited;
    FControle.fStatusRegistro(strtoint(trim(edCodigo.Text)));
+end;
+
+procedure TfrCadPredioSyndico.edCodigoKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = VK_F9 then
+     TfrConBloco.Create(self).Show;
 end;
 
 procedure TfrCadPredioSyndico.FormCreate(Sender: TObject);

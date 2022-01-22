@@ -54,7 +54,6 @@ begin
   ClientDataSet1.Close;
   wSQL:= 'Select blo.*,(cond.bdnome)as bdcondominio, (cond.bdtotalcond) as bdvalor from TB_SYN_BLOCO blo ';
   wSQL:= wSQL + 'join TB_SYN_CONDOMINIO  cond on (cond.bdcodigo = blo.bdcodcond)';
-
   ClientDataSet1.commandtext:=wSQL;
   ClientDataSet1.open;
 end;

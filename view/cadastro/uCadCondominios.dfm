@@ -4,6 +4,7 @@ inherited frCadCondominio: TfrCadCondominio
   ClientHeight = 496
   ClientWidth = 754
   Color = 16744448
+  KeyPreview = True
   Position = poScreenCenter
   ExplicitWidth = 760
   ExplicitHeight = 525
@@ -492,7 +493,7 @@ inherited frCadCondominio: TfrCadCondominio
     end
     object edCod: TEdit
       Left = 209
-      Top = 61
+      Top = 63
       Width = 40
       Height = 17
       Alignment = taCenter

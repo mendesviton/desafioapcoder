@@ -19,7 +19,7 @@ type
     ClientDataSet1BDNASCIMENTO: TDateField;
     ClientDataSet1BDTELEFONE: TStringField;
     ClientDataSet1BDEMAIL: TStringField;
-    ClientDataSet1BDRESPONSAVELFIN: TIntegerField;
+    ClientDataSet1BDRESPONSAVELFIN: TStringField;
     procedure FormCreate(Sender: TObject);
   private
     TSQL : TExecSQL;

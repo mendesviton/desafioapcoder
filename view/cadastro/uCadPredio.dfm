@@ -190,6 +190,7 @@ inherited frCadPredioSyndico: TfrCadPredioSyndico
       ParentFont = False
       TabOrder = 0
       OnExit = edCodigoExit
+      OnKeyDown = edCodigoKeyDown
     end
     object edBLoco: TEdit
       Left = 115

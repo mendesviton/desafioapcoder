@@ -155,8 +155,10 @@ type
           FSbNovoregistro: TSpeedButton;
           FsbStatus: TSpeedButton;
           FSbRegistroAntigo: TSpeedButton;
-    FpnConsultaBloco: TPanel;
-    FpnConsulta: TPanel;
+          FpnConsultaBloco: TPanel;
+          FpnConsulta: TPanel;
+          FFCaminho: String;
+    Ftimage: TImage;
           procedure SetedCodigo(const Value: tedit);
           procedure Setedcodunidade(const Value: tedit);
           procedure Setcheckpropietario(const Value: TCheckBox);
@@ -167,8 +169,10 @@ type
           procedure SetSbNovoregistro(const Value: TSpeedButton);
           procedure SetSbRegistroAntigo(const Value: TSpeedButton);
           procedure SetsbStatus(const Value: TSpeedButton);
-    procedure SetpnConsulta(const Value: TPanel);
-    procedure SetpnConsultaBloco(const Value: TPanel);
+          procedure SetpnConsulta(const Value: TPanel);
+          procedure SetpnConsultaBloco(const Value: TPanel);
+          procedure SetFCaminho(const Value: String);
+          procedure Settimage(const Value: TImage);
 
         public
           property  edCodigo:tedit read FedCodigo write SetedCodigo;
@@ -179,12 +183,15 @@ type
           property  edemail:tedit read Fedemail write Setedemail;
           property  checkpropietario:TCheckBox read Fcheckpropietario write Setcheckpropietario;
           procedure pInsereRegistro;
-           function  fStatusRegistro(prCodigo:integer):boolean;
-          property sbStatus:TSpeedButton read FsbStatus write SetsbStatus;
-          property SbNovoregistro:TSpeedButton read FSbNovoregistro write SetSbNovoregistro;
-          property SbRegistroAntigo:TSpeedButton read FSbRegistroAntigo write SetSbRegistroAntigo;
-          property pnConsulta  :TPanel read FpnConsulta write SetpnConsulta;
-          property pnConsultaUnidade :TPanel read FpnConsultaBloco write SetpnConsultaBloco;
+          function  fStatusRegistro(prCodigo:integer):boolean;
+          property  sbStatus:TSpeedButton read FsbStatus write SetsbStatus;
+          property  SbNovoregistro:TSpeedButton read FSbNovoregistro write SetSbNovoregistro;
+          property  SbRegistroAntigo:TSpeedButton read FSbRegistroAntigo write SetSbRegistroAntigo;
+          property  pnConsulta  :TPanel read FpnConsulta write SetpnConsulta;
+          property  pnConsultaUnidade :TPanel read FpnConsultaBloco write SetpnConsultaBloco;
+          property  FCaminho :String  read FFCaminho write SetFCaminho;
+          property  timage :TImage read Ftimage write Settimage;
+          procedure pExisteCondominio (prcodigo:string);
       end;
 type
     TUnidadeControler = class
@@ -235,6 +242,29 @@ type
 
 
 
+    end;
+type
+    TLancamento = class
+      private
+        FedValor: Tedit;
+        FedCodigo: TEdit;
+        FedVencimento: Tedit;
+        FedCodUnidade: TEdit;
+        FcbTipo: TComboBox;
+        FSQLControl : TExecSQL;
+        procedure SetcbTipo(const Value: TComboBox);
+        procedure SetedCodigo(const Value: TEdit);
+        procedure SetedCodUnidade(const Value: TEdit);
+        procedure SetedValor(const Value: Tedit);
+        procedure SetedVencimento(const Value: Tedit);
+
+      public
+        property edCodigo:TEdit read FedCodigo write SetedCodigo;
+        property edCodUnidade:TEdit read FedCodUnidade write SetedCodUnidade;
+        property edValor:Tedit read FedValor write SetedValor;
+        property edVencimento:Tedit read FedVencimento write SetedVencimento;
+        property cbTipo:TComboBox read FcbTipo write SetcbTipo;
+        procedure pInsereRegistro;
     end;
 
 implementation
@@ -687,7 +717,6 @@ end;
 function TBlocoControler.pRegistroAnterior(prCodigo: String): integer;
 var
 wSQL:String;
-
 begin
      if not Assigned(FSQLControl) then
     FSQLControl:= TExecSQL.Create;
@@ -800,14 +829,13 @@ wSQL := wSQL + ' join TB_SYN_BLOCO blo on (und.bdcodbloco = blo.bdcodigo) where 
      sbStatus.Font.Color := clGreen;
      pnConsulta.Caption            := EmptyStr;
      pnConsultaunidade.Caption     := EmptyStr;
-
-     edCodigo.Text                 :=  EmptyStr;
      edcodunidade.Text             :=  EmptyStr;
      ednome.text                   :=  emptyStr;
-     ednascimento.Text             :=  EmptyStr;
-     edtelefone.Text               :=  EmptyStr;
+     ednascimento.Clear;
+     edtelefone.Clear;
      edemail.Text                  :=  EmptyStr;
      checkpropietario.Checked      :=  False;
+     timage.Picture                :=  nil;
 
 
     end
@@ -826,10 +854,20 @@ wSQL := wSQL + ' join TB_SYN_BLOCO blo on (und.bdcodbloco = blo.bdcodigo) where 
       edemail.text                :=FSQLControl.CommandText.FieldByName('BDEMAIL').AsString;
       pnConsultaUnidade.Caption   :='Apartamento  número : '+(FSQLControl.CommandText.FieldByName('BDNUMERO').AsString +'    '+ FSQLControl.CommandText.FieldByName('BDNOMEBLOCO').AsString);
       pnConsulta.caption          :=FSQLControl.CommandText.FieldByName('BDNOME').AsString;
-      if FSQLControl.CommandText.FieldByName('BDRESPONSAVELFIN').AsInteger = 1  then
+      if FSQLControl.CommandText.FieldByName('BDRESPONSAVELFIN').AsString = 'sim'  then
          checkpropietario.Checked := true
          else
          checkpropietario.Checked := false;
+
+      if FSQLControl.CommandText.FieldByName('BDCAMINHOIMAGEM').AsString <> EmptyStr then
+         begin
+            wPng := TPngImage.Create;
+            wPng.LoadFromFile(FSQLControl.CommandText.FieldByName('BDCAMINHOIMAGEM').AsString);
+            wBmp:=TUtil.PngToBmp(wPng);
+            timage.Picture.Bitmap := wBmp;
+         end
+         else
+            timage.Picture   := nil;
 
 
 
@@ -838,22 +876,60 @@ wSQL := wSQL + ' join TB_SYN_BLOCO blo on (und.bdcodbloco = blo.bdcodigo) where 
 
 end;
 
+procedure TMoradorControler.pExisteCondominio(prcodigo: string);
+ var
+wSQL:String;
+begin
+   if not Assigned(FSQLControl) then
+    FSQLControl:= TExecSQL.Create;
+
+  wSQL:='select * from TB_SYN_UNIDADES und join TB_SYN_BLOCO blo on (blo.bdcodigo = und.bdcodbloco) where und.bdcodigo ='+prCodigo;
+  FSQLControl.CommandText.SQL.Clear;
+  FSQLControl.CommandText.SQL.Add(wSQL);
+  FSQLControl.CommandText.Open;
+  if FSQLControl.CommandText.IsEmpty then
+     begin
+       MessageDlg('Código da unidade não consta no sistema pressione F4 para cadastrar',mtError,mbOKCancel,1) ;
+       edcodunidade.SetFocus;
+       edcodunidade.Text := EmptyStr;
+       pnConsulta.Caption := EmptyStr;
+     end
+     else
+     begin
+
+       pnConsultaUnidade.Caption   :='Apartamento  número : '+(FSQLControl.CommandText.FieldByName('BDNUMERO').AsString +'    '+ FSQLControl.CommandText.FieldByName('BDNOMEBLOCO').AsString);
+
+     end;
+
+end;
+
 procedure TMoradorControler.pInsereRegistro;
 var
 wSQL:String;
 begin
  FSQLControl:= TExecSQL.Create;
- showmessage(edCodigo.Text);
  wSQL:=EmptyStr;
  wSQL := ' update or insert into TB_SYN_MORADORES(';
  wSQL := wSQL + ' BDCODIGO,BDCODIGOUNID,BDNOME,BDNASCIMENTO,BDTELEFONE,' ;
- wSQL := wSQL + 'BDEMAIL,BDRESPONSAVELFIN )' ;
+ wSQL := wSQL + 'BDEMAIL,BDRESPONSAVELFIN,BDCAMINHOIMAGEM )' ;
  wSQL := wSQL + ' values ('+QuotedStr(trim(edCodigo.Text))+','+QuotedStr(trim(edcodunidade.Text)) ;
  wSQL := wSQL + ' ,'+QuotedStr(trim(ednome.Text))+','+QuotedStr(trim(ednascimento.Text));
- wSQL := wSQL + ' ,'+QuotedStr(trim(edtelefone.Text))+','+QuotedStr(trim(edemail.Text))+',1)';
+ wSQL := wSQL + ' ,'+QuotedStr(trim(edtelefone.Text))+','+QuotedStr(trim(edemail.Text));
+
+ if checkpropietario.Checked then
+       wSQL :=  wSQL + ',''sim'','
+    else
+       wSQL :=  wSQL + ',''não'',';
+
+ wSQL := wSQL + QuotedStr(FCaminho)+' )';
+
  wSQL := wSQL + ' matching (bdcodigo);  ';
 
  FSQLControl.SQL(wSQL);
+ if  (pnConsulta.Caption = EmptyStr) then
+    MessageDlg('Morador gravado com  sucesso',mtInformation,mbOKCancel,1)
+    else
+    MessageDlg('Morador editado com  sucesso',mtInformation,mbOKCancel,1);
 
 end;
 
@@ -892,6 +968,11 @@ begin
   Fedtelefone := Value;
 end;
 
+procedure TMoradorControler.SetFCaminho(const Value: String);
+begin
+  FFCaminho := Value;
+end;
+
 procedure TMoradorControler.SetpnConsulta(const Value: TPanel);
 begin
   FpnConsulta := Value;
@@ -915,6 +996,11 @@ end;
 procedure TMoradorControler.SetsbStatus(const Value: TSpeedButton);
 begin
   FsbStatus := Value;
+end;
+
+procedure TMoradorControler.Settimage(const Value: TImage);
+begin
+  Ftimage := Value;
 end;
 
 {
@@ -1052,6 +1138,50 @@ begin
        pnConsulta.Caption:= FSQLControl.CommandText.FieldByName('BDNOME').AsString;
      end;
 
+end;
+
+{ TLancamento }
+
+procedure TLancamento.pInsereRegistro;
+var
+wSQL:String;
+begin
+ if not Assigned(FSQLControl) then
+    FSQLControl:= TExecSQL.Create;
+ wSQL:=EmptyStr;
+ wSQL:= wSQL + 'update or insert into TB_SYN_DESPESAS( ' ;
+ wSQL:= wSQL + 'BDCODIGO,BDTIPO,BDVALOR,BDVENCIMENTO,BDCODUNID) ' ;
+ wSQL:= wSQL + 'values('+trim(edCodigo.Text)+','+QuotedStr(trim(cbTipo.Text))+','+trim(edValor.Text);
+ wSQL:= wSQL + ','+QuotedStr(trim(edVencimento.Text))+','+trim(edCodUnidade.Text)+')';
+ wSQL:= wSQL + 'matching(bdcodigo); ';
+ FSQLControl.SQL(wSQL);
+
+
+end;
+
+procedure TLancamento.SetcbTipo(const Value: TComboBox);
+begin
+  FcbTipo := Value;
+end;
+
+procedure TLancamento.SetedCodigo(const Value: TEdit);
+begin
+  FedCodigo := Value;
+end;
+
+procedure TLancamento.SetedCodUnidade(const Value: TEdit);
+begin
+  FedCodUnidade := Value;
+end;
+
+procedure TLancamento.SetedValor(const Value: Tedit);
+begin
+  FedValor := Value;
+end;
+
+procedure TLancamento.SetedVencimento(const Value: Tedit);
+begin
+  FedVencimento := Value;
 end;
 
 end.

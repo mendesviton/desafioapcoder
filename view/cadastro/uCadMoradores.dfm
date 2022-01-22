@@ -1,16 +1,16 @@
 ﻿inherited frMoradoresSyndicos: TfrMoradoresSyndicos
   Caption = 'Moradores'
   ClientHeight = 297
-  ClientWidth = 611
-  ExplicitWidth = 627
+  ClientWidth = 605
+  KeyPreview = True
+  ExplicitWidth = 621
   ExplicitHeight = 336
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnFundo: TPanel
-    Width = 611
+    Width = 605
     Height = 297
     Color = 15983831
-    ExplicitLeft = -64
     ExplicitWidth = 611
     ExplicitHeight = 297
     inherited Bevel3: TBevel
@@ -25,22 +25,29 @@
       OnClick = btConsultaClick
     end
     inherited btRegistroAntigo: TSpeedButton
-      Left = 549
-      ExplicitLeft = 549
+      Left = 547
+      Enabled = True
+      ExplicitLeft = 547
     end
     inherited btStatus: TSpeedButton
-      Left = 407
-      ExplicitLeft = 407
+      Left = 381
+      Width = 160
+      Enabled = True
+      ExplicitLeft = 381
+      ExplicitWidth = 160
     end
     inherited btNovoRegistro: TSpeedButton
-      Left = 549
-      ExplicitLeft = 549
+      Left = 547
+      Enabled = True
+      ExplicitLeft = 547
     end
     inherited btLimpar: TSpeedButton
       OnClick = btLimparClick
     end
     inherited SpeedButton1: TSpeedButton
+      Left = 11
       OnClick = SpeedButton1Click
+      ExplicitLeft = 11
     end
     object lbCodigo: TLabel
       Left = 45
@@ -77,7 +84,7 @@
     end
     object lbEmail: TLabel
       Left = 11
-      Top = 175
+      Top = 199
       Width = 77
       Height = 14
       Caption = 'Nascimento:'
@@ -103,7 +110,7 @@
     end
     object Label1: TLabel
       Left = 39
-      Top = 225
+      Top = 175
       Width = 49
       Height = 14
       Caption = 'E-mail:'
@@ -116,7 +123,7 @@
     end
     object Label2: TLabel
       Left = 25
-      Top = 201
+      Top = 225
       Width = 63
       Height = 14
       Caption = 'Telefone:'
@@ -132,7 +139,7 @@
       Top = 257
       Width = 63
       Height = 14
-      Caption = '250 x 110'
+      Caption = '120 x 140'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -186,7 +193,7 @@
       TabOrder = 1
     end
     object edUnidade: TEdit
-      Left = 94
+      Left = 93
       Top = 92
       Width = 40
       Height = 19
@@ -198,6 +205,8 @@
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnExit = edUnidadeExit
+      OnKeyDown = edUnidadeKeyDown
     end
     object edNome: TEdit
       Left = 94
@@ -214,23 +223,9 @@
       TabOrder = 3
       OnExit = edNomeExit
     end
-    object edTelefone: TEdit
-      Left = 94
-      Top = 200
-      Width = 307
-      Height = 19
-      BorderStyle = bsNone
-      Font.Charset = EASTEUROPE_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Courier New'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 5
-    end
     object edEmail: TEdit
       Left = 94
-      Top = 225
+      Top = 175
       Width = 307
       Height = 19
       BorderStyle = bsNone
@@ -240,7 +235,7 @@
       Font.Name = 'Courier New'
       Font.Style = []
       ParentFont = False
-      TabOrder = 6
+      TabOrder = 4
     end
     object Panel1: TPanel
       Left = 456
@@ -255,7 +250,7 @@
       Font.Name = 'Courier New'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 7
+      TabOrder = 8
       object Image1: TImage
         Left = 2
         Top = 0
@@ -263,6 +258,7 @@
         Height = 143
         Hint = 'Clique com o bot'#227'o direito'
         ParentShowHint = False
+        PopupMenu = PopupMenu1
         ShowHint = True
       end
     end
@@ -280,7 +276,7 @@
       Font.Style = []
       ParentBackground = False
       ParentFont = False
-      TabOrder = 8
+      TabOrder = 9
     end
     object ckResponsável: TCheckBox
       Left = 94
@@ -294,12 +290,13 @@
       Font.Name = 'Courier New'
       Font.Style = []
       ParentFont = False
-      TabOrder = 9
+      TabOrder = 7
+      OnExit = ckResponsávelExit
     end
     object MaskEdit1: TMaskEdit
       Left = 94
-      Top = 175
-      Width = 105
+      Top = 200
+      Width = 123
       Height = 22
       EditMask = '!99/99/0000;1; '
       Font.Charset = ANSI_CHARSET
@@ -309,8 +306,39 @@
       Font.Style = []
       MaxLength = 10
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 5
       Text = '  /  /    '
     end
+    object edTelefone: TMaskEdit
+      Left = 94
+      Top = 224
+      Width = 119
+      Height = 22
+      EditMask = '!\(99\)00000-0000;1; '
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = []
+      MaxLength = 14
+      ParentFont = False
+      TabOrder = 6
+      Text = '(  )     -    '
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 488
+    Top = 80
+    object Inserirfoto1: TMenuItem
+      Caption = 'Inserir foto'
+      OnClick = Inserirfoto1Click
+    end
+    object Retirarfoto1: TMenuItem
+      Caption = 'Retirar foto'
+    end
+  end
+  object OpenPictureDialog1: TOpenPictureDialog
+    Left = 560
+    Top = 80
   end
 end

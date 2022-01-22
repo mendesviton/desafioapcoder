@@ -4,8 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao, Vcl.StdCtrls, Vcl.Buttons,uControleFluxo,uConMoradores,
-  Vcl.ExtCtrls, Vcl.Mask,uControleValida;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao,pngimage, Vcl.StdCtrls, Vcl.Buttons,uControleFluxo,uConMoradores,
+  Vcl.ExtCtrls, Vcl.Mask,uControleValida, Vcl.Menus, Vcl.ExtDlgs,uUtil,uCadUnidade;
 
 type
   TfrMoradoresSyndicos = class(TfrCadpadraoSyndico)
@@ -20,7 +20,6 @@ type
     edNome: TEdit;
     Label1    : TLabel;
     Label2    : TLabel;
-    edTelefone: TEdit;
     edEmail: TEdit;
     Label11   : TLabel;
     Bevel1    : TBevel;
@@ -30,12 +29,22 @@ type
     Panel3    : TPanel;
     ckResponsável: TCheckBox;
     MaskEdit1: TMaskEdit;
+    PopupMenu1: TPopupMenu;
+    Inserirfoto1: TMenuItem;
+    Retirarfoto1: TMenuItem;
+    OpenPictureDialog1: TOpenPictureDialog;
+    edTelefone: TMaskEdit;
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure btLimparClick(Sender: TObject);
     procedure btConsultaClick(Sender: TObject);
     procedure edCodigoExit(Sender: TObject);
     procedure edNomeExit(Sender: TObject);
+    procedure Inserirfoto1Click(Sender: TObject);
+    procedure edUnidadeExit(Sender: TObject);
+    procedure edUnidadeKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure ckResponsávelExit(Sender: TObject);
   private
     FValida   :TValidaCampo;
     FControle :TMoradorControler;
@@ -65,6 +74,12 @@ begin
   pLimpaCampos;
 end;
 
+procedure TfrMoradoresSyndicos.ckResponsávelExit(Sender: TObject);
+begin
+  inherited;
+  FControle.pInsereRegistro;        //vitor - 15/01/2022 - executa o sql da classe controler.
+end;
+
 procedure TfrMoradoresSyndicos.edCodigoExit(Sender: TObject);
 begin
   inherited;
@@ -77,12 +92,50 @@ begin
    FValida.pValidaNome(edNome)
 end;
 
+procedure TfrMoradoresSyndicos.edUnidadeExit(Sender: TObject);
+begin
+  inherited;
+    FControle.pExisteCondominio(trim(edUnidade.Text));
+end;
+
+procedure TfrMoradoresSyndicos.edUnidadeKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = VK_F4 then
+      TfrCadUnidades.Create(self).Show;
+
+end;
+
 procedure TfrMoradoresSyndicos.FormCreate(Sender: TObject);
 begin
   inherited;
+  //vitor - 16/01/2022 - método que seta os componentes para a classe controler
   FValida:= TValidaCampo.Create;
   FControle:=TMoradorControler.Create;
-  pSetComponenteTela;          //vitor - 16/01/2022 - método que seta os componentes para a classe controler
+  pSetComponenteTela;
+end;
+
+procedure TfrMoradoresSyndicos.Inserirfoto1Click(Sender: TObject);
+var
+wPng    :TPngImage;
+wBmp    :TBitmap;
+begin
+  inherited;
+  // Vitor - 13/01/2022 - seta a imagem e converte para bmp
+  if OpenPictureDialog1.Execute = true then
+     begin
+        Image1.Picture:=nil;
+        wPng := TPngImage.Create;
+        wPng.LoadFromFile(OpenPictureDialog1.FileName);
+        wBmp := TUtil.PngToBmp(wPng);
+        wBmp.Width  := Image1.Width;
+        wBmp.Height := Image1.Height;
+        Image1.Picture.Bitmap:= wBmp;
+        FControle.FCaminho := OpenPictureDialog1.FileName;
+
+     end;
+
 
 end;
 
@@ -107,7 +160,7 @@ begin
    FControle.edcodunidade      := edUnidade;
    FControle.ednome            := edNome;
    FControle.ednascimento      := TEdit(MaskEdit1);
-   FControle.edtelefone        := edTelefone;
+   FControle.edtelefone        := TEdit(edTelefone);
    FControle.edemail           := edEmail;
    FControle.checkpropietario  := ckResponsável;
    FControle.sbStatus          := btStatus;
@@ -115,6 +168,7 @@ begin
    FControle.SbRegistroAntigo  :=btRegistroAntigo;
    FControle.pnConsulta        :=panel2;
    FControle.pnConsultaUnidade :=Panel3;
+   FControle.timage            :=Image1;
 
 
 end;

@@ -5,7 +5,6 @@ inherited frConMoradores: TfrConMoradores
   ClientWidth = 1294
   Position = poScreenCenter
   OnCreate = FormCreate
-  ExplicitLeft = -175
   ExplicitWidth = 1300
   ExplicitHeight = 700
   PixelsPerInch = 96
@@ -13,6 +12,8 @@ inherited frConMoradores: TfrConMoradores
   inherited Panel1: TPanel
     Width = 1294
     Height = 671
+    ExplicitWidth = 1294
+    ExplicitHeight = 671
     inherited Bevel3: TBevel
       Width = 1344
       ExplicitWidth = 1344
@@ -39,6 +40,7 @@ inherited frConMoradores: TfrConMoradores
           Title.Font.Height = -13
           Title.Font.Name = 'Courier New'
           Title.Font.Style = [fsBold]
+          Width = 64
           Visible = True
         end
         item
@@ -160,8 +162,9 @@ inherited frConMoradores: TfrConMoradores
       FieldName = 'BDEMAIL'
       Size = 200
     end
-    object ClientDataSet1BDRESPONSAVELFIN: TIntegerField
+    object ClientDataSet1BDRESPONSAVELFIN: TStringField
       FieldName = 'BDRESPONSAVELFIN'
+      Size = 991
     end
   end
   object DataSetProvider1: TDataSetProvider

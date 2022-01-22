@@ -12,7 +12,8 @@ inherited frConBloco: TfrConBloco
   inherited Panel1: TPanel
     Width = 1294
     Height = 671
-    ExplicitWidth = 1202
+    ExplicitWidth = 1294
+    ExplicitHeight = 671
     inherited DBGrid1: TDBGrid
       Left = 11
       Top = 60
@@ -30,8 +31,6 @@ inherited frConBloco: TfrConBloco
       Color = 15918295
       ParentBackground = False
       TabOrder = 1
-      ExplicitWidth = 1200
-      ExplicitHeight = 699
       object Bevel1: TBevel
         Left = -50
         Top = 47

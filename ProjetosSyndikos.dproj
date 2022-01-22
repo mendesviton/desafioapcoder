@@ -142,7 +142,15 @@
         </DCCReference>
         <DCCReference Include="controler\uControleValida.pas"/>
         <DCCReference Include="view\lançamento\uLancaDespesa.pas">
-            <Form>frCadpadraoSyndico1</Form>
+            <Form>frLancaDespesa</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="view\consulta\uCentralPagamentos.pas">
+            <Form>frCentralDespesas</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uAjudaSyndico.pas">
+            <Form>frAjuda</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

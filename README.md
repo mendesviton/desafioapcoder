@@ -24,11 +24,19 @@
 ![DiagramaKondominios](https://user-images.githubusercontent.com/94265037/150081132-9679ce1a-5e52-4243-8f52-d5f49e7a09ee.png)
 
 <h2>Rodando a aplicação</h2>
-Após baixar o diretório<br>
+Após baixar o diretório e descompactar no seu computador<br>
 Instalar o banco de dados por meio do instalador INSTALADORFIREBIRD.exe <br>
 
 ![image](https://user-images.githubusercontent.com/94265037/149885128-e3eb3424-66a5-4000-a184-5e12578c4931.png)
+
+![com rodar](https://user-images.githubusercontent.com/94265037/150700123-8ddc36ab-afc1-47b1-8023-a78a14ffbc8a.png)
+
+<br>Senha: masterkey <br>
+
+![como rodar](https://user-images.githubusercontent.com/94265037/150699975-26e836ea-095e-4482-b6b3-98781f9585bd.png)<br>
+
 após isso, entrar na pasta \Projeto\Win32\Debug e executar o arquivo Syndico.exe<br>
+
 
 ![image](https://user-images.githubusercontent.com/94265037/149885485-de2302c7-e11a-4f0a-ba84-070b86d938be.png)
 <h2>Gif da instalação e execução da aplicação<h2>

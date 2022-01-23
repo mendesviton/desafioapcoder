@@ -1,3 +1,7 @@
+{
+   Vitor Daniel - 12/01/2022 - Criação  do form  de cadastro de unidades
+   tabela dos registro gravados TB_SYN_UNIDADE.
+}
 unit uCadUnidade;
 
 interface
@@ -5,7 +9,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.StdCtrls,uControleFluxo,uConUnidades;
+  Vcl.StdCtrls,uControleFluxo,uConUnidades,uConCondominios,uCadCondominios,uCadPredio,uConBlocos;
 
 type
   TfrCadUnidades = class(TfrCadpadraoSyndico)
@@ -48,6 +52,16 @@ type
     procedure SpeedButton1Click(Sender: TObject);
     procedure btLimparClick(Sender: TObject);
     procedure btConsultaClick(Sender: TObject);
+    procedure cbUfKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure edBairroExit(Sender: TObject);
+    procedure edCodCondExit(Sender: TObject);
+    procedure edCodigoExit(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure edCodCondKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure edBLocoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure edBLocoExit(Sender: TObject);
   private
     procedure pLimpaCampos;
   public
@@ -89,12 +103,77 @@ begin
   pLimpaCampos;
 end;
 
+procedure TfrCadUnidades.cbUfKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  cbuf.Text := 'SC'
+end;
+
+procedure TfrCadUnidades.edBairroExit(Sender: TObject);
+begin
+  inherited;
+  FControle.pInsereBanco;
+end;
+
+procedure TfrCadUnidades.edBLocoExit(Sender: TObject);
+begin
+  inherited;
+  //Vitor - 23/01/2022 - sql para saber se existe bloco
+  FControle.pExisteBloco(trim(edBLoco.Text));
+end;
+
+procedure TfrCadUnidades.edBLocoKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+   if key = VK_F9 then
+     TfrConBloco.Create(self).Show;
+   if key = vk_f4 then
+      TfrCadPredioSyndico.Create(self).Show;
+end;
+
+procedure TfrCadUnidades.edCodCondExit(Sender: TObject);
+begin
+  inherited;
+  //Vitor - 23/01/2022 - sql para saber se existe condominio
+  FControle.pExisteCondominio(trim(edCodCond.Text));
+end;
+
+procedure TfrCadUnidades.edCodCondKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = VK_F9 then
+     TfrConsultaCondominio.Create(self).Show;
+   if key = vk_f4 then
+      TfrCadCondominio.Create(self).Show;
+
+end;
+
+procedure TfrCadUnidades.edCodigoExit(Sender: TObject);
+begin
+  inherited;
+  //Vitor - 23/01/2022 - verificar se existe a unidade
+  FControle.fStatusRegistro(strtoint(trim(edCodigo.Text)))
+end;
+
 procedure TfrCadUnidades.FormCreate(Sender: TObject);
 begin
   inherited;
    mmObs.Text:= EmptyStr;
    FControle:=TUnidadeControler.Create;
    pSetaComponentes;
+   edCodigo.Text := '1';
+   FControle.fStatusRegistro(1);
+end;
+
+procedure TfrCadUnidades.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = VK_ESCAPE then
+     self.Close;
 end;
 
 procedure TfrCadUnidades.pLimpaCampos;
@@ -112,6 +191,9 @@ begin
     edCidade.Text            :=  EmptyStr;
     edBairro.text            :=  EmptyStr;
     edNumero.Text            :=  EmptyStr;
+    panel1.Caption                   :=  EmptyStr;
+    panel2.Caption                   :=  EmptyStr;
+    panel3.Caption                   :=  EmptyStr;
     edCodigo.SetFocus;
 end;
 
@@ -131,8 +213,19 @@ begin
     FControle.edCidade            :=  edCidade;
     FControle.edBairo             :=  edBairro;
     FControle.edNumero            :=  edNumero;
+    FControle.panelcond           :=  Panel2;
+    FControle.panelbloco          :=  panel1;
+    FControle.panelunidade        :=  Panel3;
+    FControle.sbStatus            :=  btStatus;
+    FControle.SbNovoregistro      :=  btNovoRegistro;
+    FControle.SbRegistroAntigo    :=  btRegistroAntigo;
+
+
+
 
 end;
+
+
 
 procedure TfrCadUnidades.SpeedButton1Click(Sender: TObject);
 begin

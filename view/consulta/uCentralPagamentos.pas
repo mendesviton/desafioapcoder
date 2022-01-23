@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uConsultaPadrao, Data.DB, Vcl.Grids,
-  Vcl.DBGrids, Vcl.Buttons, Vcl.ExtCtrls, Datasnap.Provider,uControleSQL, Datasnap.DBClient,
+  Vcl.DBGrids, Vcl.Buttons, Vcl.ExtCtrls, Datasnap.Provider,uControleSQL, Datasnap.DBClient,uUtil,
   Vcl.StdCtrls;
 
 type
@@ -114,7 +114,7 @@ begin
 
    wSQL := 'update TB_SYN_CENTRALPAGAMENTOS ';
    wSQL := wSQL + ' set bdstatus = ''Pago'' ,';
-   wSQL := wSQL + ' bdpagamento = ''01/12/2022''';
+   wSQL := wSQL + ' bdpagamento = '+QuotedStr(TUtil.FConverteData(datetostr(date)));
    wSQL := wSQL + ' where bdcodespesa = '+ quotedstr(trim(Label2.Caption));
    TSQL.SQL(wSQL);
    DataSetProvider1.DataSet:=TSQL.CommandText;

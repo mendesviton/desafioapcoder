@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao,uCadCondominios, Vcl.StdCtrls, Vcl.Buttons,uControleFluxo,uConBlocos,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao,uCadCondominios, Vcl.StdCtrls, Vcl.Buttons,uControleFluxo,uConBlocos,uConCondominios,
   Vcl.ExtCtrls;
 
 type
@@ -35,6 +35,9 @@ type
       Shift: TShiftState);
     procedure edCodigoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure cbTipoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure pCarregoudaConsulta;
   private
     FControle : TBlocoControler;
     procedure pSetaComponentes;
@@ -94,6 +97,13 @@ begin
   FControle.pInsereRegistro;
 end;
 
+procedure TfrCadPredioSyndico.cbTipoKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+   cbTipo.Text := 'Apartamento'
+end;
+
 procedure TfrCadPredioSyndico.edCodCondExit(Sender: TObject);
 begin
   inherited;
@@ -104,6 +114,9 @@ procedure TfrCadPredioSyndico.edCodCondKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   inherited;
+  if key = vk_f9   then
+     TfrConsultaCondominio.Create(self).Show;
+
   if key = vk_f4 then
      TfrCadCondominio.Create(self).Show;
 
@@ -121,6 +134,10 @@ begin
   inherited;
   if key = VK_F9 then
      TfrConBloco.Create(self).Show;
+   if key = vk_f4 then
+      MessageDlg('Você ja se encontra na tela de cadastro de prédios/blocos',mtInformation,([mbOK]),1)
+
+
 end;
 
 procedure TfrCadPredioSyndico.FormCreate(Sender: TObject);
@@ -132,6 +149,19 @@ begin
   edCodigo.Text := '1';
   FControle.fStatusRegistro(1);
 
+end;
+
+procedure TfrCadPredioSyndico.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = VK_ESCAPE then
+     self.Close;
+end;
+
+procedure TfrCadPredioSyndico.pCarregoudaConsulta;
+begin
+   FControle.fStatusRegistro(strtoint(trim(edCodigo.Text)));
 end;
 
 procedure TfrCadPredioSyndico.pLimpaCampos;

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uConsultaPadrao, Data.DB, Vcl.Grids,
-  Vcl.DBGrids, Vcl.Buttons, Vcl.ExtCtrls, Datasnap.DBClient, Datasnap.Provider,uConexaoBanco,uControleSQL;
+  Vcl.DBGrids, Vcl.Buttons, Vcl.ExtCtrls, Datasnap.DBClient, Datasnap.Provider,uConexaoBanco,uControleSQL,uControleFluxo;
 
 type
   TfrConBloco = class(TfrConPadraoSyndico)
@@ -29,9 +29,10 @@ type
     ClientDataSet1BDCONDOMINIO: TStringField;
     ClientDataSet1bdvalor: TFMTBCDField;
     procedure FormCreate(Sender: TObject);
+    procedure DBGrid2CellClick(Column: TColumn);
 
   private
-    { Private declarations }
+
   public
     { Public declarations }
   end;
@@ -39,9 +40,24 @@ type
 var
   frConBloco: TfrConBloco;
 
-implementation
 
+implementation
+uses
+ uCadPredio;
 {$R *.dfm}
+
+procedure TfrConBloco.DBGrid2CellClick(Column: TColumn);
+begin
+  inherited;
+  if Owner.ClassName = 'TfrCadPredioSyndico' then
+     begin
+      TfrCadPredioSyndico(Owner).edCodigo.Text := DBGrid2.Fields[0].Value;
+      TfrCadPredioSyndico(Owner).pCarregoudaConsulta;
+      self.Close;
+     end;
+
+
+end;
 
 procedure TfrConBloco.FormCreate(Sender: TObject);
 var
@@ -56,6 +72,9 @@ begin
   wSQL:= wSQL + 'join TB_SYN_CONDOMINIO  cond on (cond.bdcodigo = blo.bdcodcond)';
   ClientDataSet1.commandtext:=wSQL;
   ClientDataSet1.open;
+
+
+
 end;
 
 end.

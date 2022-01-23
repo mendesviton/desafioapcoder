@@ -65,6 +65,11 @@ type
     procedure btProximoClick(Sender: TObject);
     procedure btAnteriorClick(Sender: TObject);
     procedure edNomeExit(Sender: TObject);
+    procedure edCodKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure cbUfKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure cbTipoLocalKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
 
   private
     FValida   : TValidaCampo;
@@ -123,11 +128,37 @@ begin
   FControle.fStatusRegistro(strtoint(edCod.Text));
 end;
 
+procedure TfrCadCondominio.cbTipoLocalKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  cbTipoLocal.Text := 'Rua'
+end;
+
+procedure TfrCadCondominio.cbUfKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  cbUf.Text := 'SC'
+end;
+
 procedure TfrCadCondominio.edCodExit(Sender: TObject);
 begin
   inherited;
   // Implementar rotina que controla a pesquisa
   FControle.fStatusRegistro(strtoint(trim(edCod.Text)))
+end;
+
+procedure TfrCadCondominio.edCodKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+   if key = vk_f9 then
+      TfrConsultaCondominio.Create(self).Show;
+
+   if key = vk_f4 then
+      MessageDlg('Você ja se encontra na tela de cadastro de condomínio',mtInformation,([mbOK]),1)
+
 end;
 
 procedure TfrCadCondominio.edDataExit(Sender: TObject);
@@ -155,6 +186,14 @@ begin
   pSetaComponentes;                       //Vitor -12/01/2022- Seta os componentes dessa tela para dentro da classe controler
   edCod.Text := '1';
   FControle.fStatusRegistro(1);
+end;
+
+procedure TfrCadCondominio.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = VK_ESCAPE then
+     self.Close;
 end;
 
 procedure TfrCadCondominio.Inseririmagem1Click(Sender: TObject);

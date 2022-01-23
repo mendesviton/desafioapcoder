@@ -16,6 +16,7 @@ type
     prBotoes: array of TMsgDlgBtn; prCaption: Array of String;
     prBotaoDefault: integer; prHelp: LongInt): TModalResult;
     function fTamLetraPadrao2(Font: TFont; const prCaption: String): integer;
+    class function FConverteData(prdate:String):String;
 
 
   end;
@@ -144,6 +145,19 @@ begin
   end;
 
 end;
+class function TUtil.FConverteData(prdate: String): String;
+var
+  wMes:string;
+  wDia:String;
+  wAno:String;
+begin
+ wDia := Copy(prdate,0,2);
+ wMes := Copy(prdate,4,2);
+ wAno := Copy(prdate,7,4);
+
+ result:=( wMes+'/'+wDia+'/'+wAno )
+ end;
+
 function TUtil.fTamLetraPadrao2(Font: TFont; const prCaption: String): integer;
 var
  wCalculaTamanho: TBitmap;

@@ -3,8 +3,6 @@ inherited frCentralDespesas: TfrCentralDespesas
   ClientHeight = 630
   ClientWidth = 1292
   OnCreate = FormCreate
-  ExplicitLeft = -52
-  ExplicitTop = -17
   ExplicitWidth = 1308
   ExplicitHeight = 669
   PixelsPerInch = 96
@@ -12,6 +10,8 @@ inherited frCentralDespesas: TfrCentralDespesas
   inherited Panel1: TPanel
     Width = 1292
     Height = 630
+    ExplicitWidth = 1292
+    ExplicitHeight = 630
     inherited DBGrid1: TDBGrid
       Left = 0
       Top = 144
@@ -28,10 +28,6 @@ inherited frCentralDespesas: TfrCentralDespesas
       Color = 15918295
       ParentBackground = False
       TabOrder = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 1294
-      ExplicitHeight = 671
       object Bevel1: TBevel
         Left = -50
         Top = 47
@@ -606,7 +602,6 @@ inherited frCentralDespesas: TfrCentralDespesas
         Color = 15918295
         ParentBackground = False
         TabOrder = 1
-        ExplicitLeft = 2
         object Bevel2: TBevel
           Left = -58
           Top = 49
@@ -1492,7 +1487,7 @@ inherited frCentralDespesas: TfrCentralDespesas
         object Label5: TLabel
           Left = 560
           Top = 73
-          Width = 289
+          Width = 10
           Height = 18
           Font.Charset = ANSI_CHARSET
           Font.Color = clRed

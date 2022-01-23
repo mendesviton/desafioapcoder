@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao,pngimage, Vcl.StdCtrls, Vcl.Buttons,uControleFluxo,uConMoradores,
-  Vcl.ExtCtrls, Vcl.Mask,uControleValida, Vcl.Menus, Vcl.ExtDlgs,uUtil,uCadUnidade;
+  Vcl.ExtCtrls, Vcl.Mask,uControleValida, Vcl.Menus, Vcl.ExtDlgs,uUtil,uCadUnidade,uConUnidades;
 
 type
   TfrMoradoresSyndicos = class(TfrCadpadraoSyndico)
@@ -45,6 +45,13 @@ type
     procedure edUnidadeKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure ckResponsávelExit(Sender: TObject);
+    procedure btProximoClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure edCodigoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure btAnteriorClick(Sender: TObject);
+    procedure btExcluirClick(Sender: TObject);
+    procedure Retirarfoto1Click(Sender: TObject);
   private
     FValida   :TValidaCampo;
     FControle :TMoradorControler;
@@ -62,16 +69,45 @@ implementation
 
 {$R *.dfm}
 
+procedure TfrMoradoresSyndicos.btAnteriorClick(Sender: TObject);
+begin
+  inherited;
+    if (strtoint(edCodigo.Text)=1) then
+      begin
+        MessageDlg('Não possui moradores anteriores ',mtError,mbOKCancel,1)
+      end
+      else
+      begin
+        edCodigo.Text:=inttostr(FControle.pRegistroAnterior(trim(edCodigo.Text)));
+        FControle.fStatusRegistro(strtoint(edCodigo.Text));
+      end;
+end;
+
 procedure TfrMoradoresSyndicos.btConsultaClick(Sender: TObject);
 begin
   inherited;
     TfrConMoradores.Create(self).Show;
 end;
 
+procedure TfrMoradoresSyndicos.btExcluirClick(Sender: TObject);
+begin
+  inherited;
+   //vitor - 15/01/2022 - executar sql delete na classe controller.
+   FControle.pExcluirRegistro(edCodigo.Text);
+end;
+
 procedure TfrMoradoresSyndicos.btLimparClick(Sender: TObject);
 begin
   inherited;
   pLimpaCampos;
+end;
+
+procedure TfrMoradoresSyndicos.btProximoClick(Sender: TObject);
+begin
+  inherited;
+  edCodigo.Text:=inttostr(FControle.pProximoRegistro(trim(edCodigo.Text)));
+  FControle.fStatusRegistro(strtoint(edCodigo.Text));
+ 
 end;
 
 procedure TfrMoradoresSyndicos.ckResponsávelExit(Sender: TObject);
@@ -84,6 +120,17 @@ procedure TfrMoradoresSyndicos.edCodigoExit(Sender: TObject);
 begin
   inherited;
   FControle.fStatusRegistro(strtoint(trim(edCodigo.Text)))
+end;
+
+procedure TfrMoradoresSyndicos.edCodigoKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+   if key = vk_f9 then
+      TfrConMoradores.Create(self).Show;
+
+      if key = vk_f4 then
+      MessageDlg('Você ja se encontra na tela de cadastro de moradores',mtInformation,([mbOK]),1)
 end;
 
 procedure TfrMoradoresSyndicos.edNomeExit(Sender: TObject);
@@ -104,6 +151,8 @@ begin
   inherited;
   if key = VK_F4 then
       TfrCadUnidades.Create(self).Show;
+  if key = VK_F9 then
+      TfrConUnidades.Create(self).Show;
 
 end;
 
@@ -114,6 +163,16 @@ begin
   FValida:= TValidaCampo.Create;
   FControle:=TMoradorControler.Create;
   pSetComponenteTela;
+  edCodigo.Text := '1';
+  FControle.fStatusRegistro(1);
+end;
+
+procedure TfrMoradoresSyndicos.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = VK_ESCAPE then
+     self.Close;
 end;
 
 procedure TfrMoradoresSyndicos.Inserirfoto1Click(Sender: TObject);
@@ -171,6 +230,12 @@ begin
    FControle.timage            :=Image1;
 
 
+end;
+
+procedure TfrMoradoresSyndicos.Retirarfoto1Click(Sender: TObject);
+begin
+  inherited;
+  Image1.Picture:= nil;
 end;
 
 procedure TfrMoradoresSyndicos.SpeedButton1Click(Sender: TObject);

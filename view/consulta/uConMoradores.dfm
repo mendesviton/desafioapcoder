@@ -112,6 +112,7 @@ inherited frConMoradores: TfrConMoradores
           Visible = True
         end
         item
+          Alignment = taCenter
           Expanded = False
           FieldName = 'BDRESPONSAVELFIN'
           Font.Charset = ANSI_CHARSET

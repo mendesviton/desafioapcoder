@@ -3,6 +3,8 @@
   ClientHeight = 297
   ClientWidth = 605
   KeyPreview = True
+  Position = poScreenCenter
+  OnKeyDown = FormKeyDown
   ExplicitWidth = 621
   ExplicitHeight = 336
   PixelsPerInch = 96
@@ -11,7 +13,7 @@
     Width = 605
     Height = 297
     Color = 15983831
-    ExplicitWidth = 611
+    ExplicitWidth = 605
     ExplicitHeight = 297
     inherited Bevel3: TBevel
       Left = -28
@@ -21,8 +23,25 @@
       ExplicitWidth = 748
       ExplicitHeight = 26
     end
+    inherited btAnterior: TSpeedButton
+      Left = 62
+      OnClick = btAnteriorClick
+      ExplicitLeft = 62
+    end
+    inherited btProximo: TSpeedButton
+      Left = 112
+      OnClick = btProximoClick
+      ExplicitLeft = 112
+    end
     inherited btConsulta: TSpeedButton
+      Left = 204
       OnClick = btConsultaClick
+      ExplicitLeft = 204
+    end
+    inherited btExcluir: TSpeedButton
+      Left = 154
+      OnClick = btExcluirClick
+      ExplicitLeft = 154
     end
     inherited btRegistroAntigo: TSpeedButton
       Left = 547
@@ -42,12 +61,16 @@
       ExplicitLeft = 547
     end
     inherited btLimpar: TSpeedButton
+      Left = 254
       OnClick = btLimparClick
+      ExplicitLeft = 254
     end
     inherited SpeedButton1: TSpeedButton
-      Left = 11
+      Left = 7
+      Top = 3
       OnClick = SpeedButton1Click
-      ExplicitLeft = 11
+      ExplicitLeft = 7
+      ExplicitTop = 3
     end
     object lbCodigo: TLabel
       Left = 45
@@ -175,6 +198,7 @@
       ParentFont = False
       TabOrder = 0
       OnExit = edCodigoExit
+      OnKeyDown = edCodigoKeyDown
     end
     object Panel2: TPanel
       Left = 139
@@ -335,6 +359,7 @@
     end
     object Retirarfoto1: TMenuItem
       Caption = 'Retirar foto'
+      OnClick = Retirarfoto1Click
     end
   end
   object OpenPictureDialog1: TOpenPictureDialog

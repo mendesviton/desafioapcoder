@@ -1,18 +1,19 @@
 inherited frCadCondominio: TfrCadCondominio
   BorderStyle = bsSingle
   Caption = 'Condom'#237'nios'
-  ClientHeight = 496
+  ClientHeight = 482
   ClientWidth = 754
   Color = 16744448
   KeyPreview = True
   Position = poScreenCenter
+  OnKeyDown = FormKeyDown
   ExplicitWidth = 760
-  ExplicitHeight = 525
+  ExplicitHeight = 511
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnFundo: TPanel
     Width = 754
-    Height = 496
+    Height = 482
     Color = clGradientInactiveCaption
     ExplicitWidth = 754
     ExplicitHeight = 496
@@ -299,6 +300,7 @@ inherited frCadCondominio: TfrCadCondominio
         Height = 22
         TabOrder = 4
         Text = 'SC'
+        OnKeyUp = cbUfKeyUp
         Items.Strings = (
           'AC'
           'AL'
@@ -335,6 +337,7 @@ inherited frCadCondominio: TfrCadCondominio
         Height = 22
         TabOrder = 0
         Text = 'Rua '
+        OnKeyUp = cbTipoLocalKeyUp
         Items.Strings = (
           'Rua '
           'Avenida'
@@ -506,10 +509,11 @@ inherited frCadCondominio: TfrCadCondominio
       ParentFont = False
       TabOrder = 0
       OnExit = edCodExit
+      OnKeyDown = edCodKeyDown
     end
     object pnConsulta: TPanel
       Left = 255
-      Top = 60
+      Top = 61
       Width = 318
       Height = 19
       BevelOuter = bvLowered

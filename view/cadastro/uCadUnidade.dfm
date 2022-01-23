@@ -1,14 +1,17 @@
 inherited frCadUnidades: TfrCadUnidades
   Caption = 'Cadastro de unidades'
-  ClientHeight = 537
-  ClientWidth = 557
-  ExplicitWidth = 573
-  ExplicitHeight = 576
+  ClientHeight = 528
+  ClientWidth = 556
+  KeyPreview = True
+  Position = poScreenCenter
+  OnKeyDown = FormKeyDown
+  ExplicitWidth = 572
+  ExplicitHeight = 567
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnFundo: TPanel
-    Width = 557
-    Height = 537
+    Width = 556
+    Height = 528
     Color = 15918295
     ExplicitWidth = 557
     ExplicitHeight = 537
@@ -22,16 +25,27 @@ inherited frCadUnidades: TfrCadUnidades
       OnClick = btConsultaClick
     end
     inherited btRegistroAntigo: TSpeedButton
-      Left = 450
-      ExplicitLeft = 450
+      Left = 501
+      Top = 5
+      Enabled = True
+      ExplicitLeft = 501
+      ExplicitTop = 5
     end
     inherited btStatus: TSpeedButton
-      Left = 314
-      ExplicitLeft = 314
+      Left = 311
+      Top = 5
+      Width = 172
+      Enabled = True
+      ExplicitLeft = 311
+      ExplicitTop = 5
+      ExplicitWidth = 172
     end
     inherited btNovoRegistro: TSpeedButton
-      Left = 450
-      ExplicitLeft = 450
+      Left = 501
+      Top = 5
+      Enabled = True
+      ExplicitLeft = 501
+      ExplicitTop = 5
     end
     inherited btLimpar: TSpeedButton
       OnClick = btLimparClick
@@ -153,7 +167,9 @@ inherited frCadUnidades: TfrCadUnidades
       Font.Name = 'Courier New'
       Font.Style = []
       ParentFont = False
-      TabOrder = 0
+      TabOrder = 1
+      OnExit = edCodCondExit
+      OnKeyDown = edCodCondKeyDown
     end
     object Panel2: TPanel
       Left = 176
@@ -162,8 +178,14 @@ inherited frCadUnidades: TfrCadUnidades
       Height = 17
       BevelOuter = bvLowered
       Color = clHighlightText
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = []
       ParentBackground = False
-      TabOrder = 1
+      ParentFont = False
+      TabOrder = 6
     end
     object edBLoco: TEdit
       Left = 130
@@ -178,6 +200,8 @@ inherited frCadUnidades: TfrCadUnidades
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnExit = edBLocoExit
+      OnKeyDown = edBLocoKeyDown
     end
     object Panel1: TPanel
       Left = 176
@@ -186,8 +210,14 @@ inherited frCadUnidades: TfrCadUnidades
       Height = 17
       BevelOuter = bvLowered
       Color = clHighlightText
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = []
       ParentBackground = False
-      TabOrder = 3
+      ParentFont = False
+      TabOrder = 7
     end
     object edCodigo: TEdit
       Left = 130
@@ -201,7 +231,8 @@ inherited frCadUnidades: TfrCadUnidades
       Font.Name = 'Courier New'
       Font.Style = []
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 0
+      OnExit = edCodigoExit
     end
     object Panel3: TPanel
       Left = 176
@@ -210,11 +241,17 @@ inherited frCadUnidades: TfrCadUnidades
       Height = 17
       BevelOuter = bvLowered
       Color = clHighlightText
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = []
       ParentBackground = False
-      TabOrder = 5
+      ParentFont = False
+      TabOrder = 8
     end
     object edCnpj: TEdit
-      Left = 135
+      Left = 131
       Top = 171
       Width = 362
       Height = 19
@@ -225,16 +262,22 @@ inherited frCadUnidades: TfrCadUnidades
       Font.Name = 'Courier New'
       Font.Style = []
       ParentFont = False
-      TabOrder = 6
+      TabOrder = 4
     end
     object mmObs: TMemo
-      Left = 130
+      Left = 131
       Top = 232
       Width = 364
       Height = 89
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = []
       Lines.Strings = (
         'dfgd')
-      TabOrder = 7
+      ParentFont = False
+      TabOrder = 5
       OnKeyPress = mmObsKeyPress
     end
     object gpEndereco: TGroupBox
@@ -249,7 +292,7 @@ inherited frCadUnidades: TfrCadUnidades
       Font.Name = 'Courier New'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 8
+      TabOrder = 9
       object lbEndereco: TLabel
         Left = 21
         Top = 120
@@ -347,7 +390,7 @@ inherited frCadUnidades: TfrCadUnidades
         Width = 362
         Height = 19
         BorderStyle = bsNone
-        TabOrder = 0
+        TabOrder = 5
       end
       object edCidade: TEdit
         Left = 287
@@ -355,7 +398,7 @@ inherited frCadUnidades: TfrCadUnidades
         Width = 181
         Height = 19
         BorderStyle = bsNone
-        TabOrder = 2
+        TabOrder = 4
       end
       object edBairro: TEdit
         Left = 286
@@ -363,15 +406,17 @@ inherited frCadUnidades: TfrCadUnidades
         Width = 182
         Height = 19
         BorderStyle = bsNone
-        TabOrder = 3
+        TabOrder = 6
+        OnExit = edBairroExit
       end
       object cbUf: TComboBox
         Left = 106
         Top = 93
         Width = 97
         Height = 22
-        TabOrder = 1
+        TabOrder = 3
         Text = 'SC'
+        OnKeyUp = cbUfKeyUp
         Items.Strings = (
           'AC'
           'AL'
@@ -413,11 +458,11 @@ inherited frCadUnidades: TfrCadUnidades
         Font.Name = 'Courier New'
         Font.Style = []
         ParentFont = False
-        TabOrder = 4
+        TabOrder = 2
       end
       object edNome: TEdit
         Left = 106
-        Top = 22
+        Top = 24
         Width = 362
         Height = 19
         BorderStyle = bsNone
@@ -427,7 +472,7 @@ inherited frCadUnidades: TfrCadUnidades
         Font.Name = 'Courier New'
         Font.Style = []
         ParentFont = False
-        TabOrder = 5
+        TabOrder = 0
       end
       object edCPF: TEdit
         Left = 106
@@ -441,7 +486,7 @@ inherited frCadUnidades: TfrCadUnidades
         Font.Name = 'Courier New'
         Font.Style = []
         ParentFont = False
-        TabOrder = 6
+        TabOrder = 1
       end
     end
     object edNumero: TEdit
@@ -450,7 +495,7 @@ inherited frCadUnidades: TfrCadUnidades
       Width = 362
       Height = 19
       BorderStyle = bsNone
-      TabOrder = 9
+      TabOrder = 3
     end
   end
 end

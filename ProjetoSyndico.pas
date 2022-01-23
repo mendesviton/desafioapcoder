@@ -90,7 +90,7 @@ begin
      FSQL.SQL('update or insert into TB_SYN_CONDOMINIO (BDCODIGO,BDCAMINHOIMAGEM) values (2,'+quotedstr(ExtractFilePath(Application.ExeName)+'persiste\imagecod2.png')+')  matching(bdcodigo)');
      FSQL.SQL('update or insert into TB_SYN_CONDOMINIO (BDCODIGO,BDCAMINHOIMAGEM) values (3,'+quotedstr(ExtractFilePath(Application.ExeName)+'persiste\imagecod3.png')+')  matching(bdcodigo)');
      FSQL.SQL('update or insert into TB_SYN_CONDOMINIO (BDCODIGO,BDCAMINHOIMAGEM) values (4,'+quotedstr(ExtractFilePath(Application.ExeName)+'persiste\imagecod4.png')+')  matching(bdcodigo)');
-     FSQL.SQL('update or insert into TB_SYN_MORADORES  (BDCODIGO,BDCAMINHOIMAGEM) values (1,'+quotedstr(ExtractFilePath(Application.ExeName)+'persiste\vitao.png')+')  matching(bdcodigo)');
+     FSQL.SQL('update or insert into TB_SYN_MORADORES  (BDCODIGO,BDCAMINHOIMAGEM) values (1,'+quotedstr(ExtractFilePath(Application.ExeName)+'persiste\vitao.png')+')      matching(bdcodigo)');
 end;
 
 
@@ -207,7 +207,7 @@ end;
 
 procedure TfrSyndicoPrincipal.SpeedButton6Click(Sender: TObject);
 begin
-  TfrLancaDespesa.Create(self).ShowModal;
+  TfrLancaDespesa.Create(self).Show;
 end;
 
 procedure TfrSyndicoPrincipal.SpeedButton7Click(Sender: TObject);

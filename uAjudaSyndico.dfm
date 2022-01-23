@@ -14,6 +14,7 @@ object frAjuda: TfrAjuda
   KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
+  OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
   object Bevel4: TBevel
@@ -28,8 +29,9 @@ object frAjuda: TfrAjuda
     Width = 529
     Height = 408
     Align = alClient
+    PopupMenu = PopupMenu1
     TabOrder = 0
-    ExplicitTop = -8
+    ExplicitLeft = 8
     object lbCnpj: TLabel
       Left = 183
       Top = 32
@@ -113,9 +115,9 @@ object frAjuda: TfrAjuda
     object Label6: TLabel
       Left = 39
       Top = 159
-      Width = 450
+      Width = 434
       Height = 16
-      Caption = 'voc'#234' pode selecionar o registro e eles ser'#225' carregado ao campo.'
+      Caption = 'voc'#234' pode selecionar o registro e ele ser'#225' carregado ao campo.'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
@@ -124,8 +126,8 @@ object frAjuda: TfrAjuda
       ParentFont = False
     end
     object Image1: TImage
-      Left = 342
-      Top = 260
+      Left = 189
+      Top = 236
       Width = 147
       Height = 100
       Picture.Data = {
@@ -2522,18 +2524,79 @@ object frAjuda: TfrAjuda
         318E994E898C0446EABE25CE1A20A4CB240B541578F89FFFD9}
     end
     object Bevel2: TBevel
-      Left = 342
-      Top = 251
+      Left = 189
+      Top = 227
       Width = 147
       Height = 3
       Shape = bsTopLine
     end
     object Bevel1: TBevel
-      Left = 342
-      Top = 369
+      Left = 189
+      Top = 345
       Width = 147
       Height = 3
       Shape = bsTopLine
+    end
+    object Label7: TLabel
+      Left = 39
+      Top = 196
+      Width = 455
+      Height = 16
+      Caption = 
+        'Tecla F2 - Se estiver em um campo de Data, preenche a data atual' +
+        '.'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Courier New'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label8: TLabel
+      Left = 204
+      Top = 376
+      Width = 112
+      Height = 16
+      Caption = 'Desafio apCoders'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Courier New'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label9: TLabel
+      Left = 132
+      Top = 354
+      Width = 252
+      Height = 16
+      Caption = 'Desenvolvido por Vitor Daniel Mendes'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Courier New'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label10: TLabel
+      Left = 204
+      Top = 354
+      Width = 7
+      Height = 16
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Courier New'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 440
+    Top = 272
+    object Fechar1: TMenuItem
+      Caption = 'Fechar'
+      OnClick = Fechar1Click
     end
   end
 end

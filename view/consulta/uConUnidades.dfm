@@ -11,18 +11,20 @@ inherited frConUnidades: TfrConUnidades
   inherited Panel1: TPanel
     Width = 1294
     Height = 671
-    ExplicitTop = 8
-    ExplicitWidth = 1284
-    ExplicitHeight = 661
+    ExplicitLeft = 0
+    ExplicitTop = 0
+    ExplicitWidth = 1294
+    ExplicitHeight = 671
     inherited Bevel3: TBevel
       Width = 1334
       ExplicitWidth = 1334
     end
     inherited DBGrid1: TDBGrid
-      Left = 0
-      Top = 47
-      Width = 1294
-      Height = 624
+      Left = 1
+      Top = 1
+      Width = 1292
+      Height = 669
+      Align = alClient
       DataSource = DataSource1
       Columns = <
         item

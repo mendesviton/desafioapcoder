@@ -14,6 +14,8 @@ inherited frConsultaCondominio: TfrConsultaCondominio
     Height = 671
     BevelOuter = bvNone
     BorderStyle = bsSingle
+    ExplicitLeft = 0
+    ExplicitTop = 0
     ExplicitWidth = 1294
     ExplicitHeight = 671
     inherited Bevel3: TBevel
@@ -24,10 +26,10 @@ inherited frConsultaCondominio: TfrConsultaCondominio
     end
     inherited DBGrid1: TDBGrid
       Left = 0
-      Top = 52
-      Width = 1291
-      Height = 618
-      Align = alCustom
+      Top = 0
+      Width = 1290
+      Height = 667
+      Align = alClient
       BorderStyle = bsNone
       DataSource = DataSource1
       Columns = <
@@ -35,6 +37,11 @@ inherited frConsultaCondominio: TfrConsultaCondominio
           Alignment = taCenter
           Expanded = False
           FieldName = 'BDCODIGO'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Courier New'
+          Font.Style = []
           Title.Alignment = taCenter
           Title.Caption = 'C'#243'digo'
           Title.Font.Charset = ANSI_CHARSET
@@ -42,6 +49,7 @@ inherited frConsultaCondominio: TfrConsultaCondominio
           Title.Font.Height = -13
           Title.Font.Name = 'Courier New'
           Title.Font.Style = [fsBold]
+          Width = 64
           Visible = True
         end
         item

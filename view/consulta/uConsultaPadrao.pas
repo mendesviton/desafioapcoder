@@ -13,11 +13,10 @@ type
     Bevel3: TBevel;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
-    btAnterior: TSpeedButton;
     btExcluir: TSpeedButton;
     btLimpar: TSpeedButton;
-    btProximo: TSpeedButton;
     DBGrid1: TDBGrid;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -30,5 +29,12 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrConPadraoSyndico.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+    if key = VK_ESCAPE then
+     self.Close;
+end;
 
 end.

@@ -17,6 +17,7 @@ type
     prBotaoDefault: integer; prHelp: LongInt): TModalResult;
     function fTamLetraPadrao2(Font: TFont; const prCaption: String): integer;
     class function FConverteData(prdate:String):String;
+    class function FConverteVirgula(prvalor:string):String;
 
 
   end;
@@ -157,6 +158,20 @@ begin
 
  result:=( wMes+'/'+wDia+'/'+wAno )
  end;
+
+class function TUtil.FConverteVirgula(prvalor:String): String;
+var
+wCont:integer;
+begin
+ for wCont := 0 to Length(prvalor) do
+     begin
+       if prvalor[wCont] = ',' then
+          prvalor[wCont] := '.'
+     end;
+
+result:=(prvalor);
+
+end;
 
 function TUtil.fTamLetraPadrao2(Font: TFont; const prCaption: String): integer;
 var

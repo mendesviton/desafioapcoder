@@ -30,6 +30,7 @@ type
     ClientDataSet1bdvalor: TFMTBCDField;
     procedure FormCreate(Sender: TObject);
     procedure DBGrid2CellClick(Column: TColumn);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 
   private
 
@@ -43,12 +44,13 @@ var
 
 implementation
 uses
- uCadPredio;
+ uCadPredio,uCadUnidade;
 {$R *.dfm}
 
 procedure TfrConBloco.DBGrid2CellClick(Column: TColumn);
 begin
   inherited;
+
   if Owner.ClassName = 'TfrCadPredioSyndico' then
      begin
       TfrCadPredioSyndico(Owner).edCodigo.Text := DBGrid2.Fields[0].Value;
@@ -75,6 +77,14 @@ begin
 
 
 
+end;
+
+procedure TfrConBloco.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+    if key = VK_ESCAPE then
+     self.Close;
 end;
 
 end.

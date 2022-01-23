@@ -65,7 +65,7 @@ type
   private
     procedure pLimpaCampos;
   public
-    { Public declarations }
+    procedure pCarregaBloco;
   end;
 
 var
@@ -174,6 +174,11 @@ begin
   inherited;
   if key = VK_ESCAPE then
      self.Close;
+end;
+
+procedure TfrCadUnidades.pCarregaBloco;
+begin
+  FControle.pExisteBloco(trim(edBLoco.Text));
 end;
 
 procedure TfrCadUnidades.pLimpaCampos;

@@ -12,6 +12,8 @@ inherited frConBloco: TfrConBloco
   inherited Panel1: TPanel
     Width = 1294
     Height = 671
+    ExplicitLeft = 0
+    ExplicitTop = 0
     ExplicitWidth = 1294
     ExplicitHeight = 671
     inherited DBGrid1: TDBGrid
@@ -583,11 +585,11 @@ inherited frConBloco: TfrConBloco
         ShowHint = True
       end
       object DBGrid2: TDBGrid
-        Left = 0
-        Top = 52
-        Width = 1289
-        Height = 630
-        Align = alCustom
+        Left = 1
+        Top = 1
+        Width = 1286
+        Height = 663
+        Align = alClient
         BorderStyle = bsNone
         DataSource = DataSource1
         TabOrder = 0
@@ -602,17 +604,28 @@ inherited frConBloco: TfrConBloco
             Alignment = taCenter
             Expanded = False
             FieldName = 'BDCODIGO'
-            Title.Caption = 'Codigo'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
+            Title.Caption = 'C'#243'digo'
             Title.Font.Charset = ANSI_CHARSET
             Title.Font.Color = clWindowText
             Title.Font.Height = -13
             Title.Font.Name = 'Courier New'
             Title.Font.Style = [fsBold]
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'BDNOMEBLOCO'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
             Title.Caption = 'Identificador'
             Title.Font.Charset = ANSI_CHARSET
             Title.Font.Color = clWindowText
@@ -625,6 +638,11 @@ inherited frConBloco: TfrConBloco
           item
             Expanded = False
             FieldName = 'BDTIPO'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
             Title.Caption = 'Tipo'
             Title.Font.Charset = ANSI_CHARSET
             Title.Font.Color = clWindowText
@@ -637,6 +655,11 @@ inherited frConBloco: TfrConBloco
             Alignment = taCenter
             Expanded = False
             FieldName = 'BDCODCOND'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
             Title.Alignment = taCenter
             Title.Caption = 'Condom'#237'nio'
             Title.Font.Charset = ANSI_CHARSET
@@ -650,6 +673,11 @@ inherited frConBloco: TfrConBloco
           item
             Expanded = False
             FieldName = 'BDCONDOMINIO'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
             Title.Alignment = taCenter
             Title.Caption = 'Nome'
             Title.Font.Charset = ANSI_CHARSET

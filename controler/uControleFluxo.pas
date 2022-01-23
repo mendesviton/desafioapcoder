@@ -278,11 +278,19 @@ type
         FedCodUnidade: TEdit;
         FcbTipo: TComboBox;
         FSQLControl : TExecSQL;
+    Fpanelunidade: TPanel;
+    FSbNovoregistro: TSpeedButton;
+    FsbStatus: TSpeedButton;
+    FSbRegistroAntigo: TSpeedButton;
         procedure SetcbTipo(const Value: TComboBox);
         procedure SetedCodigo(const Value: TEdit);
         procedure SetedCodUnidade(const Value: TEdit);
         procedure SetedValor(const Value: Tedit);
         procedure SetedVencimento(const Value: Tedit);
+    procedure Setpanelunidade(const Value: TPanel);
+    procedure SetSbNovoregistro(const Value: TSpeedButton);
+    procedure SetSbRegistroAntigo(const Value: TSpeedButton);
+    procedure SetsbStatus(const Value: TSpeedButton);
 
       public
         property edCodigo:TEdit read FedCodigo write SetedCodigo;
@@ -291,6 +299,14 @@ type
         property edVencimento:Tedit read FedVencimento write SetedVencimento;
         property cbTipo:TComboBox read FcbTipo write SetcbTipo;
         procedure pInsereRegistro;
+        procedure pValorCondominio;
+        procedure pExisteUnidade(prcodigo:string);
+        property  panelunidade:TPanel read Fpanelunidade write Setpanelunidade;
+        function  fStatusRegistro(prCodigo:integer):boolean;
+        property  sbStatus:TSpeedButton  read FsbStatus write SetsbStatus;
+        property  SbNovoregistro:TSpeedButton  read FSbNovoregistro write SetSbNovoregistro;
+        property  SbRegistroAntigo:TSpeedButton  read FSbRegistroAntigo write SetSbRegistroAntigo;
+
     end;
 
 implementation
@@ -425,7 +441,7 @@ begin
   else
   wSQL := wSQL + ')';
  wSQL := wSQL + ' values ('+trim(edCodigo.Text)+','+QuotedStr(trim(edNome.Text))+','+QuotedStr(trim(edEmail.Text))+','+QuotedStr(trim(cbTipolocal.Text))+','+trim(edNumero.Text);
- wSQL := wSQL + ','+QuotedStr(trim(edComplemento.Text))+','+QuotedStr(trim(cbUF.Text))+','+QuotedStr(trim(edCidade.Text))+','+QuotedStr(trim(edBairro.text))+','+trim(edTotalCondonimio.Text)+','+QuotedStr(trim(edNomeLocal.Text));
+ wSQL := wSQL + ','+QuotedStr(trim(edComplemento.Text))+','+QuotedStr(trim(cbUF.Text))+','+QuotedStr(trim(edCidade.Text))+','+QuotedStr(trim(edBairro.text))+','+TUtil.FConverteVirgula(TRIM(edTotalCondonimio.Text))+','+QuotedStr(trim(edNomeLocal.Text));
  wSQL := wSQL + ','+trim(edDiaVencimento.Text)+','+QuotedStr(trim(edCNPJ.Text));
  if FCaminho <> EmptyStr then
     wSQL := wSQL + ','+ QuotedStr(FCaminho)+')'
@@ -988,7 +1004,7 @@ begin
   else
   wSQL := wSQL + ')';
  wSQL := wSQL + ' values ('+QuotedStr(trim(edCodigo.Text))+','+QuotedStr(trim(edcodunidade.Text)) ;
- wSQL := wSQL + ' ,'+QuotedStr(trim(ednome.Text))+','+QuotedStr(trim(ednascimento.Text));
+ wSQL := wSQL + ' ,'+QuotedStr(trim(ednome.Text))+','+QuotedStr(TUtil.FConverteData(trim(ednascimento.Text)));
  wSQL := wSQL + ' ,'+QuotedStr(trim(edtelefone.Text))+','+QuotedStr(trim(edemail.Text));
 
  if checkpropietario.Checked then
@@ -1249,13 +1265,13 @@ begin
   if not Assigned(FSQLControl) then
      FSQLControl:= TExecSQL.Create;
 
-   wSQL:='select * from TB_SYN_BLOCO where bdcodigo ='+prCodigo;
+   wSQL:='select  blo.*,(cond.bdcodigo) as bdcodpredio from TB_SYN_BLOCO blo join tb_syn_condominio cond on (blo.bdcodcond = cond.bdcodigo) where cond.bdcodigo ='+ trim(edCodCond.Text)+' and blo.bdcodigo ='+trim(edCodBloco.Text);
    FSQLControl.CommandText.SQL.Clear;
    FSQLControl.CommandText.SQL.Add(wSQL);
    FSQLControl.CommandText.Open;
    if FSQLControl.CommandText.IsEmpty then
       begin
-        MessageDlg('Código do Bloco/Prédio nao consta no sistema pressione F4 para cadastrar',mtError,mbOKCancel,1) ;
+        MessageDlg('O Bloco não existe nesse condomínio pressione F4 para cadastrar',mtError,mbOKCancel,1) ;
         edCodBloco.SetFocus;
         edCodBloco.Text := EmptyStr;
         panelbloco.Caption := EmptyStr;
@@ -1438,6 +1454,89 @@ end;
 
 { TLancamento }
 
+function TLancamento.fStatusRegistro(prCodigo: integer): boolean;
+var
+wSQL :String;
+wPng    :TPngImage;
+wBmp    :TBitmap;
+begin
+ if not Assigned(FSQLControl) then
+    FSQLControl:= TExecSQL.Create;
+
+wSQL := EmptyStr;
+
+wSQL := 'select desp.bdcodigo,desp.bdtipo,desp.bdvalor,(und.bdcodigo) as bdcodcond,desp.bdvencimento,und.bdnumero,blo.bdnomebloco from tb_syn_despesas desp ';
+wSQL :=  wSQL + ' join tb_syn_unidades und on (desp.bdcodunid = und.bdcodigo)';
+wSQL :=  wSQL + ' join tb_syn_bloco blo  on (und.bdcodbloco = blo.bdcodigo)';
+WSQL :=  wSQL + ' where desp.bdcodigo = '+ trim(edCodigo.Text);
+
+ FSQLControl.CommandText.SQL.Clear;
+ FSQLControl.CommandText.SQL.Add(wSQL);
+ FSQLControl.CommandText.Open;
+ if (FSQLControl.CommandText.IsEmpty)then
+    begin
+     SbNovoregistro.Show;
+     SbRegistroAntigo.hide;
+     sbStatus.Caption          := 'Inserindo Registro' ;
+     sbStatus.Font.Color       := clGreen;
+     panelunidade.Caption      := EmptyStr;
+     edVencimento.Clear;
+     edValor.Text              := EmptyStr;
+     cbTipo.ItemIndex          := 0;
+
+
+    end
+    else
+    begin
+      SbRegistroAntigo.Show;
+      SbNovoregistro.hide;
+      sbStatus.Caption := 'Editando Registro' ;
+      sbStatus.Font.Color      := clRed;
+      edCodigo.Text            := FSQLControl.CommandText.FieldByName('BDCODIGO').AsString;
+      edCodUnidade.Text            := FSQLControl.CommandText.FieldByName('BDCODCOND').AsString;
+      panelunidade.Caption     := 'Apartamento  número : '+(FSQLControl.CommandText.FieldByName('BDNUMERO').AsString +'    '+ FSQLControl.CommandText.FieldByName('BDNOMEBLOCO').AsString);
+      edVencimento.Text        := FSQLControl.CommandText.FieldByName('BDVENCIMENTO').AsString;
+      edValor.Text             := FSQLControl.CommandText.FieldByName('BDVALOR').AsString;
+      cbTipo.ItemIndex         :=0;
+
+
+
+    end;
+
+
+end;
+
+procedure TLancamento.pExisteUnidade(prcodigo: string);
+var
+wSQL:String;
+begin
+   if not Assigned(FSQLControl) then
+    FSQLControl:= TExecSQL.Create;
+
+  wSQL:='select * from TB_SYN_UNIDADES und join TB_SYN_BLOCO blo on (blo.bdcodigo = und.bdcodbloco) ' ;
+  wSQL:= wSQL + 'where und.bdcodigo ='+prCodigo;
+  FSQLControl.CommandText.SQL.Clear;
+  FSQLControl.CommandText.SQL.Add(wSQL);
+  FSQLControl.CommandText.Open;
+  if FSQLControl.CommandText.IsEmpty then
+     begin
+       MessageDlg('Código da unidade não consta no sistema pressione F4 para cadastrar',mtError,mbOKCancel,1) ;
+
+
+
+       edVencimento.Clear;
+       edValor.text      := EmptyStr;
+       edCodUnidade.Text := EmptyStr;
+       panelunidade.Caption := EmptyStr;
+       edCodUnidade.SetFocus;
+     end
+     else
+     begin
+       panelunidade.Caption :='Apartamento  número : '+(FSQLControl.CommandText.FieldByName('BDNUMERO').AsString +'    '+ FSQLControl.CommandText.FieldByName('BDNOMEBLOCO').AsString);
+     end;
+
+end;
+
 procedure TLancamento.pInsereRegistro;
 var
 wSQL:String;
@@ -1447,12 +1546,37 @@ begin
  wSQL:=EmptyStr;
  wSQL:= wSQL + 'update or insert into TB_SYN_DESPESAS( ' ;
  wSQL:= wSQL + 'BDCODIGO,BDTIPO,BDVALOR,BDVENCIMENTO,BDCODUNID) ' ;
- wSQL:= wSQL + 'values('+trim(edCodigo.Text)+','+QuotedStr(trim(cbTipo.Text))+','+trim(edValor.Text);
+ wSQL:= wSQL + 'values('+trim(edCodigo.Text)+','+QuotedStr(trim(cbTipo.Text))+','+TUtil.FConverteVirgula(Trim(edValor.Text));
  wSQL:= wSQL + ','+QuotedStr(TUtil.FConverteData(edVencimento.Text))+','+trim(edCodUnidade.Text)+')';
  wSQL:= wSQL + 'matching(bdcodigo); ';
  FSQLControl.SQL(wSQL);
 
 
+
+
+end;
+
+procedure TLancamento.pValorCondominio;
+var
+wSQL :String;
+begin
+   if not Assigned(FSQLControl) then
+    FSQLControl:= TExecSQL.Create;
+
+    wSQL:=EmptyStr;
+  if cbTipo.Text = 'Condomínio'  then
+     begin
+      wSQL:= 'select bdtotalcond,bddiavenc from tb_syn_condominio cond';
+      wSQL:= wSQL + ' join tb_syn_bloco blo on (blo.bdcodcond = cond.bdcodigo)';
+      wSQL:= wSQL + ' join tb_syn_unidades und on(und.bdcodbloco = blo.bdcodigo)';
+      wSQL:= wSQL + ' where und.bdcodigo ='+trim(edCodUnidade.Text);
+      FSQLControl.CommandText.SQL.Clear;
+      FSQLControl.CommandText.SQL.Add(wSQL);
+      FSQLControl.CommandText.Open;
+      edValor.Text :=  FSQLControl.CommandText.FieldByName('bdtotalcond').AsString;
+      edVencimento.Text := FSQLControl.CommandText.FieldByName('bddiavenc').AsString +('/'+copy(datetostr(date),4,2)+'/'+copy(datetostr(date),7,4));
+
+     end;
 
 
 end;
@@ -1480,6 +1604,26 @@ end;
 procedure TLancamento.SetedVencimento(const Value: Tedit);
 begin
   FedVencimento := Value;
+end;
+
+procedure TLancamento.Setpanelunidade(const Value: TPanel);
+begin
+  Fpanelunidade := Value;
+end;
+
+procedure TLancamento.SetSbNovoregistro(const Value: TSpeedButton);
+begin
+  FSbNovoregistro := Value;
+end;
+
+procedure TLancamento.SetSbRegistroAntigo(const Value: TSpeedButton);
+begin
+  FSbRegistroAntigo := Value;
+end;
+
+procedure TLancamento.SetsbStatus(const Value: TSpeedButton);
+begin
+  FsbStatus := Value;
 end;
 
 end.

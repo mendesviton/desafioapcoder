@@ -21,6 +21,7 @@ type
     ClientDataSet1BDEMAIL: TStringField;
     ClientDataSet1BDRESPONSAVELFIN: TStringField;
     procedure FormCreate(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     TSQL : TExecSQL;
   public
@@ -44,6 +45,14 @@ begin
   ClientDataSet1.commandtext:='select * from TB_SYN_MORADORES';
   ClientDataSet1.open;
 
+end;
+
+procedure TfrConMoradores.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+    if key = VK_ESCAPE then
+     self.Close;
 end;
 
 end.

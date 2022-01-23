@@ -36,12 +36,14 @@ type
     Panel5: TPanel;
     SpeedButton10: TSpeedButton;
     SpeedButton12: TSpeedButton;
+    SpeedButton13: TSpeedButton;
     procedure pnFundoResize(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
     procedure SpeedButton6Click(Sender: TObject);
+    procedure SpeedButton11Click(Sender: TObject);
     procedure Image1Click(Sender: TObject);
     procedure SpeedButton4Click(Sender: TObject);
     procedure SpeedButton15Click(Sender: TObject);
@@ -55,6 +57,7 @@ type
     procedure SpeedButton12Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure SpeedButton13Click(Sender: TObject);
   private
     Fajuda:TfrAjuda;
     procedure pFecharPanel(prBarra:integer);
@@ -116,11 +119,13 @@ end;
 procedure TfrSyndicoPrincipal.Image1Click(Sender: TObject);
 begin
   pFecharPanel(4);
+  frAjuda.Close;
 end;
 
 procedure TfrSyndicoPrincipal.Panel1Click(Sender: TObject);
 begin
     pFecharPanel(4);
+    frAjuda.Close;
 end;
 
 procedure TfrSyndicoPrincipal.pFecharPanel(prBarra:integer);
@@ -156,9 +161,19 @@ begin
   pFecharPanel(3);
 end;
 
+procedure TfrSyndicoPrincipal.SpeedButton11Click(Sender: TObject);
+begin
+   TfrLancaDespesa.Create(self).Show;
+end;
+
 procedure TfrSyndicoPrincipal.SpeedButton12Click(Sender: TObject);
 begin
   TfrCentralDespesas.Create(self).Show;
+end;
+
+procedure TfrSyndicoPrincipal.SpeedButton13Click(Sender: TObject);
+begin
+  TfrAjuda.Create(self).Show;
 end;
 
 procedure TfrSyndicoPrincipal.SpeedButton14Click(Sender: TObject);
@@ -177,6 +192,7 @@ begin
    pFecharPanel(2);
    pFecharPanel(3);
    pFecharPanel(5);
+   frAjuda.Close;
 end;
 
 procedure TfrSyndicoPrincipal.SpeedButton2Click(Sender: TObject);
@@ -184,6 +200,7 @@ begin
   Panel5.Show;
   pFecharPanel(1);
   pFecharPanel(3);
+  frAjuda.Close;
 end;
 
 procedure TfrSyndicoPrincipal.SpeedButton3Click(Sender: TObject);
@@ -192,6 +209,7 @@ begin
   pFecharPanel(1);
   pFecharPanel(2);
   pFecharPanel(5);
+  frAjuda.Close;
 
 end;
 
@@ -207,7 +225,7 @@ end;
 
 procedure TfrSyndicoPrincipal.SpeedButton6Click(Sender: TObject);
 begin
-  TfrLancaDespesa.Create(self).Show;
+  TfrConsultaCondominio.Create(self).Show;
 end;
 
 procedure TfrSyndicoPrincipal.SpeedButton7Click(Sender: TObject);

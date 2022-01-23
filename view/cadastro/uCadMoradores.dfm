@@ -185,8 +185,8 @@
       Shape = bsTopLine
     end
     object edCodigo: TEdit
-      Left = 94
-      Top = 69
+      Left = 93
+      Top = 70
       Width = 40
       Height = 17
       BorderStyle = bsNone
@@ -336,7 +336,7 @@
     object edTelefone: TMaskEdit
       Left = 94
       Top = 224
-      Width = 119
+      Width = 123
       Height = 22
       EditMask = '!\(99\)00000-0000;1; '
       Font.Charset = ANSI_CHARSET

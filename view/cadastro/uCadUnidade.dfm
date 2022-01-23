@@ -13,8 +13,8 @@ inherited frCadUnidades: TfrCadUnidades
     Width = 556
     Height = 528
     Color = 15918295
-    ExplicitWidth = 557
-    ExplicitHeight = 537
+    ExplicitWidth = 556
+    ExplicitHeight = 528
     inherited Bevel3: TBevel
       Left = -2
       Width = 939
@@ -189,7 +189,7 @@ inherited frCadUnidades: TfrCadUnidades
     end
     object edBLoco: TEdit
       Left = 130
-      Top = 104
+      Top = 103
       Width = 40
       Height = 17
       BorderStyle = bsNone

@@ -1,8 +1,10 @@
 inherited frLancaDespesa: TfrLancaDespesa
   Caption = 'Lan'#231'amento de despesa'
-  ClientHeight = 201
-  ClientWidth = 497
-  ExplicitWidth = 513
+  ClientHeight = 169
+  ClientWidth = 589
+  Position = poScreenCenter
+  ExplicitWidth = 605
+  ExplicitHeight = 208
   PixelsPerInch = 96
   TextHeight = 13
   object Label2: TLabel [0]
@@ -19,16 +21,20 @@ inherited frLancaDespesa: TfrLancaDespesa
     ParentFont = False
   end
   inherited pnFundo: TPanel
-    Width = 497
-    Height = 201
+    Width = 589
+    Height = 169
     Color = 15983831
-    ExplicitWidth = 497
-    ExplicitHeight = 201
+    ExplicitLeft = 24
+    ExplicitTop = 8
+    ExplicitWidth = 589
+    ExplicitHeight = 169
     inherited Bevel3: TBevel
       Left = -35
+      Top = 45
       Width = 892
       Height = 15
       ExplicitLeft = -35
+      ExplicitTop = 45
       ExplicitWidth = 892
       ExplicitHeight = 15
     end
@@ -36,16 +42,21 @@ inherited frLancaDespesa: TfrLancaDespesa
       OnClick = btConsultaClick
     end
     inherited btRegistroAntigo: TSpeedButton
-      Left = 438
-      ExplicitLeft = 438
+      Left = 534
+      ExplicitLeft = 534
     end
     inherited btStatus: TSpeedButton
-      Left = 311
-      ExplicitLeft = 311
+      Left = 367
+      Width = 161
+      ExplicitLeft = 367
+      ExplicitWidth = 161
     end
     inherited btNovoRegistro: TSpeedButton
-      Left = 438
-      ExplicitLeft = 438
+      Left = 534
+      ExplicitLeft = 534
+    end
+    inherited btLimpar: TSpeedButton
+      OnClick = btLimparClick
     end
     inherited SpeedButton1: TSpeedButton
       Left = -2
@@ -54,16 +65,9 @@ inherited frLancaDespesa: TfrLancaDespesa
       ExplicitLeft = -2
       ExplicitTop = 0
     end
-    object Bevel1: TBevel
-      Left = -47
-      Top = 100
-      Width = 748
-      Height = 26
-      Shape = bsTopLine
-    end
     object lbCodigo: TLabel
-      Left = 48
-      Top = 129
+      Left = 64
+      Top = 61
       Width = 49
       Height = 14
       Caption = 'C'#243'digo:'
@@ -75,8 +79,8 @@ inherited frLancaDespesa: TfrLancaDespesa
       ParentFont = False
     end
     object lbNome: TLabel
-      Left = 32
-      Top = 67
+      Left = 179
+      Top = 61
       Width = 56
       Height = 14
       Caption = 'Unidade:'
@@ -88,8 +92,8 @@ inherited frLancaDespesa: TfrLancaDespesa
       ParentFont = False
     end
     object Label1: TLabel
-      Left = 275
-      Top = 127
+      Left = 165
+      Top = 117
       Width = 70
       Height = 14
       Caption = ' Valor(R$)'
@@ -101,8 +105,8 @@ inherited frLancaDespesa: TfrLancaDespesa
       ParentFont = False
     end
     object Tipo: TLabel
-      Left = 62
-      Top = 154
+      Left = 22
+      Top = 116
       Width = 35
       Height = 14
       Caption = 'Tipo:'
@@ -114,8 +118,8 @@ inherited frLancaDespesa: TfrLancaDespesa
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 275
-      Top = 153
+      Left = 373
+      Top = 116
       Width = 70
       Height = 14
       Caption = 'Vencimento'
@@ -126,9 +130,16 @@ inherited frLancaDespesa: TfrLancaDespesa
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object Bevel2: TBevel
+      Left = -231
+      Top = 88
+      Width = 928
+      Height = 19
+      Shape = bsTopLine
+    end
     object edCodigo: TEdit
-      Left = 103
-      Top = 128
+      Left = 119
+      Top = 59
       Width = 40
       Height = 17
       BorderStyle = bsNone
@@ -138,11 +149,12 @@ inherited frLancaDespesa: TfrLancaDespesa
       Font.Name = 'Courier New'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 0
+      OnExit = edCodigoExit
     end
     object edUnidade: TEdit
-      Left = 94
-      Top = 67
+      Left = 241
+      Top = 59
       Width = 40
       Height = 19
       BorderStyle = bsNone
@@ -152,12 +164,14 @@ inherited frLancaDespesa: TfrLancaDespesa
       Font.Name = 'Courier New'
       Font.Style = []
       ParentFont = False
-      TabOrder = 0
+      TabOrder = 1
+      OnExit = edUnidadeExit
+      OnKeyDown = edUnidadeKeyDown
     end
     object Panel3: TPanel
-      Left = 139
-      Top = 68
-      Width = 309
+      Left = 286
+      Top = 60
+      Width = 260
       Height = 17
       BevelOuter = bvLowered
       Color = clHighlightText
@@ -171,26 +185,37 @@ inherited frLancaDespesa: TfrLancaDespesa
       TabOrder = 5
     end
     object cbTipoLocal: TComboBox
-      Left = 103
-      Top = 151
+      Left = 63
+      Top = 113
       Width = 97
-      Height = 21
-      TabOrder = 3
+      Height = 22
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Courier New'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
       Text = 'Condom'#237'nio'
+      OnExit = cbTipoLocalExit
+      OnKeyUp = cbTipoLocalKeyUp
       Items.Strings = (
-        'Rua '
-        'Avenida'
-        'Alameda'
-        'Estrada'
-        'Pra'#231'a'
-        'Rodovia'
-        'Loteamento'
-        'Residencial'
-        'Agrupamento')
+        'Condom'#237'nio'
+        #193'gua'
+        'Luz'
+        'Manuten'#231#227'o Elevador'
+        'Manuten'#231#227'o '#193'rea de lazer'
+        'Materiais '
+        'Decora'#231#227'o '
+        'Seguran'#231'a'
+        'Fundo Reserva'
+        'Pintura'
+        ''
+        '')
     end
     object edNumero: TEdit
-      Left = 351
-      Top = 125
+      Left = 241
+      Top = 113
       Width = 97
       Height = 19
       BorderStyle = bsNone
@@ -200,11 +225,11 @@ inherited frLancaDespesa: TfrLancaDespesa
       Font.Name = 'Courier New'
       Font.Style = []
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 3
     end
     object MaskEdit1: TMaskEdit
-      Left = 351
-      Top = 150
+      Left = 449
+      Top = 113
       Width = 97
       Height = 22
       EditMask = '!99/99/0000;1; '

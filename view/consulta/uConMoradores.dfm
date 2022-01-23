@@ -12,6 +12,8 @@ inherited frConMoradores: TfrConMoradores
   inherited Panel1: TPanel
     Width = 1294
     Height = 671
+    ExplicitLeft = 0
+    ExplicitTop = 0
     ExplicitWidth = 1294
     ExplicitHeight = 671
     inherited Bevel3: TBevel
@@ -19,10 +21,11 @@ inherited frConMoradores: TfrConMoradores
       ExplicitWidth = 1344
     end
     inherited DBGrid1: TDBGrid
-      Left = 0
-      Top = 52
-      Width = 1294
-      Height = 654
+      Left = 1
+      Top = 1
+      Width = 1292
+      Height = 669
+      Align = alClient
       DataSource = DataSource1
       Columns = <
         item

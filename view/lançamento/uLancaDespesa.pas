@@ -5,11 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadPadrao, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.Mask, Vcl.StdCtrls,uControleFluxo,uCentralPagamentos;
+  Vcl.Mask, Vcl.StdCtrls,uControleFluxo,uCentralPagamentos,uConUnidades,uCadUnidade;
 
 type
   TfrLancaDespesa = class(TfrCadpadraoSyndico)
-    Bevel1: TBevel;
     lbCodigo: TLabel;
     lbNome: TLabel;
     edCodigo: TEdit;
@@ -22,12 +21,22 @@ type
     Label2: TLabel;
     Tipo: TLabel;
     Label4: TLabel;
+    Bevel2: TBevel;
     procedure SpeedButton1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MaskEdit1Exit(Sender: TObject);
     procedure btConsultaClick(Sender: TObject);
+    procedure cbTipoLocalExit(Sender: TObject);
+    procedure cbTipoLocalKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure edUnidadeExit(Sender: TObject);
+    procedure btLimparClick(Sender: TObject);
+    procedure edCodigoExit(Sender: TObject);
+    procedure edUnidadeKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     FControle:TLancamento;
+    procedure pLimpaCampos;
   public
     procedure pSetaComponente;
   end;
@@ -45,6 +54,51 @@ begin
   TfrCentralDespesas.Create(self).Show;
 end;
 
+procedure TfrLancaDespesa.btLimparClick(Sender: TObject);
+begin
+  inherited;
+  pLimpaCampos;
+end;
+
+procedure TfrLancaDespesa.cbTipoLocalExit(Sender: TObject);
+begin
+  inherited;
+  //implementar  auto preenchimento quando escolhido condominio
+  FControle.pValorCondominio;
+end;
+
+procedure TfrLancaDespesa.cbTipoLocalKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  cbTipoLocal.Text:= 'Condomínio'
+end;
+
+procedure TfrLancaDespesa.edCodigoExit(Sender: TObject);
+begin
+  inherited;
+  //rotina que busca a despesa
+  FControle.fStatusRegistro(STRTOINT(TRIM(edCodigo.Text)))
+end;
+
+procedure TfrLancaDespesa.edUnidadeExit(Sender: TObject);
+begin
+  inherited;
+  //implementar busca de unidade por código
+  FControle.pExisteUnidade(Trim(edUnidade.Text));
+end;
+
+procedure TfrLancaDespesa.edUnidadeKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = VK_F9 then
+     TfrConUnidades.Create(self).Show;
+  if key = VK_F4 then
+     TfrCadUnidades.Create(self).Show;
+
+end;
+
 procedure TfrLancaDespesa.FormCreate(Sender: TObject);
 begin
   inherited;
@@ -58,6 +112,16 @@ begin
   FControle.pInsereRegistro;
 end;
 
+procedure TfrLancaDespesa.pLimpaCampos;
+begin
+  edCodigo.Text           :=  EmptyStr;
+  edUnidade.Text          :=  EmptyStr;
+  MaskEdit1.Text          :=  EmptyStr;
+  cbTipoLocal.ItemIndex   :=0;
+  Panel3.Caption          := EmptyStr;
+  edUnidade.SetFocus;
+end;
+
 procedure TfrLancaDespesa.pSetaComponente;
 begin
   // Vitor - 19/01/2022 seta os componentes para manipular dentro da classe controler
@@ -66,7 +130,12 @@ begin
   FControle.edValor      := edNumero;
   FControle.edVencimento := TEdit(MaskEdit1);
   FControle.cbTipo       := cbTipoLocal;
-end;
+  FControle.panelunidade := Panel3;
+  FControle.SbNovoregistro :=btNovoRegistro;
+  FControle.SbRegistroAntigo := btRegistroAntigo;
+  FControle.sbStatus        := btStatus;
+  end;
+
 
 procedure TfrLancaDespesa.SpeedButton1Click(Sender: TObject);
 begin

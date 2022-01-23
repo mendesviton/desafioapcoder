@@ -52,6 +52,8 @@ type
     procedure btAnteriorClick(Sender: TObject);
     procedure btExcluirClick(Sender: TObject);
     procedure Retirarfoto1Click(Sender: TObject);
+    procedure MaskEdit1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     FValida   :TValidaCampo;
     FControle :TMoradorControler;
@@ -196,6 +198,14 @@ begin
      end;
 
 
+end;
+
+procedure TfrMoradoresSyndicos.MaskEdit1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = VK_F2 then
+     MaskEdit1.Text := datetostr(date);
 end;
 
 procedure TfrMoradoresSyndicos.pLimpaCampos;

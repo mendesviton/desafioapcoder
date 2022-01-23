@@ -3,7 +3,7 @@ inherited frCentralDespesas: TfrCentralDespesas
   ClientHeight = 630
   ClientWidth = 1292
   OnCreate = FormCreate
-  ExplicitLeft = -161
+  ExplicitLeft = -166
   ExplicitWidth = 1308
   ExplicitHeight = 669
   PixelsPerInch = 96
@@ -11,6 +11,8 @@ inherited frCentralDespesas: TfrCentralDespesas
   inherited Panel1: TPanel
     Width = 1292
     Height = 630
+    ExplicitLeft = 0
+    ExplicitTop = 0
     ExplicitWidth = 1292
     ExplicitHeight = 630
     inherited DBGrid1: TDBGrid
@@ -603,7 +605,6 @@ inherited frCentralDespesas: TfrCentralDespesas
         Color = 15918295
         ParentBackground = False
         TabOrder = 1
-        ExplicitLeft = 2
         object Bevel2: TBevel
           Left = -58
           Top = 49
@@ -1106,7 +1107,7 @@ inherited frCentralDespesas: TfrCentralDespesas
           OnClick = SpeedButton13Click
         end
         object SpeedButton9: TSpeedButton
-          Left = 711
+          Left = 1183
           Top = 5
           Width = 44
           Height = 38

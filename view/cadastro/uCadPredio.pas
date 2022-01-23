@@ -38,10 +38,12 @@ type
     procedure cbTipoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure pCarregoudaConsulta;
+    procedure pCarregouCondConsulta;
   private
     FControle : TBlocoControler;
     procedure pSetaComponentes;
     procedure pLimpaCampos;
+
   public
   end;
 
@@ -157,6 +159,11 @@ begin
   inherited;
   if key = VK_ESCAPE then
      self.Close;
+end;
+
+procedure TfrCadPredioSyndico.pCarregouCondConsulta;
+begin
+ FControle.pExisteCondominio(trim(edCodCond.Text));
 end;
 
 procedure TfrCadPredioSyndico.pCarregoudaConsulta;

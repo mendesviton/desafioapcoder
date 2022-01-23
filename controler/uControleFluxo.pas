@@ -254,7 +254,6 @@ type
         property edCOmplemente      :TEdit read FedCOmplemente write SetedCOmplemente;
         property edBairo            :Tedit read FedBairo write SetedBairo;
         procedure pInsereBanco;
-        procedure pExcluirRegistro;
         procedure pExisteCondominio (prcodigo:string);
         procedure pExisteBloco      (prcodigo:string);
         property  panelcond:tpanel read Fpanelcond write Setpanelcond;
@@ -264,6 +263,7 @@ type
         property  sbStatus:TSpeedButton read FsbStatus write SetsbStatus;
         property  SbNovoregistro:TSpeedButton read FSbNovoregistro write SetSbNovoregistro;
         property  SbRegistroAntigo:TSpeedButton read FSbRegistroAntigo write SetSbRegistroAntigo;
+        procedure pExcluirRegistro(prCodigo:String);
 
 
 
@@ -1253,9 +1253,33 @@ wSQL := wSQL +' where und.bdcodigo = '+ (inttostr(prcodigo));
 
 end;
 
-procedure TUnidadeControler.pExcluirRegistro;
-begin
 
+
+procedure TUnidadeControler.pExcluirRegistro(prCodigo: String);
+var
+wSQL:String;
+begin
+ if not Assigned(FSQLControl) then
+    FSQLControl:= TExecSQL.Create;
+       wSQL:='Select bdcodigo from TB_SYN_UNIDADES where bdcodigo ='+prCodigo;
+       FSQLControl.CommandText.SQL.Clear;
+       FSQLControl.CommandText.SQL.Add(wSQL);
+       FSQLControl.CommandText.Open;
+       if (FSQLControl.CommandText.IsEmpty)then
+          begin
+            MessageDlg('Unidade código '+prCodigo+' não consta na base de dados',mtError,mbOKCancel,1);
+          end
+          else
+          begin
+            if (MessageDlg('Certeza que deseja excluir a Unidade '+edNome.Text+' ? ',mtInformation,[mbYes, mbNo],1) =mrYes) then
+                begin
+               wSQL := EmptyStr;
+               wSQL := 'delete from TB_SYN_UNIDADES where bdcodigo = '+trim(prCodigo);
+               FSQLControl.SQL(wSQL);
+               MessageDlg('Unidade '+edNome.Text+' excluido com sucesso',mtInformation,mbOKCancel,1);
+               fStatusRegistro(StrToInt(prCodigo));
+            end;
+          end;
 end;
 
 procedure TUnidadeControler.pExisteBloco(prcodigo: string);
@@ -1314,7 +1338,6 @@ var
   wSQL:String;
 begin
  FSQLControl:= TExecSQL.Create;
- showmessage(edCodigo.Text);
  wSQL:=EmptyStr;
  wSQL := ' update or insert into TB_SYN_UNIDADES(';
  wSQL := wSQL + 'BDCODIGO,BDCODBLOCO,BDNUMERO,BDCNPJ,BDOBS,';
@@ -1327,6 +1350,11 @@ begin
  wSQL := wSQL + ' matching (bdcodigo);  ';
 
  FSQLControl.SQL(wSQL);
+  FSQLControl.SQL(wSQL);
+ if  (panelunidade.Caption = EmptyStr) then
+    MessageDlg('Registro gravado com  sucesso',mtInformation,mbOKCancel,1)
+    else
+    MessageDlg('Registro editado com  sucesso',mtInformation,mbOKCancel,1);
 
 end;
 
@@ -1550,6 +1578,9 @@ begin
  wSQL:= wSQL + ','+QuotedStr(TUtil.FConverteData(edVencimento.Text))+','+trim(edCodUnidade.Text)+')';
  wSQL:= wSQL + 'matching(bdcodigo); ';
  FSQLControl.SQL(wSQL);
+
+      MessageDlg('Registro gravado com  sucesso',mtInformation,mbOKCancel,1)
+
 
 
 

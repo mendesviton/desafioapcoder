@@ -33,6 +33,7 @@ type
     FConnection:TBDConnection;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure DBGrid1CellClick(Column: TColumn);
 
   private
     { Private declarations }
@@ -44,8 +45,27 @@ var
   frConsultaCondominio: TfrConsultaCondominio;
 
 implementation
+uses
+ uCadCondominios,uCadPredio;
 
 {$R *.dfm}
+
+procedure TfrConsultaCondominio.DBGrid1CellClick(Column: TColumn);
+begin
+  inherited;
+   if Owner.ClassName = 'TfrCadCondominio' then
+     begin
+      TfrCadCondominio(Owner).edCod.Text := DBGrid1.Fields[0].Value;
+      TfrCadCondominio(Owner).pCarregoudaConsulta;
+      self.Close;
+     end;
+      if Owner.ClassName = 'TfrCadPredioSyndico' then
+     begin
+      TfrCadPredioSyndico(Owner).edCodCond.Text := DBGrid1.Fields[0].Value;
+      TfrCadPredioSyndico(Owner).pCarregouCondConsulta;
+      self.Close;
+     end;
+end;
 
 procedure TfrConsultaCondominio.FormCreate(Sender: TObject);
 begin

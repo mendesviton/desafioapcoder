@@ -649,6 +649,7 @@ inherited frConBloco: TfrConBloco
             Title.Font.Height = -13
             Title.Font.Name = 'Courier New'
             Title.Font.Style = [fsBold]
+            Width = 250
             Visible = True
           end
           item
@@ -702,6 +703,7 @@ inherited frConBloco: TfrConBloco
             Title.Font.Height = -13
             Title.Font.Name = 'Courier New'
             Title.Font.Style = [fsBold]
+            Width = 250
             Visible = True
           end>
       end

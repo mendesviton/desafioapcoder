@@ -21,8 +21,28 @@ inherited frCadUnidades: TfrCadUnidades
       ExplicitLeft = -2
       ExplicitWidth = 939
     end
+    inherited btAnterior: TSpeedButton
+      Left = 535
+      Top = 507
+      Enabled = False
+      ExplicitLeft = 535
+      ExplicitTop = 507
+    end
+    inherited btProximo: TSpeedButton
+      Left = 535
+      Top = 507
+      ExplicitLeft = 535
+      ExplicitTop = 507
+    end
     inherited btConsulta: TSpeedButton
+      Left = 158
       OnClick = btConsultaClick
+      ExplicitLeft = 158
+    end
+    inherited btExcluir: TSpeedButton
+      Left = 58
+      OnClick = btExcluirClick
+      ExplicitLeft = 58
     end
     inherited btRegistroAntigo: TSpeedButton
       Left = 501
@@ -48,16 +68,11 @@ inherited frCadUnidades: TfrCadUnidades
       ExplicitTop = 5
     end
     inherited btLimpar: TSpeedButton
+      Left = 108
       OnClick = btLimparClick
+      ExplicitLeft = 108
     end
-    inherited SpeedButton1: TSpeedButton
-      Top = 2
-      Height = 39
-      OnClick = SpeedButton1Click
-      ExplicitTop = 2
-      ExplicitHeight = 39
-    end
-    object lbCodigo: TLabel
+    object lbCodigo: TLabel [9]
       Left = 51
       Top = 84
       Width = 77
@@ -70,14 +85,14 @@ inherited frCadUnidades: TfrCadUnidades
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Bevel1: TBevel
+    object Bevel1: TBevel [10]
       Left = -19
       Top = 130
       Width = 990
       Height = 11
       Shape = bsTopLine
     end
-    object Label1: TLabel
+    object Label1: TLabel [11]
       Left = 36
       Top = 106
       Width = 91
@@ -90,7 +105,7 @@ inherited frCadUnidades: TfrCadUnidades
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label2: TLabel
+    object Label2: TLabel [12]
       Left = 77
       Top = 60
       Width = 49
@@ -103,7 +118,7 @@ inherited frCadUnidades: TfrCadUnidades
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object lbCnpj: TLabel
+    object lbCnpj: TLabel [13]
       Left = 94
       Top = 175
       Width = 35
@@ -116,7 +131,7 @@ inherited frCadUnidades: TfrCadUnidades
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object lbNumero: TLabel
+    object lbNumero: TLabel [14]
       Left = 80
       Top = 151
       Width = 49
@@ -129,7 +144,7 @@ inherited frCadUnidades: TfrCadUnidades
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label3: TLabel
+    object Label3: TLabel [15]
       Left = 48
       Top = 233
       Width = 77
@@ -142,7 +157,7 @@ inherited frCadUnidades: TfrCadUnidades
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label4: TLabel
+    object Label4: TLabel [16]
       Left = 64
       Top = 247
       Width = 35
@@ -154,6 +169,15 @@ inherited frCadUnidades: TfrCadUnidades
       Font.Name = 'Courier New'
       Font.Style = [fsBold]
       ParentFont = False
+    end
+    inherited SpeedButton1: TSpeedButton
+      Left = -2
+      Top = 2
+      Height = 39
+      OnClick = SpeedButton1Click
+      ExplicitLeft = -2
+      ExplicitTop = 2
+      ExplicitHeight = 39
     end
     object edCodCond: TEdit
       Left = 130
@@ -233,6 +257,7 @@ inherited frCadUnidades: TfrCadUnidades
       ParentFont = False
       TabOrder = 0
       OnExit = edCodigoExit
+      OnKeyDown = edCodigoKeyDown
     end
     object Panel3: TPanel
       Left = 176

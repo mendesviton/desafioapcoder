@@ -47,6 +47,7 @@ inherited frConUnidades: TfrConUnidades
           Title.Font.Height = -13
           Title.Font.Name = 'Courier New'
           Title.Font.Style = [fsBold]
+          Width = 100
           Visible = True
         end
         item
@@ -69,7 +70,7 @@ inherited frConUnidades: TfrConUnidades
           Title.Font.Height = -13
           Title.Font.Name = 'Courier New'
           Title.Font.Style = [fsBold]
-          Width = 50
+          Width = 150
           Visible = True
         end
         item

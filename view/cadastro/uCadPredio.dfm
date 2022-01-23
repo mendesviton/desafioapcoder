@@ -142,7 +142,7 @@ inherited frCadPredioSyndico: TfrCadPredioSyndico
     object Panel2: TPanel
       Left = 204
       Top = 87
-      Width = 191
+      Width = 295
       Height = 17
       BevelOuter = bvLowered
       Color = clHighlightText
@@ -211,7 +211,7 @@ inherited frCadPredioSyndico: TfrCadPredioSyndico
     object Panel1: TPanel
       Left = 204
       Top = 63
-      Width = 191
+      Width = 295
       Height = 17
       BevelOuter = bvLowered
       Color = clHighlightText

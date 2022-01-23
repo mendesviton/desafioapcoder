@@ -6,8 +6,8 @@
     <Transaction>2022/01/12 03:41:30.000.001,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\ProjetoSyndico.pas</Transaction>
     <Transaction>2022/01/12 03:41:35.000.594,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uCadPadrao.pas</Transaction>
     <Transaction>2022/01/12 23:43:39.000.673,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
-    <Transaction>2022/01/12 23:44:31.000.089,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uCadCondominios.pas=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
     <Transaction>2022/01/12 23:44:31.000.089,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uCadCondominios.dfm=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.dfm</Transaction>
+    <Transaction>2022/01/12 23:44:31.000.089,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uCadCondominios.pas=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
     <Transaction>2022/01/13 02:41:42.000.727,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
     <Transaction>2022/01/13 02:44:34.000.658,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\uUtil.pas=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
     <Transaction>2022/01/15 01:25:24.000.860,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
@@ -24,8 +24,8 @@
     <Transaction>2022/01/15 19:06:56.000.688,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.dfm=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uConsultaPadrao.dfm</Transaction>
     <Transaction>2022/01/15 19:06:56.000.688,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uConsultaPadrao.pas</Transaction>
     <Transaction>2022/01/15 19:08:13.000.737,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
-    <Transaction>2022/01/15 19:09:09.000.634,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uConCondominios.pas</Transaction>
     <Transaction>2022/01/15 19:09:09.000.634,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.dfm=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uConCondominios.dfm</Transaction>
+    <Transaction>2022/01/15 19:09:09.000.634,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uConCondominios.pas</Transaction>
     <Transaction>2022/01/16 00:55:22.000.106,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
     <Transaction>2022/01/16 00:55:50.000.090,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
     <Transaction>2022/01/16 00:58:15.000.987,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uConBlocos.pas=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
@@ -34,14 +34,14 @@
     <Transaction>2022/01/16 02:20:00.000.096,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uCadUnidade.dfm=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.dfm</Transaction>
     <Transaction>2022/01/16 02:20:00.000.096,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uCadUnidade.pas=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
     <Transaction>2022/01/16 14:02:48.000.884,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
-    <Transaction>2022/01/16 14:03:58.000.431,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uConMoradores.pas</Transaction>
     <Transaction>2022/01/16 14:03:58.000.431,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.dfm=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uConMoradores.dfm</Transaction>
+    <Transaction>2022/01/16 14:03:58.000.431,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uConMoradores.pas</Transaction>
     <Transaction>2022/01/16 14:58:24.000.652,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\consulta\uConBlocos.pas</Transaction>
     <Transaction>2022/01/16 14:58:42.000.944,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\cadastro\uCadCondominios.pas</Transaction>
-    <Transaction>2022/01/16 14:58:43.000.695,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\cadastro\uCadMoradores.pas</Transaction>
     <Transaction>2022/01/16 14:58:43.000.755,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\cadastro\uCadPadrao.pas</Transaction>
-    <Transaction>2022/01/16 14:58:43.000.924,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\cadastro\uCadUnidade.pas</Transaction>
     <Transaction>2022/01/16 14:58:43.000.835,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\cadastro\uCadPredio.pas</Transaction>
+    <Transaction>2022/01/16 14:58:43.000.924,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\cadastro\uCadUnidade.pas</Transaction>
+    <Transaction>2022/01/16 14:58:43.000.695,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\cadastro\uCadMoradores.pas</Transaction>
     <Transaction>2022/01/16 14:59:09.000.049,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\consulta\uConCondominios.pas</Transaction>
     <Transaction>2022/01/16 14:59:18.000.455,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\uConMoradores.pas=</Transaction>
     <Transaction>2022/01/16 14:59:35.000.380,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\consulta\uConMoradores.pas</Transaction>
@@ -58,9 +58,14 @@
     <Transaction>2022/01/19 23:42:44.000.668,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\consulta\uCentralPagamentos.pas=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
     <Transaction>2022/01/19 23:42:44.000.668,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\view\consulta\uCentralPagamentos.dfm=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.dfm</Transaction>
     <Transaction>2022/01/21 02:08:12.000.548,=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas</Transaction>
-    <Transaction>2022/01/21 02:09:32.000.862,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.dfm=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\uAjudaSyndico.dfm</Transaction>
     <Transaction>2022/01/21 02:09:32.000.862,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.pas=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\uAjudaSyndico.pas</Transaction>
-  </Transactions>  <ProjectSortOrder AutoSort="0" SortType="0">
+    <Transaction>2022/01/21 02:09:32.000.862,C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\Unit1.dfm=C:\Users\vitor\OneDrive\Área de Trabalho\Projeto\uAjudaSyndico.dfm</Transaction>
+    <Transaction>2022/01/23 19:49:18.840,C:\Users\prog07\Desktop\desafioapcoder\view\cadastro\crea.dfm=C:\Users\prog07\Desktop\desafioapcoder\view\cadastro\uCadCondominios.dfm</Transaction>
+    <Transaction>2022/01/23 19:49:18.840,C:\Users\prog07\Desktop\desafioapcoder\view\cadastro\crea.pas=C:\Users\prog07\Desktop\desafioapcoder\view\cadastro\uCadCondominios.pas</Transaction>
+    <Transaction>2022/01/23 19:50:20.572,C:\Users\prog07\Desktop\desafioapcoder\view\cadastro\uCadCondominios.pas=C:\Users\prog07\Desktop\desafioapcoder\view\cadastro\crea.pas</Transaction>
+    <Transaction>2022/01/23 19:50:20.572,C:\Users\prog07\Desktop\desafioapcoder\view\cadastro\uCadCondominios.dfm=C:\Users\prog07\Desktop\desafioapcoder\view\cadastro\crea.dfm</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="controler"/>
     <File Path="controler\uControleFluxo.pas"/>
     <File Path="controler\uControleValida.pas"/>

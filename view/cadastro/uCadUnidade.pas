@@ -62,6 +62,9 @@ type
     procedure edBLocoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure edBLocoExit(Sender: TObject);
+    procedure btExcluirClick(Sender: TObject);
+    procedure edCodigoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     procedure pLimpaCampos;
   public
@@ -95,6 +98,12 @@ procedure TfrCadUnidades.btConsultaClick(Sender: TObject);
 begin
   inherited;
   TfrConUnidades.Create(self).Show; // Vitor Daniel - 16/01/2022 - chama a tela de consulta.
+end;
+
+procedure TfrCadUnidades.btExcluirClick(Sender: TObject);
+begin
+  inherited;
+  FControle.pExcluirRegistro(trim(edCodigo.Text));
 end;
 
 procedure TfrCadUnidades.btLimparClick(Sender: TObject);
@@ -156,6 +165,16 @@ begin
   inherited;
   //Vitor - 23/01/2022 - verificar se existe a unidade
   FControle.fStatusRegistro(strtoint(trim(edCodigo.Text)))
+end;
+
+procedure TfrCadUnidades.edCodigoKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = vk_f9 then
+     TfrConUnidades.Create(self).Show;
+  if key = vk_f4 then
+      MessageDlg('Você ja se encontra na tela de cadastro de unidades',mtInformation,([mbOK]),1)
 end;
 
 procedure TfrCadUnidades.FormCreate(Sender: TObject);

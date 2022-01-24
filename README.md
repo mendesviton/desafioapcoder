@@ -35,10 +35,11 @@ Instalar o banco de dados por meio do instalador INSTALADORFIREBIRD.exe <br>
 
 ![como rodar](https://user-images.githubusercontent.com/94265037/150699975-26e836ea-095e-4482-b6b3-98781f9585bd.png)<br>
 
-após isso, entrar na pasta \Projeto\Win32\Debug e executar o arquivo Syndico.exe<br>
+após isso, entrar na pasta \Projeto\Win32\Debug e executar o arquivo ProjetoSyndicos.exe<br>
+
+![torun](https://user-images.githubusercontent.com/94265037/150702299-4a65cee1-02ed-41fd-a607-90798f339a13.PNG)
 
 
-![image](https://user-images.githubusercontent.com/94265037/149885485-de2302c7-e11a-4f0a-ba84-070b86d938be.png)
 <h2>Gif da instalação e execução da aplicação<h2>
 
 ![Desktop 2022 01 18 - 03 25 22 04_Trim](https://user-images.githubusercontent.com/94265037/149884736-eb9806f8-8e51-45f9-9986-ae77139a8afe.gif)

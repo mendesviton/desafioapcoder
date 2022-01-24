@@ -439,6 +439,7 @@ inherited frCadCondominio: TfrCadCondominio
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+      OnEnter = edNomeEnter
       OnExit = edNomeExit
     end
     object edCnpj: TEdit

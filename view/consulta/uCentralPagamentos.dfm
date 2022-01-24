@@ -3,7 +3,6 @@ inherited frCentralDespesas: TfrCentralDespesas
   ClientHeight = 630
   ClientWidth = 1292
   OnCreate = FormCreate
-  ExplicitLeft = -166
   ExplicitWidth = 1308
   ExplicitHeight = 669
   PixelsPerInch = 96

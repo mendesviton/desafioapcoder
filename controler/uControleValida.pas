@@ -11,10 +11,43 @@ uses
       private
       public
         procedure pValidaNome(edNome:TEdit);
+       function pValidaCod(edCodigo:Tedit):boolean;
     end;
 implementation
 
 { TValidaCampo }
+
+function TValidaCampo.pValidaCod(edCodigo: Tedit):boolean;
+var
+contador:integer;
+begin
+ if (trim(edCodigo.Text)<> EmptyStr) then
+    begin
+      for contador:= 1 to length(trim(edCodigo.Text)) do
+          if not((edCodigo.Text)[contador]  in ['1'..'9'])  then
+          begin
+            MessageDlg('Apenas números acima de 1 no campo código',mtWarning,[mbOK],1 );
+            edCodigo.Text:=EmptyStr;
+            edCodigo.SetFocus;
+            result:=false ;
+            exit;
+          end
+          else
+          result:=true;
+    end
+    else
+     begin
+      MessageDlg('Apenas números acima de 1 no campo código',mtWarning,[mbOK],1 );
+      edCodigo.Text:=EmptyStr;
+      edCodigo.SetFocus;
+      result:=false ;
+      exit;
+     end;
+
+
+
+
+end;
 
 procedure TValidaCampo.pValidaNome(edNome: TEdit);
 var
@@ -31,7 +64,7 @@ begin
 
     if trim(edNome.Text) = EmptyStr then
       begin
-       MessageDlg('Foi digitado um número no campo nome',mtWarning,[mbOK],1 );
+       MessageDlg('Campo obrigatório ',mtWarning,[mbOK],1 );
        edNome.SetFocus;
       end;
 

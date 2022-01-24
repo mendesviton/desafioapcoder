@@ -39,10 +39,12 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure pCarregoudaConsulta;
     procedure pCarregouCondConsulta;
+    procedure edCodCondEnter(Sender: TObject);
   private
     FControle : TBlocoControler;
     procedure pSetaComponentes;
     procedure pLimpaCampos;
+
 
   public
   end;
@@ -104,6 +106,12 @@ procedure TfrCadPredioSyndico.cbTipoKeyUp(Sender: TObject; var Key: Word;
 begin
   inherited;
    cbTipo.Text := 'Apartamento'
+end;
+
+procedure TfrCadPredioSyndico.edCodCondEnter(Sender: TObject);
+begin
+  inherited;
+   FControle.fStatusRegistro(strtoint(trim(edCodigo.Text)));
 end;
 
 procedure TfrCadPredioSyndico.edCodCondExit(Sender: TObject);

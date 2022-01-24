@@ -70,8 +70,10 @@ type
     procedure cbUfKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure cbTipoLocalKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure edNomeEnter(Sender: TObject);
 
   private
+    FConfirmaValida:boolean;
     FValida   : TValidaCampo;
     FControle : TCondominioControler;
     procedure pSetaComponentes;
@@ -147,7 +149,8 @@ procedure TfrCadCondominio.edCodExit(Sender: TObject);
 begin
   inherited;
   // Implementar rotina que controla a pesquisa
-  FControle.fStatusRegistro(strtoint(trim(edCod.Text)))
+  FConfirmaValida:= FValida.pValidaCod(edCod);
+
 end;
 
 procedure TfrCadCondominio.edCodKeyDown(Sender: TObject; var Key: Word;
@@ -171,9 +174,19 @@ begin
      edData.SetFocus;
 end;
 
+procedure TfrCadCondominio.edNomeEnter(Sender: TObject);
+begin
+  inherited;
+  if FConfirmaValida then
+     FControle.fStatusRegistro(strtoint(trim(edCod.Text)))
+     else
+     FConfirmaValida := true;
+end;
+
 procedure TfrCadCondominio.edNomeExit(Sender: TObject);
 begin
   inherited;
+
    FValida.pValidaNome(edNome)
 
 end;
@@ -181,6 +194,7 @@ end;
 procedure TfrCadCondominio.FormCreate(Sender: TObject);
 begin
   inherited;
+  FConfirmaValida:=true;
   FValida:=TValidaCampo.Create;
   btRegistroAntigo.Hide;
   FControle:=TCondominioControler.Create;

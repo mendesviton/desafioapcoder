@@ -17,7 +17,6 @@ type
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
-    Image1: TImage;
     Bevel2: TBevel;
     Bevel1: TBevel;
     Bevel4: TBevel;

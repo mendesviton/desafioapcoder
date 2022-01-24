@@ -1,10 +1,10 @@
 inherited frLancaDespesa: TfrLancaDespesa
   Caption = 'Lan'#231'amento de despesa'
-  ClientHeight = 169
+  ClientHeight = 163
   ClientWidth = 589
   Position = poScreenCenter
   ExplicitWidth = 605
-  ExplicitHeight = 208
+  ExplicitHeight = 202
   PixelsPerInch = 96
   TextHeight = 13
   object Label2: TLabel [0]
@@ -22,8 +22,9 @@ inherited frLancaDespesa: TfrLancaDespesa
   end
   inherited pnFundo: TPanel
     Width = 589
-    Height = 169
+    Height = 163
     Color = 15983831
+    ExplicitTop = 8
     ExplicitWidth = 589
     ExplicitHeight = 169
     inherited Bevel3: TBevel
@@ -36,8 +37,30 @@ inherited frLancaDespesa: TfrLancaDespesa
       ExplicitWidth = 892
       ExplicitHeight = 15
     end
+    inherited btAnterior: TSpeedButton
+      Left = 515
+      Top = 163
+      ExplicitLeft = 515
+      ExplicitTop = 163
+    end
+    inherited btProximo: TSpeedButton
+      Left = 563
+      Top = 163
+      ExplicitLeft = 563
+      ExplicitTop = 163
+    end
     inherited btConsulta: TSpeedButton
+      Left = 47
+      Top = 4
       OnClick = btConsultaClick
+      ExplicitLeft = 47
+      ExplicitTop = 4
+    end
+    inherited btExcluir: TSpeedButton
+      Left = 603
+      Top = 163
+      ExplicitLeft = 603
+      ExplicitTop = 163
     end
     inherited btRegistroAntigo: TSpeedButton
       Left = 534
@@ -54,7 +77,11 @@ inherited frLancaDespesa: TfrLancaDespesa
       ExplicitLeft = 534
     end
     inherited btLimpar: TSpeedButton
+      Left = 97
+      Top = 4
       OnClick = btLimparClick
+      ExplicitLeft = 97
+      ExplicitTop = 4
     end
     inherited SpeedButton1: TSpeedButton
       Left = -2

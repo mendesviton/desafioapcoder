@@ -320,73 +320,83 @@ wSQL :String;
 wPng    :TPngImage;
 wBmp    :TBitmap;
 begin
- if not Assigned(FSQLControl) then
-    FSQLControl:= TExecSQL.Create;
-
-wSQL := EmptyStr;
-
-wSQL := 'select *  from TB_SYN_CONDOMINIO where bdcodigo = '+ (inttostr(prcodigo));
-
- FSQLControl.CommandText.SQL.Clear;
- FSQLControl.CommandText.SQL.Add(wSQL);
- FSQLControl.CommandText.Open;
- if (FSQLControl.CommandText.IsEmpty)then
-    begin
-     SbNovoregistro.Show;
-     SbRegistroAntigo.hide;
-     sbStatus.Caption := 'Inserindo Registro' ;
-     sbStatus.Font.Color := clGreen;
-     pnConsulta.Caption       := EmptyStr;
-     edNome.Text              :=  EmptyStr;
-     edNome.Text              :=  EmptyStr;
-     edEmail.Text             :=  EmptyStr;
-     edCNPJ.Text              :=  EmptyStr;
-     edComplemento.Text       :=  EmptyStr;
-     cbTipolocal.ItemIndex    := 0;
-     edNomeLocal.Text         :=  EmptyStr;
-     cbUF.ItemIndex           := 0;
-     edCidade.Text            :=  EmptyStr;
-     edbairro.Text            :=  EmptyStr;
-     edTotalCondonimio.text   :=  EmptyStr;
-     edNumero.Text            :=  EmptyStr;
-     edDiaVencimento.text     :=  EmptyStr;
-     LocalImage.Picture       := nil;
-
-    end
-    else
-    begin
-      SbRegistroAntigo.Show;
-      SbNovoregistro.hide;
-      sbStatus.Caption := 'Editando Registro' ;
-      sbStatus.Font.Color := clRed;
-      edCodigo.Text          :=FSQLControl.CommandText.FieldByName('BDCODIGO').AsString;
-      edNome.Text            :=FSQLControl.CommandText.FieldByName('BDNOME').AsString;
-      edEmail.Text           :=FSQLControl.CommandText.FieldByName('BDEMAIL').AsString;
-      edCNPJ.Text            :=FSQLControl.CommandText.FieldByName('BDCNPJ').AsString;
-      edComplemento.Text     :=FSQLControl.CommandText.FieldByName('BDCOMPLEMENTO').AsString;
-      edNomeLocal.Text       :=FSQLControl.CommandText.FieldByName('BDNOMELOCAL').AsString;
-      edCidade.Text          :=FSQLControl.CommandText.FieldByName('BDCIDADE').AsString;
-      edBairro.Text          :=FSQLControl.CommandText.FieldByName('BDBAIRRO').AsString;
-      edTotalCondonimio.Text :=FSQLControl.CommandText.FieldByName('BDTOTALCOND').AsString;
-      edDiaVencimento.Text   :=FSQLControl.CommandText.FieldByName('BDDIAVENC').AsString;
-      edNumero.Text          :=FSQLControl.CommandText.FieldByName('BDNUMERO').AsString;
-      cbTipolocal.Text       :=FSQLControl.CommandText.FieldByName('BDTIPOLOCAL').AsString;
-      pnConsulta.Caption     :=FSQLControl.CommandText.FieldByName('BDNOME').AsString;
-      cbUF.Text              :=FSQLControl.CommandText.FieldByName('BDUF').AsString;
-      if FSQLControl.CommandText.FieldByName('BDCAMINHOIMAGEM').AsString <> EmptyStr then
-         begin
-            wPng := TPngImage.Create;
-            wPng.LoadFromFile(FSQLControl.CommandText.FieldByName('BDCAMINHOIMAGEM').AsString);
-            wBmp:=TUtil.PngToBmp(wPng);
-            LocalImage.Picture.Bitmap := wBmp;
-         end
-         else
-          LocalImage.Picture       := nil;
-
-    end;
 
 
+
+
+
+       if not Assigned(FSQLControl) then
+          FSQLControl:= TExecSQL.Create;
+
+      wSQL := EmptyStr;
+
+      wSQL := 'select *  from TB_SYN_CONDOMINIO where bdcodigo = '+ (inttostr(prcodigo));
+
+       FSQLControl.CommandText.SQL.Clear;
+       FSQLControl.CommandText.SQL.Add(wSQL);
+       FSQLControl.CommandText.Open;
+       if (FSQLControl.CommandText.IsEmpty)then
+          begin
+           SbNovoregistro.Show;
+           SbRegistroAntigo.hide;
+           sbStatus.Caption := 'Inserindo Registro' ;
+           sbStatus.Font.Color := clGreen;
+           pnConsulta.Caption       := EmptyStr;
+           edNome.Text              :=  EmptyStr;
+           edNome.Text              :=  EmptyStr;
+           edEmail.Text             :=  EmptyStr;
+           edCNPJ.Text              :=  EmptyStr;
+           edComplemento.Text       :=  EmptyStr;
+           cbTipolocal.ItemIndex    := 0;
+           edNomeLocal.Text         :=  EmptyStr;
+           cbUF.ItemIndex           := 0;
+           edCidade.Text            :=  EmptyStr;
+           edbairro.Text            :=  EmptyStr;
+           edTotalCondonimio.text   :=  EmptyStr;
+           edNumero.Text            :=  EmptyStr;
+           edDiaVencimento.text     :=  EmptyStr;
+           LocalImage.Picture       := nil;
+
+          end
+          else
+          begin
+            SbRegistroAntigo.Show;
+            SbNovoregistro.hide;
+            sbStatus.Caption := 'Editando Registro' ;
+            sbStatus.Font.Color := clRed;
+            edCodigo.Text          :=FSQLControl.CommandText.FieldByName('BDCODIGO').AsString;
+            edNome.Text            :=FSQLControl.CommandText.FieldByName('BDNOME').AsString;
+            edEmail.Text           :=FSQLControl.CommandText.FieldByName('BDEMAIL').AsString;
+            edCNPJ.Text            :=FSQLControl.CommandText.FieldByName('BDCNPJ').AsString;
+            edComplemento.Text     :=FSQLControl.CommandText.FieldByName('BDCOMPLEMENTO').AsString;
+            edNomeLocal.Text       :=FSQLControl.CommandText.FieldByName('BDNOMELOCAL').AsString;
+            edCidade.Text          :=FSQLControl.CommandText.FieldByName('BDCIDADE').AsString;
+            edBairro.Text          :=FSQLControl.CommandText.FieldByName('BDBAIRRO').AsString;
+            edTotalCondonimio.Text :=FSQLControl.CommandText.FieldByName('BDTOTALCOND').AsString;
+            edDiaVencimento.Text   :=FSQLControl.CommandText.FieldByName('BDDIAVENC').AsString;
+            edNumero.Text          :=FSQLControl.CommandText.FieldByName('BDNUMERO').AsString;
+            cbTipolocal.Text       :=FSQLControl.CommandText.FieldByName('BDTIPOLOCAL').AsString;
+            pnConsulta.Caption     :=FSQLControl.CommandText.FieldByName('BDNOME').AsString;
+            cbUF.Text              :=FSQLControl.CommandText.FieldByName('BDUF').AsString;
+            if FSQLControl.CommandText.FieldByName('BDCAMINHOIMAGEM').AsString <> EmptyStr then
+               begin
+                  wPng := TPngImage.Create;
+                  wPng.LoadFromFile(FSQLControl.CommandText.FieldByName('BDCAMINHOIMAGEM').AsString);
+                  wBmp:=TUtil.PngToBmp(wPng);
+                  LocalImage.Picture.Bitmap := wBmp;
+               end
+               else
+                LocalImage.Picture       := nil;
+          end;
 end;
+
+
+
+
+
+
+
+
 
 procedure TCondominioControler.pExcluirRegistro(prCodigo:String);
 var
